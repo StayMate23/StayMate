@@ -1,0 +1,23 @@
+package com.example.stay_mate.controller;
+
+import com.example.stay_mate.service.PartnerAdminService;
+import com.example.stay_mate.service.PartnerService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class PageController {
+    private final PartnerService partnerService;
+    private final PartnerAdminService partnerAdminService;
+
+    public PageController(PartnerService partnerService, PartnerAdminService partnerAdminService) {
+        this.partnerService = partnerService;
+        this.partnerAdminService = partnerAdminService;
+    }
+    @GetMapping({"","/","/home"})
+    public String getHome(Model model){
+        model.addAttribute("partner",partnerService.findAllPartner());
+        return "home";
+    }
+}
