@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Szálloda hozzáadása</title>
+</head>
+<body>
+<h1>Új szálloda hozzáadása</h1>
+<form action="/hotels" method="post">
+    <label for="name">Név:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="description">Leírás:</label>
+    <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+    <label for="pricePerNight">Ár éjszakánként:</label>
+    <input type="number" id="pricePerNight" name="pricePerNight" step="0.01" required><br><br>
+
+    <input type="submit" value="Mentés">
+</form>
+</body>
+</html>

@@ -1,7 +1,7 @@
-package com.example.stay_mate.controller;
+package com.example.stay_mate.controller.page;
 
-import com.example.stay_mate.service.PartnerAdminService;
-import com.example.stay_mate.service.PartnerService;
+import com.example.stay_mate.service.partner.PartnerAdminService;
+import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,6 @@
-package com.example.stay_mate.model;
+package com.example.stay_mate.model.partner;
 
+import com.example.stay_mate.model.partner.Partner;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 

@@ -1,8 +1,8 @@
-package com.example.stay_mate.service;
+package com.example.stay_mate.service.partner;
 
-import com.example.stay_mate.model.Partner;
-import com.example.stay_mate.model.PartnerAdmin;
-import com.example.stay_mate.repository.PartnerAdminRepository;
+import com.example.stay_mate.model.partner.Partner;
+import com.example.stay_mate.model.partner.PartnerAdmin;
+import com.example.stay_mate.repository.partner.PartnerAdminRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
