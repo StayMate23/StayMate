@@ -16,4 +16,12 @@ public class ImageService {
     public List<Image> getAllImages() {
         return imageRepository.findAll();
     }
+
+    public void saveImage(Image image) {
+        imageRepository.save(image);
+    }
+
+    public Object getImageById(Integer id) {
+       return imageRepository.findById(id);
+    }
 }

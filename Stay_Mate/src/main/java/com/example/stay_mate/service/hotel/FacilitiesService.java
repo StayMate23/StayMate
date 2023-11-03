@@ -16,4 +16,12 @@ public class FacilitiesService {
     public List<Facilities> getAllFacilities() {
         return facilitiesRepository.findAll();
     }
+
+    public Facilities getFacilitiesById(Integer id) {
+        return facilitiesRepository.getReferenceById(id);
+    }
+
+    public void saveFacilities(Facilities facilities) {
+        facilitiesRepository.save(facilities);
+    }
 }
