@@ -64,11 +64,7 @@
             <artifactId>dkim-javamail</artifactId>
             <version>1.2.2</version>
         </dependency>
-        <dependency>
-            <groupId>de.vinado.boot</groupId>
-            <artifactId>spring-boot-dkim-javamail</artifactId>
-            <version>1.2.2</version>
-        </dependency>
+
     </dependencies>
 
     <build>
