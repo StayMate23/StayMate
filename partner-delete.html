@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>ATTENTION!!!4!</h1>
+<h2>Do you want to delete this partner?!</h2>
+<h2>Please proceed with caution</h2>
+
+<form method="post" th:action="'/partner/delete/'+${partner.id}">
+
+    <input type="hidden" th:value="${partner.id}" th:field="*{partner.id}">
+
+    <div class="mb-3 row">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" th:placeholder="${partner.partnerName}" th:field="*{partner.partnerName}">
+    </div>
+
+    <div class="mb-3">
+        <label for="address">address</label>
+        <input type="text" id="address" th:placeholder="${partner.address}" th:field="*{partner.address}">
+    </div>
+
+    <div class="mb-3">
+        <label for="telnum">telnum</label>
+        <input type="number" id="telnum" th:placeholder="${partner.telNum}" th:field="*{partner.telNum}">
+    </div>
+
+    <div class="mb-3">
+        <label for="email">e-Mail</label>
+        <input type="text" id="email" th:placeholder="${partner.email}" th:field="*{partner.email}">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="compregnum">compregnum</label>
+        <input type="number" id="compregnum" th:placeholder="${partner.companyRegNum}" th:field="*{partner.companyRegNum}">
+    </div>
+
+    <div class="mb-3">
+        <label for="taxnum">taxnum</label>
+        <input type="text" id="taxnum" th:placeholder="${partner.telNum}" th:field="*{partner.taxNum}">
+    </div>
+
+    <button type="submit">Delete</button>
+</form>
+
+</body>
+</html>

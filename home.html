@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <tr th:each="actual :${partner}">
+    <td th:text="${actual.id}"></td>
+    <td th:text="${actual.partnerName}"></td>
+      <td>
+          <a th:href="@{'/partner/update/' + ${actual.id}}">
+              <button class="btn btn-info">Update</button>
+          </a>
+          <a th:href="@{'/partner/delete/' + ${actual.id}}">
+              <button class="btn btn-info">Delete</button>
+          </a>
+      </td>
+  </tr>
+    <tr>
+        <td>
+            <a th:href="@{/partner/new}">
+                <button type="submit">Partner Registration</button>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
