@@ -1,9 +1,10 @@
 package com.example.stay_mate.controller.page;
 
-import com.example.stay_mate.service.partner.PartnerAdminService;
-import com.example.stay_mate.service.partner.PartnerService;
+import com.example.stay_mate.model.Partner;
+import com.example.stay_mate.service.PartnerAdminService;
+import com.example.stay_mate.service.PartnerService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -15,9 +16,21 @@ public class PageController {
         this.partnerService = partnerService;
         this.partnerAdminService = partnerAdminService;
     }
-    @GetMapping({"","/","/home"})
-    public String getHome(Model model){
-        model.addAttribute("partner",partnerService.findAllPartner());
+    /*
+    @GetMapping({"", "/"})
+    public String getHome(Model model) {
+        model.addAttribute("partner", partnerService.findAllPartner());
+        return "partner-list";
+    }
+
+     */
+
+    @GetMapping("/")
+    public String getHome(@AuthenticationPrincipal Partner partner) {
+        if (partner != null) {
+            return "redirect:/partner/current";
+        }
         return "home";
     }
+
 }

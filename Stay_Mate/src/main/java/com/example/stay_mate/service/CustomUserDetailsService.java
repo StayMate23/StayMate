@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private PartnerService partnerService;
-    private PasswordEncoder passwordEncoder;
+    private final PartnerService partnerService;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     public CustomUserDetailsService(PartnerService partnerRepository, PasswordEncoder passwordEncoder) {
         this.partnerService = partnerRepository;

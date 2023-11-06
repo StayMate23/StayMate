@@ -24,7 +24,6 @@ public class FacilitiesController {
     }
 
 
-
     @GetMapping("/facilities/{id}")
     public String getFacilitiesById(Model model, @PathVariable("id") Integer id) {
         Facilities facilities = facilitiesService.getFacilitiesById(id);
@@ -32,7 +31,6 @@ public class FacilitiesController {
         return "facilities";
     }
 
-    // TODO ide jöhet a partner hozzáadása:
     @GetMapping("/new")
     public String addFacilities(Model model) {
         model.addAttribute("new-facilities", new Facilities());
@@ -43,7 +41,6 @@ public class FacilitiesController {
     public String addFacilities(@ModelAttribute("facilities") Facilities facilities) {
         facilitiesService.saveFacilities(facilities);
         return "redirect:/home";
-        // LIA: itt nem tudom mi lenne a megfelelő, de arra gondoltam, hogy egy bejelentkezés utáni home page-re lehetne redirektálni
     }
 
     @GetMapping("/update/{id}")

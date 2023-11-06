@@ -1,6 +1,5 @@
 package com.example.stay_mate.config;
 
-import com.example.stay_mate.model.EmailForm;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.example.stay_mate.service;
 
 import com.example.stay_mate.model.Partner;
-import com.example.stay_mate.repository.PartnerRepository;
+import com.example.stay_mate.repository.partner.PartnerRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PartnerService implements UserDetailsService {
