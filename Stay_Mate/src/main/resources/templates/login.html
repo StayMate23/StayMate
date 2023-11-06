@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Please Log In</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" th:href="@{/}">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand active" th:href="@{/partner/all}">Partners</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</nav>
+<body>
+<h3>Please Log In</h3>
+<div th:if="${param.error}">
+  Invalid username and password.</div>
+<div th:if="${param.logout}">
+  You have been logged out.</div>
+<form th:action="@{/login}" method="post">
+  <div>
+    <input type="text" name="username" placeholder="Username"/>
+  </div>
+  <div>
+    <input type="password" name="password" placeholder="Password"/>
+  </div>
+  <a>
+    <button type="submit" class="btn btn-success">Login</button>
+  </a>
+</form>
+</body>
+</html>

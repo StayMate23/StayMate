@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" th:href="@{/}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{/partner/all}">Partners</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </div>
+</nav>
+<body>
+<h1>Registration</h1>
+
+<form th:action="@{/partner/reg}" method="post">
+
+    <input th:field="*{newPartner.partnerName}" type="text" placeholder="Company name:"> <br>
+
+    <input th:field="*{newPartner.address}" type="text" placeholder="Address:"><br>
+
+    <input th:field="*{newPartner.telNum}" type="tel" placeholder="Telephone number:"><br>
+
+    <input th:field="*{newPartner.password}" type="password" required placeholder="Password:"><br>
+
+    <input th:field="*{newPartner.email}" type="text" required placeholder="e-Mail:"><br>
+
+    <input th:field="*{newPartner.companyRegNum}" type="number" placeholder="Registration number:"><br>
+
+    <input th:field="*{newPartner.taxNum}" type="number" placeholder="Tax number:"><br>
+
+    <input th:field="*{newPartner.role}" type="text" placeholder="Admin / User"><br>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+</body>
+</html>
