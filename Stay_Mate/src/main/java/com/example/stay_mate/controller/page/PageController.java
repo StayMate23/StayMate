@@ -25,6 +25,7 @@ public class PageController {
 
      */
 
+
     @GetMapping("/")
     public String getHome(@AuthenticationPrincipal Partner partner) {
         if (partner != null) {
@@ -32,5 +33,4 @@ public class PageController {
         }
         return "home";
     }
-
 }

@@ -6,28 +6,53 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<body>
-<table>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">StayMate</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home.html">Kezdőlap <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="partner.html">Partnerek</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Kapcsolat</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+
+        <a class="navbar-brand" th:href="@{'/partner/'+ ${partner.id} + '/update'}">Update</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/partner-admin/new/' + ${partner.id}}">Add Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Account</button>
+        </form>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
+<body>
+<table>
     <thead>
+    <tr>
+        <td>ID</td>
+        <td>Partner</td>
+        <td>Address</td>
+        <td>Phone</td>
+        <td>e-mail</td>
+        <td>Company registration number</td>
+        <td>Tax number</td>
+        <td>Contact Person</td>
+    </tr>
+    </thead>
     <tr>
         <td>
             <h5 th:text="${partner.id}"></h5>
@@ -53,23 +78,11 @@
         <td>
             <ul>
                 <li th:each="actual : ${partner_admin}">
-                    <p th:text="${actual.name}"></p>
-                    <p th:text="${actual.posRank}"></p>
-                    <p th:text="${actual.telNumber}"></p>
-                    <a th:href="@{'/partner-admin/update/' + ${actual.id}}">
-                        <button class="btn btn-info">Update</button>
-                    </a>
+                    <a th:text="${actual.name}" th:href="@{'/partner-admin/' + ${actual.id}}"></a>
                 </li>
             </ul>
         </td>
-        <td>
-
-        </td>
     </tr>
-    </thead>
 </table>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
