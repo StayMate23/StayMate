@@ -16,4 +16,20 @@ public class HotelService {
     public List<Hotel> getAllHotels() {
         return hotelRepository.findAll();
     }
+
+    public Object findAllHotel() {
+        return hotelRepository.findAll();
+    }
+
+    public void save(Hotel hotel) {
+        hotelRepository.save(hotel);
+    }
+
+    public Hotel getHotelById(Integer id) {
+        return hotelRepository.getReferenceById(id);
+    }
+
+    public void deleteHotelById(Integer id) {
+        hotelRepository.deleteById(id);
+    }
 }

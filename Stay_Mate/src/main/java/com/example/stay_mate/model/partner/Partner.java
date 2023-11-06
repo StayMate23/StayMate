@@ -1,4 +1,4 @@
-package com.example.stay_mate.model;
+package com.example.stay_mate.model.partner;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

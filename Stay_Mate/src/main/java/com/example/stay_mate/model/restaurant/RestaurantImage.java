@@ -3,7 +3,7 @@ package com.example.stay_mate.model.restaurant;
 import jakarta.persistence.*;
 
 @Entity
-public class Image {
+public class RestaurantImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

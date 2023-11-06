@@ -2,12 +2,9 @@ package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Facilities;
 import com.example.stay_mate.model.hotel.Hotel;
-import com.example.stay_mate.model.owner.Owner;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/services")
@@ -18,29 +15,28 @@ public class FacilitiesController {
     public FacilitiesController(FacilitiesService facilitiesService) {
         this.facilitiesService = facilitiesService;
     }
-    @GetMapping
-    public List<Facilities> getAllFacilities() {
-        return facilitiesService.getAllFacilities();
+    @GetMapping("/all")
+    public String getAllFacilities(Model model) {
+        model.addAttribute("all_services", facilitiesService.findAllFacilities());
+        return "facilities-list";
     }
-
-
     @GetMapping("/facilities/{id}")
     public String getFacilitiesById(Model model, @PathVariable("id") Integer id) {
         Facilities facilities = facilitiesService.getFacilitiesById(id);
         model.addAttribute("facilities", facilities);
-        return "facilities";
+        return "services";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/create")
     public String addFacilities(Model model) {
         model.addAttribute("new-facilities", new Facilities());
         return "new-facilities-form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public String addFacilities(@ModelAttribute("facilities") Facilities facilities) {
         facilitiesService.saveFacilities(facilities);
-        return "redirect:/home";
+        return "redirect:/facilities-list";
     }
 
     @GetMapping("/update/{id}")
@@ -53,6 +49,11 @@ public class FacilitiesController {
     public String updateFacilities(@ModelAttribute("facilities") Facilities facilities, @PathVariable("id") Integer id) {
         facilitiesService.saveFacilities(facilities);
         return "redirect:/facilities/facilities/" + id;
+    }
+    @PostMapping("/{id}/delete")
+    public String deleteFacilities(@PathVariable("id") Integer id, Hotel hotel) {
+        facilitiesService.deleteFacilitiesById(id);
+        return "redirect:/hotel/all";
     }
 
 }

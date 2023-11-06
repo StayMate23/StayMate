@@ -24,4 +24,12 @@ public class FacilitiesService {
     public void saveFacilities(Facilities facilities) {
         facilitiesRepository.save(facilities);
     }
+
+    public Object findAllFacilities() {
+        return facilitiesRepository.findAll();
+    }
+
+    public void deleteFacilitiesById(Integer id) {
+        facilitiesRepository.deleteById(id);
+    }
 }

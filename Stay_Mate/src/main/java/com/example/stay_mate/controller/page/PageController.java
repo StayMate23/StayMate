@@ -1,8 +1,8 @@
 package com.example.stay_mate.controller.page;
 
-import com.example.stay_mate.model.Partner;
-import com.example.stay_mate.service.PartnerAdminService;
-import com.example.stay_mate.service.PartnerService;
+import com.example.stay_mate.model.partner.Partner;
+import com.example.stay_mate.service.partner.PartnerAdminService;
+import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

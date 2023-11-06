@@ -1,10 +1,9 @@
 package com.example.stay_mate.model.hotel;
 
-import com.example.stay_mate.model.hotel.Hotel;
 import jakarta.persistence.*;
 
 @Entity
-public class Image {
+public class HotelImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

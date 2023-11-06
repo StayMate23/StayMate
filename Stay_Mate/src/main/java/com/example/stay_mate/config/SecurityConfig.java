@@ -1,7 +1,7 @@
 package com.example.stay_mate.config;
 
 
-import com.example.stay_mate.service.PartnerService;
+import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/","/partner/reg","/contact", "/partner/all").permitAll()
+                        .requestMatchers("/","/partner/reg","/contact", "/partner/all","/services").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin

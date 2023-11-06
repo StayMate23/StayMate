@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html>
 <head>
     <title>Szálloda hozzáadása</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">StayMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,22 +25,23 @@
         </ul>
     </div>
 </nav>
-<body><h1>Új szolgáltatás hozzáadása</h1>
-<form action="/services" method="post">
-    <label for="serviceName">Név:</label>
-    <input type="text" id="serviceName" name="serviceName" required><br><br>
+<h1>Add new hotel</h1>
+<form action="/hotels" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
 
-    <label for="serviceDescription">Leírás:</label>
-    <textarea id="serviceDescription" name="serviceDescription" rows="4" required></textarea><br><br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea><br><br>
 
-    <label for="servicePrice">Ár:</label>
-    <input type="number" id="servicePrice" name="servicePrice" step="0.01" required><br><br>
+    <label for="pricePerNight">Price/Night:</label>
+    <input type="number" id="pricePerNight" name="pricePerNight" step="0.01" required><br><br>
 
-    <input type="submit" value="Mentés">
+    <input type="submit" value="Save">
 </form>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
-

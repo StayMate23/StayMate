@@ -1,6 +1,7 @@
 package com.example.stay_mate.service;
 
-import com.example.stay_mate.model.Partner;
+import com.example.stay_mate.model.partner.Partner;
+import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

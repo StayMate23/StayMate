@@ -1,4 +1,4 @@
-package com.example.stay_mate.contact;
+package com.example.stay_mate.controller.contact;
 
 import com.example.stay_mate.service.contact.EmailService;
 import org.springframework.stereotype.Controller;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ContactController {
-
-
     private final EmailService emailService;
 
     public ContactController(EmailService emailService) {
@@ -32,4 +30,3 @@ public class ContactController {
         return "success";
     }
 }
-
