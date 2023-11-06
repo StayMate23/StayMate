@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Étterem hozzáadása</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -26,16 +25,18 @@
         </ul>
     </div>
 </nav>
-<h1>Új kép hozzáadása</h1>
-<form action="/images" method="post" enctype="multipart/form-data">
-  <label for="imageDescription">Leírás:</label>
-  <textarea id="imageDescription" name="imageDescription" rows="4" required></textarea><br><br>
+<h1>Új étterem hozzáadása</h1>
+<form action="/resturants" method="post">
+    <label for="name">Név:</label>
+    <input type="text" id="name" name="name" required><br><br>
 
-  <label for="imageFile">Kép kiválasztása:</label>
-  <input type="file" id="imageFile" name="imageFile" accept="barImage/*" required><br><br>
+    <label for="description">Leírás:</label>
+    <textarea id="description" name="description" rows="4" required></textarea><br><br>
 
-  <input type="submit" value="Mentés">
+
+    <input type="submit" value="Mentés">
 </form>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -35,7 +35,6 @@ public class OwnerController {
     public String addOwner(@ModelAttribute("owner") Owner owner) {
         ownerService.saveOwner(owner);
         return "redirect:/home";
-        // LIA: itt nem tudom mi lenne a megfelelő, de arra gondoltam, hogy egy bejelentkezés utáni home page-re lehetne redirektálni
     }
 
     @GetMapping("/update/{id}")
