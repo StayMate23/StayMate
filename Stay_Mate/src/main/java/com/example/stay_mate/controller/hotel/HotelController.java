@@ -49,6 +49,6 @@ public class HotelController {
     @PostMapping("/{id}/delete")
     public String deleteHotel(@PathVariable("id") Integer id, Hotel hotel) {
         hotelService.deleteHotelById(id);
-        return "redirect:/hotel/all";
+        return "redirect:/hotels/all";
     }
 }
