@@ -44,7 +44,7 @@ public class HotelController {
     @PostMapping("/{id}/update")
     public String updateHotel(@ModelAttribute("hotel") Hotel hotel, @PathVariable("id") Integer id) {
         hotelService.save(hotel);
-        return "redirect:/hotels";
+        return "redirect:/hotels/all";
     }
     @PostMapping("/{id}/delete")
     public String deleteHotel(@PathVariable("id") Integer id, Hotel hotel) {
