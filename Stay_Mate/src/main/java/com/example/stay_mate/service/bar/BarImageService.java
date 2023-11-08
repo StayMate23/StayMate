@@ -8,20 +8,32 @@ import java.util.List;
 
 @Service
 public class BarImageService {
-    public final BarImageRepository barImageRepository;
+    public final BarImageRepository ImageRepository;
 
-    public BarImageService(BarImageRepository barImageRepository) {
-        this.barImageRepository = barImageRepository;
+    public BarImageService(BarImageRepository ImageRepository) {
+        this.ImageRepository = ImageRepository;
     }
     public List<BarImage> getAllImages() {
-        return barImageRepository.findAll();
+        return ImageRepository.findAll();
     }
 
     public void saveImage(BarImage image) {
-        barImageRepository.save(image);
+        ImageRepository.save(image);
     }
 
     public Object getImageById(Integer id) {
-        return barImageRepository.findById(id);
+        return ImageRepository.findById(id);
     }
+    public void save(BarImage image) {
+        ImageRepository.save(image);
+    }
+
+    public Object findAllImage() {
+        return ImageRepository.findAll();
+    }
+
+    public void deleteImageById(Integer id) {
+        ImageRepository.deleteById(id);
+    }
+
 }

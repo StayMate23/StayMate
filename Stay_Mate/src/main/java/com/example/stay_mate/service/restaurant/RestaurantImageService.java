@@ -1,5 +1,7 @@
 package com.example.stay_mate.service.restaurant;
 
+import com.example.stay_mate.model.hotel.HotelImage;
+import com.example.stay_mate.model.restaurant.Restaurant;
 import com.example.stay_mate.model.restaurant.RestaurantImage;
 import com.example.stay_mate.repository.restaurant.RestaurantImageRepository;
 import org.springframework.stereotype.Service;
@@ -24,4 +26,16 @@ public class RestaurantImageService {
     public Object getImageById(Integer id) {
         return imageRepository.findById(id);
     }
+    public void save(RestaurantImage image) {
+        imageRepository.save(image);
+    }
+
+    public Object findAllImage() {
+        return imageRepository.findAll();
+    }
+
+    public void deleteImageById(Integer id) {
+        imageRepository.deleteById(id);
+    }
+
 }
