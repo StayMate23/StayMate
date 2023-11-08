@@ -13,12 +13,10 @@ public class HotelService {
     public HotelService(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
-    public List<Hotel> getAllHotels() {
-        return hotelRepository.findAll();
-    }
 
-    public Object findAllHotel() {
-        return hotelRepository.findAll();
+
+    public List<Hotel> findAllHotel() {
+        return  hotelRepository.findAll();
     }
 
     public void save(Hotel hotel) {

@@ -20,12 +20,6 @@ public class FacilitiesController {
         model.addAttribute("all_services", facilitiesService.findAllFacilities());
         return "facilities-list";
     }
-    @GetMapping("/facilities/{id}")
-    public String getFacilitiesById(Model model, @PathVariable("id") Integer id) {
-        Facilities facilities = facilitiesService.getFacilitiesById(id);
-        model.addAttribute("facilities", facilities);
-        return "services";
-    }
 
     @GetMapping("/create")
     public String addFacilities(Model model) {

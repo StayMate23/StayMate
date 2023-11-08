@@ -2,22 +2,23 @@ package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.hotel.HotelService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/hotels")
 public class HotelController {
     private final HotelService hotelService;
-    @Autowired
+
     public HotelController(HotelService hotelService) {
         this.hotelService = hotelService;
     }
 
+
     @GetMapping("/all")
     public String getAllHotels(Model model) {
-        model.addAttribute("all_hotels", hotelService.findAllHotel());
+        model.addAttribute("hotels", hotelService.findAllHotel());
         return "hotel-list";
     }
 
@@ -28,15 +29,15 @@ public class HotelController {
     }
 
     @PostMapping("/create")
-    public String addHotel(@ModelAttribute("hotel") Hotel hotel) {
+    public String addHotel(@ModelAttribute("new_hotel") Hotel hotel) {
         hotelService.save(hotel);
-        return "redirect:/hotel/all";
+        return "redirect:/hotels/all";
     }
 
     @GetMapping("/{id}/update")
     // @PreAuthorize("hasRole('ADMIN')")
     public String updateHotel(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("hotel", hotelService.getHotelById(id));
+        model.addAttribute("new_hotel", hotelService.getHotelById(id));
         return "hotel-update";
     }
 

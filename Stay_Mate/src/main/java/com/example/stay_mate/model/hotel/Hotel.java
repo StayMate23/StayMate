@@ -1,8 +1,9 @@
 package com.example.stay_mate.model.hotel;
 
-import jakarta.persistence.*;
-
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Hotel {
@@ -12,9 +13,15 @@ public class Hotel {
 
     private String name;
     private String description;
-    private double pricePerNight;
-    @OneToMany(mappedBy = "hotel")
-    private List<Facilities> facilitiesList;
+
+    public Hotel(Integer id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Hotel() {
+    }
 
     public Integer getId() {
         return id;
@@ -40,19 +47,7 @@ public class Hotel {
         this.description = description;
     }
 
-    public double getPricePerNight() {
-        return pricePerNight;
-    }
 
-    public void setPricePerNight(double pricePerNight) {
-        this.pricePerNight = pricePerNight;
-    }
 
-    public List<Facilities> getFacilitiesList() {
-        return facilitiesList;
-    }
 
-    public void setFacilitiesList(List<Facilities> facilitiesList) {
-        this.facilitiesList = facilitiesList;
-    }
 }
