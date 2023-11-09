@@ -73,14 +73,14 @@
     </div>
 </nav>
 <h1>Add new hotel</h1>
-<form th:action="@{/hotels/create}" method="post">
+<form th:action="@{'/hotels/create/' + ${partnerId}}" method="post">
     <label for="name">Name</label>
     <input type="text" id="name" placeholder="Name:" th:field="*{new_hotel.name}">
 
     <label for="description">Description:</label>
     <input type="text" id="description" placeholder="Description:" th:field="*{new_hotel.description}">
 
-    <input type="submit" value="Save">
+    <button type="submit" class="btn btn-primary">Add Hotel</button><br>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

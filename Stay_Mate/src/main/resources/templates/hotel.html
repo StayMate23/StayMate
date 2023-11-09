@@ -84,20 +84,20 @@
     </thead>
     <tr>
         <td>
-            <h5 th:text="${partner_admin.name}"></h5>
+            <h5 th:text="${hotel.name}"></h5>
         </td>
         <td>
-            <h5 th:text="${partner_admin.posRank}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner_admin.telNumber}"></h5>
+            <h5 th:text="${hotel.description}"></h5>
         </td>
     </tr>
 
 </table>
-<form th:action="@{'/partner-admin/delete/' + ${partner_admin.id}}" method="post">
+<form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn btn-danger">Delete Admin</button>
+    <button type="submit" class="btn btn-danger">Delete Hotel</button>
 </form>
+<a th:href="@{'/hotels/'+ ${hotel.id} + '/update'}">
+<button type="submit" class="btn btn-info">Update Hotel Info</button>
+</a>
 </body>
 </html>

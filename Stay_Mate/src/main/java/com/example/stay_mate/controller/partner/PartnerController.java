@@ -1,6 +1,7 @@
 package com.example.stay_mate.controller.partner;
 
 import com.example.stay_mate.model.partner.Partner;
+import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class PartnerController {
     private final PartnerService partnerService;
     private final PartnerAdminService partnerAdminService;
+    private final HotelService hotelService;
     private final PasswordEncoder passwordEncoder;
 
-    public PartnerController(PartnerService partnerService, PartnerAdminService partnerAdminService, PasswordEncoder passwordEncoder) {
+    public PartnerController(PartnerService partnerService, PartnerAdminService partnerAdminService, HotelService hotelService, PasswordEncoder passwordEncoder) {
         this.partnerService = partnerService;
         this.partnerAdminService = partnerAdminService;
+        this.hotelService = hotelService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -30,6 +33,7 @@ public class PartnerController {
 
     @GetMapping("/current")
     public String getCurrentPartner(Model model, @AuthenticationPrincipal Partner partner) {
+        model.addAttribute("hotel", hotelService.getHotelByPartner(partner));
         model.addAttribute("partner_admin", partnerAdminService.getAllPartnerAdminByPartner(partner));
         model.addAttribute("partner", partner);
         return "partner";
@@ -45,7 +49,6 @@ public class PartnerController {
     public String addPartner(@ModelAttribute("partner") Partner partner) {
         partnerService.savePartner(partner);
         return "redirect:/partner/all";
-        // LIA: itt nem tudom mi lenne a megfelelő, de arra gondoltam, hogy egy bejelentkezés utáni home page-re lehetne redirektálni
     }
 
     @PostMapping("/{id}/delete")
