@@ -16,32 +16,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" th:href="@{'/partner/'+ ${partner.id} + '/update'}">Update</a>
+        <a class="navbar-brand" th:href="@{/partner/all}">Partners</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" th:href="@{'/partner-admin/new/' + ${partner.id}}">Add Admin</a>
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <a class="navbar-brand" th:href="@{'/hotels/create/' + ${partner.id}}">Add Hotel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-link">Delete Account</button>
-        </form>
-
-        <form class="navbar-brand" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-link">LogOut</button>
-        </form>
 
     </div>
 </nav>

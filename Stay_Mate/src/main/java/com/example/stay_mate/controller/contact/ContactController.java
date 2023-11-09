@@ -22,7 +22,10 @@ public class ContactController {
 
 
     @PostMapping("/contact")
-    public String submitForm(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("subject") String subject, @RequestParam("message") String message) {
+    public String submitForm(@RequestParam("name") String name,
+                             @RequestParam("email") String email,
+                             @RequestParam("subject") String subject,
+                             @RequestParam("message") String message) {
         // E-mail elküldése
         String emailText = "Név: " + name + "\nE-mail cím: " + email + "\nTárgy: " + subject + "\nÜzenet:\n" + message;
         emailService.sendEmail("23staymate23@gmail.com", "Kapcsolatfelvétel", emailText);
