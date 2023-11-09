@@ -1,23 +1,29 @@
 package com.example.stay_mate.model.hotel;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.stay_mate.model.partner.Partner;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "hotel")
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @JoinColumn(name = "name")
     private String name;
+    @JoinColumn(name = "description")
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "partner_id")
+    Partner partner;
 
-    public Hotel(Integer id, String name, String description) {
+    public Hotel(Integer id, String name, String description, Partner partner) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.partner = partner;
     }
 
     public Hotel() {
@@ -47,7 +53,12 @@ public class Hotel {
         this.description = description;
     }
 
+    public Partner getPartner() {
+        return partner;
+    }
 
-
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
 
 }

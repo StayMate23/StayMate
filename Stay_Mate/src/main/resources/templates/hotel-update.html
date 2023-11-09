@@ -76,14 +76,15 @@
 </nav>
 
 
-<form th:action="@{/hotels/{id}/update(id=${new_hotel.id})}" method="post">
+<form th:action="@{'/hotels/'+${update_hotel.id} +'/update'}" method="post">
+
+    <input type="hidden" th:value="${update_hotel.id}" th:field="*{update_hotel.partner.id}">
+
     <label for="name">Name</label>
-    <input type="text" id="name" placeholder="Name:" th:field="*{new_hotel.name}">
+    <input type="text" id="name" th:placeholder="${update_hotel.name}" th:field="*{update_hotel.name}">
 
     <label for="description">Description:</label>
-    <input type="text" id="description" placeholder="Description:" th:field="*{new_hotel.description}">
-
-    <input type="submit" value="Save">
+    <input type="text" id="description" th:placeholder="${update_hotel.description}" th:field="*{update_hotel.description}">
 
     <button type="submit" class="btn btn-success">Update</button>
 </form>
