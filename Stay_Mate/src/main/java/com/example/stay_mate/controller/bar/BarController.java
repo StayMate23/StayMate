@@ -1,15 +1,13 @@
 package com.example.stay_mate.controller.bar;
 
 import com.example.stay_mate.model.bar.Bar;
-import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.bar.BarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/bars")
 public class BarController {
     private final BarService barService;
