@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Position</td>
+        <td>Phone number</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${hotel.name}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${hotel.description}"></h5>
+        </td>
+    </tr>
+
+</table>
+<form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Hotel</button>
+</form>
+<a th:href="@{'/hotels/'+ ${hotel.id} + '/update'}">
+<button type="submit" class="btn btn-info">Update Hotel Info</button>
+</a>
+</body>
+</html>
