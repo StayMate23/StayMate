@@ -2,53 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant List</title>
+    <title>Bar List</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Stay Mate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/bars/all">All Bars</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/bars/create">Add Bar</a>
-            </li>
-        </ul>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{/bars/create}">Add Bar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form th:action="@{'/bars/'  + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Bar</button>
+        </form>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">Log Out</button>
+        </form>
     </div>
 </nav>
-<body>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" th:href="@{/hotels/create}">Add hotel</a>
-            <a class="dropdown-item" th:href="@{/hotels/update}">Update Hotels</a>
-            <a class="dropdown-item" th:href="@{/new-facilities-form.html}">Add facilities</a>
-            <a class="dropdown-item" th:href="@{/new-restaurant-form.html}">Add restaurant</a>
-            <a class="dropdown-item" th:href="@{/new-bar-form.html}">Add bar</a>
-        </div>
-    </div>
-</div>
-
-<table>
+<table class="table">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Bárok</th>
+        <th>Name</th>
+        <th>Description</th>
     </tr>
     </thead>
-    <tr th:each="actual :${all_bars}">
-        <td th:text="${actual.id}"></td>
-        <td th:text="${actual.barName}"></td>
+    <tbody>
+    <tr th:each="bar : ${all_bars}">
+        <td><h5 th:text="${bar.name}"></h5></td>
+        <td><h5 th:text="${bar.description}"></h5></td>
     </tr>
+    </tbody>
 </table>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

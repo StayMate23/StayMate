@@ -1,21 +1,21 @@
 package com.example.stay_mate.service.bar;
 
 import com.example.stay_mate.model.bar.Bar;
-import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.repository.bar.BarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BarService {
     public final BarRepository barRepository;
 
-    public BarService(BarRepository barRepository){
+    public BarService(BarRepository barRepository) {
         this.barRepository = barRepository;
     }
-    public List<Bar> getAllBars(){return barRepository.findAll();}
-    public Object findAllBar() {
+
+    public List<Bar> findAllBar() {
         return barRepository.findAll();
     }
 
@@ -23,12 +23,13 @@ public class BarService {
         barRepository.save(bar);
     }
 
-    public Bar getBarById(Integer id) {
-        return barRepository.getReferenceById(id);
+    public Optional<Bar> getBarById(Integer id) {
+        return barRepository.findById(id);
     }
 
     public void deleteBarById(Integer id) {
         barRepository.deleteById(id);
     }
+
 
 }

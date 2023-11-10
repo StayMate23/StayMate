@@ -2,23 +2,25 @@ package com.example.stay_mate.controller.bar;
 
 import com.example.stay_mate.model.bar.Bar;
 import com.example.stay_mate.service.bar.BarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/bars")
 public class BarController {
     private final BarService barService;
-    @Autowired
+
     public BarController(BarService barService) {
         this.barService = barService;
     }
 
     @GetMapping("/all")
     public String getAllBars(Model model) {
-        model.addAttribute("all_bars", barService.findAllBar());
+        List<Bar> all_bars = barService.findAllBar(); // Kapd meg az összes "bar" objektum listáját a szolgáltatás segítségével
+        model.addAttribute("all_bars", all_bars); // Adj hozzá az összes "bar" objektumot a modellhez
         return "bar-list";
     }
 
@@ -31,24 +33,13 @@ public class BarController {
     @PostMapping("/create")
     public String addBar(@ModelAttribute("bar") Bar bar) {
         barService.save(bar);
-        return "redirect:/bar/all";
+        return "redirect:/bars/all";
     }
 
-    @GetMapping("/{id}/update")
-    // @PreAuthorize("hasRole('ADMIN')")
-    public String updateBar(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("bar", barService.getBarById(id));
-        return "bar-update";
-    }
-
-    @PostMapping("/{id}/update")
-    public String updateBar(@ModelAttribute("bar") Bar bar, @PathVariable("id") Integer id) {
-        barService.save(bar);
-        return "redirect:/bars";
-    }
     @PostMapping("/{id}/delete")
     public String deleteBar(@PathVariable("id") Integer id, Bar bar) {
         barService.deleteBarById(id);
-        return "redirect:/bar/all";
+        return "redirect:/bars/all";
     }
+
 }

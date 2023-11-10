@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -34,25 +35,20 @@ public class SecurityConfig {
         provider.setUserDetailsService(partnerService);
         return provider;
     }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/partner/reg", "/contact", "/partner/all", "/services", "/add-hotel", "/facilities-list", "facilities-update", "/hotel-list",
-                                "/hotel-update", "/new-facilities-form", "/hotels/all", "/hotels/create",
-                                "/hotels/new-hotel-form", "hotels/{id}/update").permitAll()
+                        .requestMatchers("/","/partner/reg","/contact", "/partner/all","/services","/add-hotel","/facilities-list","facilities-update","/hotel-list",
+                                "/hotel-update","/new-facilities-form","/hotels/all","/hotels/create",
+                                "/hotels/new-hotel-form","hotels/{id}/update","/message","/bars/create","/bars/current","/bars/delete","bars/bar/all").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout((logout) -> logout.logoutSuccessUrl("/")
-                        // the row below deleting the cookies
-                        .deleteCookies("JSESSIONID")
-
-                );
+                .logout((logout) ->logout.logoutSuccessUrl("/"));
         return http.build();
     }
 
