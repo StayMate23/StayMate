@@ -8,70 +8,30 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">StayMate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/home.html}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-list}">Partners</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-form}">Add new partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-admin-form}">Add new partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin}">Partner Admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-update.html}">Update partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin-update.html}">Update partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/all}">Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/contact}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/create}">Add hotel</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/update}">Update Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-list}">Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-update.html}">Update Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-facilities-form.html}">Add facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-restaurant-form.html}">Add restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/restaurant-list}">Restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/bar-list.html}">Bar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-bar-form.html}">Add bar</a>
-            </li>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
 
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/}" style="color: #fff;">Profile</a>
 
-        </ul>
+        <!-- Toggler button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar items -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/partner/all}" style="color: #fff;">Partners</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}" style="color: #fff;">Contact Us</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <table>

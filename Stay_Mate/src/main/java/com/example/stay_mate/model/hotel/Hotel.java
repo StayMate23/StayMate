@@ -3,8 +3,6 @@ package com.example.stay_mate.model.hotel;
 import com.example.stay_mate.model.partner.Partner;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "hotel")
 public class Hotel {
@@ -17,8 +15,7 @@ public class Hotel {
     private String description;
     @ManyToOne
     @JoinColumn(name = "partner_id")
-    Partner partner;
-
+    private Partner partner;
     public Hotel(Integer id, String name, String description, Partner partner) {
         this.id = id;
         this.name = name;
