@@ -14,7 +14,7 @@
     <tr>
         <td>Name</td>
         <td>Position</td>
-        <td>Phone number</td>
+        <td>Services</td>
     </tr>
     </thead>
     <tr>
@@ -23,6 +23,13 @@
         </td>
         <td>
             <h5 th:text="${hotel.description}"></h5>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${facilities}">
+                    <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}"></a>
+                </li>
+            </ul>
         </td>
     </tr>
 
@@ -33,6 +40,9 @@
 </form>
 <a th:href="@{'/hotels/'+ ${hotel.id} + '/update'}">
 <button type="submit" class="btn btn-info">Update Hotel Info</button>
+</a>
+<a th:href="@{'/services/create/'+ ${hotel.id}}">
+    <button type="submit" class="btn btn-info">Add Service</button>
 </a>
 </body>
 </html>

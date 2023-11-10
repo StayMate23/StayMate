@@ -94,8 +94,10 @@
             <h5 th:text="${facility.price}"></h5>
         </td>
     </tr>
-
 </table>
-
+<form th:action="@{'/services/' + ${facility.id} + '/delete'}" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Service</button>
+</form>
 </body>
 </html>

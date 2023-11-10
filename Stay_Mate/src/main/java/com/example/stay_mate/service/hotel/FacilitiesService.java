@@ -4,6 +4,7 @@ import com.example.stay_mate.model.hotel.Facilities;
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.repository.hotel.FacilitiesRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,11 +30,11 @@ public class FacilitiesService {
     public Object findAllFacilities() {
         return facilitiesRepository.findAll();
     }
-
+    @Transactional
     public void deleteFacilitiesById(Integer id) {
         facilitiesRepository.deleteById(id);
     }
-
+    @Transactional
     public List<Facilities> getFacilitiesByHotel(Hotel hotel) {
         return facilitiesRepository.getFacilitiesByHotel(hotel);
     }
