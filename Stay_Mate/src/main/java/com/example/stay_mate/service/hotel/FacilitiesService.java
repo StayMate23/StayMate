@@ -1,6 +1,7 @@
 package com.example.stay_mate.service.hotel;
 
 import com.example.stay_mate.model.hotel.Facilities;
+import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.repository.hotel.FacilitiesRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,9 @@ public class FacilitiesService {
 
     public void deleteFacilitiesById(Integer id) {
         facilitiesRepository.deleteById(id);
+    }
+
+    public List<Facilities> getFacilitiesByHotel(Hotel hotel) {
+        return facilitiesRepository.getFacilitiesByHotel(hotel);
     }
 }

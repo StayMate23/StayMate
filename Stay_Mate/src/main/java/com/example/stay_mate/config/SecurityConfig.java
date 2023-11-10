@@ -48,7 +48,10 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout((logout) ->logout.logoutSuccessUrl("/"));
+                .logout((logout) ->logout.logoutSuccessUrl("/")
+                         // the row below deleting the cookies
+                        //.deleteCookies("JSESSIONID")
+                        );
         return http.build();
     }
 

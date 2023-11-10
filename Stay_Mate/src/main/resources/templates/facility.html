@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add new hotel</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">StayMate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -68,25 +70,32 @@
                 <a class="nav-link" th:href="@{/new-bar-form.html}">Add bar</a>
             </li>
 
-
         </ul>
+
     </div>
 </nav>
-<h1>Add new hotel</h1>
-<form th:action="@{'/hotels/create/' + ${partnerId}}" method="post">
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Descriptions</td>
+        <td>Price</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${facility.name}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${facility.description}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${facility.price}"></h5>
+        </td>
+    </tr>
 
-    <label for="name">Name</label>
-    <input type="text" id="name" placeholder="Name:" th:field="*{new_hotel.name}">
-
-    <label for="description">Description:</label>
-    <input type="text" id="description" placeholder="Description:" th:field="*{new_hotel.description}">
-
-    <button type="submit" class="btn btn-primary">Add Hotel</button><br>
-</form>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</table>
 
 </body>
 </html>

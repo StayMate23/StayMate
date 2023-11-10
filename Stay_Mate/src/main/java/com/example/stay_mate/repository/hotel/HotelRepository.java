@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel,Integer> {
     List<Hotel> getHotelByPartner(Partner partner);
+    void deleteHotelByPartner(Partner partner);
 }

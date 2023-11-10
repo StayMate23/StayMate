@@ -18,7 +18,7 @@ public class HotelService {
 
 
     public List<Hotel> findAllHotel() {
-        return  hotelRepository.findAll();
+        return hotelRepository.findAll();
     }
 
     public void saveHotel(Hotel hotel) {
@@ -28,11 +28,18 @@ public class HotelService {
     public Hotel getHotelById(Integer id) {
         return hotelRepository.getReferenceById(id);
     }
+
     @Transactional // Ide be kellett rakni a @Transactional-t mert anélkül nem hibás
     public void deleteHotelById(Integer id) {
         hotelRepository.deleteById(id);
     }
-    public List<Hotel> getHotelByPartner(Partner partner){
+
+    @Transactional
+    public void deleteHotelByPartner(Partner partner) {
+        hotelRepository.deleteHotelByPartner(partner);
+    }
+
+    public List<Hotel> getHotelByPartner(Partner partner) {
         return hotelRepository.getHotelByPartner(partner);
     }
 }

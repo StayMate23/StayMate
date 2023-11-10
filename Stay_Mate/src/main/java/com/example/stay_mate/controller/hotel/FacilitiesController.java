@@ -3,34 +3,47 @@ package com.example.stay_mate.controller.hotel;
 import com.example.stay_mate.model.hotel.Facilities;
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.hotel.FacilitiesService;
+import com.example.stay_mate.service.hotel.HotelService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/services")
 public class FacilitiesController {
 
     private final FacilitiesService facilitiesService;
+    private final HotelService hotelService;
 
-    public FacilitiesController(FacilitiesService facilitiesService) {
+    public FacilitiesController(FacilitiesService facilitiesService, HotelService hotelService) {
         this.facilitiesService = facilitiesService;
+        this.hotelService = hotelService;
     }
+
     @GetMapping("/all")
     public String getAllFacilities(Model model) {
         model.addAttribute("all_services", facilitiesService.findAllFacilities());
         return "facilities-list";
     }
 
-    @GetMapping("/create")
-    public String addFacilities(Model model) {
-        model.addAttribute("new-facilities", new Facilities());
+    @GetMapping("/{id}")
+    public String getCurrentFacility(Model model, @PathVariable("id") Integer facilityId) {
+        model.addAttribute("facility", facilitiesService.getFacilitiesById(facilityId));
+        return "facility";
+    }
+
+    @GetMapping("/create/{hotel-id}")
+    public String addFacilities(Model model, @PathVariable("hotel-id") Integer hotelId) {
+        model.addAttribute("hotelId", hotelId);
+        model.addAttribute("new_facilities", new Facilities());
         return "new-facilities-form";
     }
 
-    @PostMapping("/create")
-    public String addFacilities(@ModelAttribute("facilities") Facilities facilities) {
+    @PostMapping("/create/{hotel-id}")
+    public String addFacilities(@ModelAttribute("new_facilities") Facilities facilities, @PathVariable("hotel-id") Integer hotelId) {
+        facilities.setHotel(hotelService.getHotelById(hotelId));
         facilitiesService.saveFacilities(facilities);
-        return "redirect:/facilities-list";
+        return "redirect:/hotels/" + hotelId;
     }
 
     @GetMapping("/update/{id}")
@@ -40,10 +53,11 @@ public class FacilitiesController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateFacilities(@ModelAttribute("facilities") Facilities facilities, @PathVariable("id") Integer id) {
-        facilitiesService.saveFacilities(facilities);
+    public String updateFacilities(@ModelAttribute("facilities") Facilities updatedFacilities, @PathVariable("id") Integer id) {
+        facilitiesService.saveFacilities(updatedFacilities);
         return "redirect:/facilities/facilities/" + id;
     }
+
     @PostMapping("/{id}/delete")
     public String deleteFacilities(@PathVariable("id") Integer id, Hotel hotel) {
         facilitiesService.deleteFacilitiesById(id);

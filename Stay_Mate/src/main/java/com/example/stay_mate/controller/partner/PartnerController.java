@@ -53,6 +53,7 @@ public class PartnerController {
 
     @PostMapping("/{id}/delete")
     public String deletePartner(@PathVariable("id") Integer id, Partner partner) {
+        hotelService.deleteHotelByPartner(partner);
         partnerAdminService.deletePartnerAdminByPartner(partner);
         partnerService.deletePartnerById(id);
         return "redirect:/partner/all";

@@ -10,16 +10,25 @@ import jakarta.persistence.*;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
-
         private String name;
         private String description;
         private double price;
-
         @ManyToOne
         @JoinColumn(name = "hotel_id")
         private Hotel hotel;
 
-        public Integer getId() {
+    public Facilities(Integer id, String name, String description, double price, Hotel hotel) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.hotel = hotel;
+    }
+
+    public Facilities() {
+    }
+
+    public Integer getId() {
             return id;
         }
 
