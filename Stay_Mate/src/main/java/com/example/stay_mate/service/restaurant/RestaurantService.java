@@ -1,6 +1,5 @@
 package com.example.stay_mate.service.restaurant;
 
-import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.model.restaurant.Restaurant;
 import com.example.stay_mate.repository.restaurant.RestaurantRepository;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,6 @@ public class RestaurantService {
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
-    public Object findAllRestaurant() {
-        return restaurantRepository.findAll();
-    }
 
     public void save(Restaurant restaurant) {
         restaurantRepository.save(restaurant);
@@ -33,4 +29,7 @@ public class RestaurantService {
         restaurantRepository.deleteById(id);
     }
 
+    public void delete(Restaurant restaurant) {
+        restaurantRepository.delete(restaurant);
+    }
 }

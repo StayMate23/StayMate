@@ -19,8 +19,8 @@ public class BarController {
 
     @GetMapping("/all")
     public String getAllBars(Model model) {
-        List<Bar> all_bars = barService.findAllBar(); // Kapd meg az összes "bar" objektum listáját a szolgáltatás segítségével
-        model.addAttribute("all_bars", all_bars); // Adj hozzá az összes "bar" objektumot a modellhez
+        List<Bar> all_bars = barService.findAllBar();
+        model.addAttribute("all_bars", all_bars);
         return "bar-list";
     }
 
@@ -38,6 +38,7 @@ public class BarController {
 
     @PostMapping("/{id}/delete")
     public String deleteBar(@PathVariable("id") Integer id, Bar bar) {
+        barService.delete(bar);
         barService.deleteBarById(id);
         return "redirect:/bars/all";
     }

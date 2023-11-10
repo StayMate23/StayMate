@@ -32,4 +32,7 @@ public class BarService {
     }
 
 
+    public void delete(Bar bar) {
+        barRepository.delete(bar);
+    }
 }

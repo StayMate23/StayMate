@@ -1,27 +1,29 @@
+
+
 package com.example.stay_mate.controller.restaurant;
 
-import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.model.restaurant.Restaurant;
 import com.example.stay_mate.service.restaurant.RestaurantService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/restaurants")
 public class RestaurantController {
-    private final RestaurantService restaurantService;
+   private final RestaurantService restaurantService;
 
-    @Autowired
-    public  RestaurantController(RestaurantService restaurantService){
+    public RestaurantController(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
 
+
     @GetMapping("/all")
-    public String getAllRestaurants(Model model){
-        model.addAttribute("all_restaurants",restaurantService.findAllRestaurant());
+    public String getAllRestaurants(Model model) {
+        List<Restaurant> all_restaurant = restaurantService.getAllRestaurants();
+        model.addAttribute("all_restaurant", all_restaurant);
         return "restaurant-list";
     }
 
@@ -32,26 +34,16 @@ public class RestaurantController {
     }
 
     @PostMapping("/create")
-    public String addRestaurant(@ModelAttribute("restaurant") Restaurant restaurant) {
+    public String addRestaurant(@ModelAttribute("bar") Restaurant restaurant) {
         restaurantService.save(restaurant);
-        return "redirect:/restaurant/all";
+        return "redirect:/restaurants/all";
     }
 
-    @GetMapping("/{id}/update")
-    // @PreAuthorize("hasRole('ADMIN')")
-    public String updateRestaurant(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("restaurant", restaurantService.getRestaurantById(id));
-        return "restaurant-update";
-    }
-
-    @PostMapping("/{id}/update")
-    public String updateRestaurant(@ModelAttribute("restaurant") Restaurant restaurant, @PathVariable("id") Integer id) {
-        restaurantService.save(restaurant);
-        return "redirect:/restaurants";
-    }
     @PostMapping("/{id}/delete")
-    public String deleteRestaurant(@PathVariable("id") Integer id, Restaurant restaurant) {
+    public String deleteRestaurants(@PathVariable("id") Integer id, Restaurant restaurant) {
+        restaurantService.delete(restaurant);
         restaurantService.deleteRestaurantById(id);
-        return "redirect:/restaurant/all";
+        return "redirect:/restaurants/all";
     }
+
 }
