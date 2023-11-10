@@ -14,7 +14,7 @@ import jakarta.persistence.*;
         private String description;
         private double price;
         @ManyToOne
-        @JoinColumn(name = "hotel_id")
+      //  @JoinColumn(name = "hotel_id")
         private Hotel hotel;
 
     public Facilities(Integer id, String name, String description, double price, Hotel hotel) {

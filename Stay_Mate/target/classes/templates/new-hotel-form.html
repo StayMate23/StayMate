@@ -9,6 +9,7 @@
 
 <h1>Add new hotel</h1>
 <form th:action="@{'/hotels/create/' + ${partnerId}}" method="post">
+
     <label for="name">Name</label>
     <input type="text" id="name" placeholder="Name:" th:field="*{new_hotel.name}">
 
