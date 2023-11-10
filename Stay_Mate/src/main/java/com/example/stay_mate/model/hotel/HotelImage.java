@@ -11,7 +11,7 @@ public class HotelImage {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
+ //   @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     public Integer getId() {
