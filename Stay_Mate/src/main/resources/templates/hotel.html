@@ -28,6 +28,8 @@
 
         <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service
         </a>
+        <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar
+        </a>
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
@@ -42,6 +44,7 @@
         <td>Name</td>
         <td>Position</td>
         <td>Services</td>
+        <td>Bar</td>
     </tr>
     </thead>
     <tr>
@@ -55,6 +58,13 @@
             <ul>
                 <li th:each="actual : ${facilities}">
                     <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${hotel_bar}">
+                    <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"></a>
                 </li>
             </ul>
         </td>

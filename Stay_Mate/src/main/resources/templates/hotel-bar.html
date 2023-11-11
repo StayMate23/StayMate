@@ -15,25 +15,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" th:href="@{'/hotels/' + ${hotel.id} + '/update'}">Update Hotel</a>
+        <a class="navbar-brand active" th:href="@{'/hotels/' + ${hotel_bar.hotel.id} + '/' + ${hotel_bar.partner.id}}">Hotel</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-link">Delete Hotel</button>
-        </form>
+        <a class="navbar-brand active" th:href="@{'/hotel-bar/update/' + ${hotel_bar.id}}">Update Bar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service
-        </a>
-        <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar
-        </a>
+        <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Bar</button>
+        </form>
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
+
 
     </div>
 </nav>
@@ -42,31 +44,16 @@
     <thead>
     <tr>
         <td>Name</td>
-        <td>Position</td>
-        <td>Services</td>
-        <td>Bar</td>
+        <td>Descriptions</td>
+        <td>Price</td>
     </tr>
     </thead>
     <tr>
         <td>
-            <h5 th:text="${hotel.name}"></h5>
+            <h5 th:text="${hotel_bar.name}"></h5>
         </td>
         <td>
-            <h5 th:text="${hotel.description}"></h5>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${facilities}">
-                    <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}"></a>
-                </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${hotel_bar}">
-                    <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"></a>
-                </li>
-            </ul>
+            <h5 th:text="${hotel_bar.description}"></h5>
         </td>
     </tr>
 </table>

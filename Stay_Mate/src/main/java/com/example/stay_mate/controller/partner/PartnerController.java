@@ -3,6 +3,7 @@ package com.example.stay_mate.controller.partner;
 import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
+import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
@@ -23,15 +24,17 @@ public class PartnerController {
     private final BarService barService;
     private final PasswordEncoder passwordEncoder;
     private RestaurantService restaurantService;
+    private HotelBarService hotelBarService;
 
-    public PartnerController(PartnerService partnerService, PartnerAdminService partnerAdminService, HotelService hotelService, FacilitiesService facilitiesService, BarService barService, RestaurantService restaurantService, PasswordEncoder passwordEncoder) {
+    public PartnerController(PartnerService partnerService, PartnerAdminService partnerAdminService, HotelService hotelService, FacilitiesService facilitiesService, BarService barService, PasswordEncoder passwordEncoder, RestaurantService restaurantService, HotelBarService hotelBarService) {
         this.partnerService = partnerService;
         this.partnerAdminService = partnerAdminService;
         this.hotelService = hotelService;
         this.facilitiesService = facilitiesService;
         this.barService = barService;
-        this.restaurantService = restaurantService;
         this.passwordEncoder = passwordEncoder;
+        this.restaurantService = restaurantService;
+        this.hotelBarService = hotelBarService;
     }
 
     @GetMapping("/all")
@@ -42,6 +45,7 @@ public class PartnerController {
 
     @GetMapping("/current")
     public String getCurrentPartner(Model model, @AuthenticationPrincipal Partner partner) {
+        model.addAttribute("hotel_bar", hotelBarService.getHotelBarByPartner(partner));
         model.addAttribute("restaurant", restaurantService.getRestaurantByPartner(partner));
         model.addAttribute("bar", barService.getBarByPartner(partner));
         model.addAttribute("facilities", facilitiesService.getFacilitiesByPartner(partner));
@@ -65,6 +69,7 @@ public class PartnerController {
 
     @PostMapping("/{id}/delete")
     public String deletePartner(@PathVariable("id") Integer id, Partner partner) {
+        hotelBarService.deleteBarByPartner(partner);
         restaurantService.deleteRestaurantByPartner(partner);
         barService.deleteBarByPartner(partner);
         facilitiesService.deleteFacilitiesByPartner(partner);

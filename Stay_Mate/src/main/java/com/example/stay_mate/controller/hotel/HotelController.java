@@ -2,6 +2,7 @@ package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.hotel.FacilitiesService;
+import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,13 @@ public class HotelController {
     private final HotelService hotelService;
     private final PartnerService partnerService;
     private final FacilitiesService facilitiesService;
+    private final HotelBarService hotelBarService;
 
-    public HotelController(HotelService hotelService, PartnerService partnerService, FacilitiesService facilitiesService) {
+    public HotelController(HotelService hotelService, PartnerService partnerService, FacilitiesService facilitiesService, HotelBarService hotelBarService) {
         this.hotelService = hotelService;
         this.partnerService = partnerService;
         this.facilitiesService = facilitiesService;
+        this.hotelBarService = hotelBarService;
     }
 
     //  @GetMapping("/all")
@@ -28,6 +31,7 @@ public class HotelController {
   //  }
     @GetMapping("/{id}/{partner-id}")
     public String getCurrentHotel(Model model, @PathVariable("id") Integer id, @PathVariable("partner-id") Integer partnerId){
+        model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(id)));
         model.addAttribute("partner", partnerService.getPartnerById(partnerId));
         model.addAttribute("facilities",facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
         model.addAttribute("hotel",hotelService.getHotelById(id));
@@ -47,6 +51,7 @@ public class HotelController {
         hotelService.saveHotel(hotel);
         return "redirect:/partner/current";
     }
+
 
     @GetMapping("/{id}/update")
     // @PreAuthorize("hasRole('ADMIN')")
