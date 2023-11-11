@@ -18,7 +18,7 @@ public class Bar {
         this.name = name;
         this.description = description;
     }
-// SZIA MARK
+
     public Bar() {
     }
 
