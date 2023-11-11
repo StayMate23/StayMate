@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<h1>Registration</h1>
+
+<form th:action="@{/partner/reg}" method="post">
+
+    <input th:field="*{newPartner.partnerName}" type="text" placeholder="Company name:"> <br>
+
+    <input th:field="*{newPartner.address}" type="text" placeholder="Address:"><br>
+
+    <input th:field="*{newPartner.telNum}" type="tel" placeholder="Telephone number:"><br>
+
+    <input th:field="*{newPartner.password}" type="password" required placeholder="Password:"><br>
+
+    <input th:field="*{newPartner.email}" type="text" required placeholder="e-Mail:"><br>
+
+    <input th:field="*{newPartner.companyRegNum}" type="number" placeholder="Registration number:"><br>
+
+    <input th:field="*{newPartner.taxNum}" type="number" placeholder="Tax number:"><br>
+
+    <input th:field="*{newPartner.role}" type="text" placeholder="Admin / User"><br>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+</body>
+</html>
