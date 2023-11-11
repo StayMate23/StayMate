@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id}}">Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
+<body>
+<form method="post" th:action="@{'/partner-admin/' + ${partner_admin.id} + '/update'}">
+
+    <input type="hidden" th:value="${partner_admin.partner.id}" th:field="*{partner_admin.partner.id}">
+
+    <input type="hidden" th:value="${partner_admin.id}" th:field="*{partner_admin.id}">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" th:placeholder="${partner_admin.name}" th:field="*{partner_admin.name}"><br>
+
+    <label for="birthplace">Birthplace</label>
+    <input type="text" id="birthplace" th:placeholder="${partner_admin.posRank}"
+           th:field="*{partner_admin.posRank}"><br>
+
+    <label for="telnum">telnum</label>
+    <input type="number" id="telnum" th:placeholder="${partner_admin.telNumber}"
+           th:field="*{partner_admin.telNumber}"><br>
+
+    <button class="btn btn-info">Update</button>
+
+</form>
+</body>
+</html>
