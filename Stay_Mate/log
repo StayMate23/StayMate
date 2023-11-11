@@ -8996,3 +8996,34 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2023-11-11T16:37:56.721Z  INFO 41872 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-11-11T16:38:32.201Z  WARN 41872 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
 2023-11-11T16:39:39.296Z  WARN 41872 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2023-11-11T16:49:37.124Z  INFO 41872 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-11T16:49:37.128Z  INFO 41872 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-11T16:49:37.133Z  INFO 41872 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-11T16:49:40.078Z  INFO 42108 --- [restartedMain] c.example.stay_mate.StayMateApplication  : Starting StayMateApplication using Java 21.0.1 with PID 42108 (/Users/marknemeth-toth/Desktop/StayMatess/Stay_Mate/target/classes started by marknemeth-toth in /Users/marknemeth-toth/Desktop/StayMatess/Stay_Mate)
+2023-11-11T16:49:40.079Z  INFO 42108 --- [restartedMain] c.example.stay_mate.StayMateApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-11-11T16:49:40.107Z  INFO 42108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11T16:49:40.108Z  INFO 42108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11T16:49:40.433Z  INFO 42108 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-11T16:49:40.468Z  INFO 42108 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 7 JPA repository interfaces.
+2023-11-11T16:49:40.767Z  INFO 42108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-11T16:49:40.772Z  INFO 42108 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-11T16:49:40.772Z  INFO 42108 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-11-11T16:49:40.796Z  INFO 42108 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-11T16:49:40.797Z  INFO 42108 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 689 ms
+2023-11-11T16:49:40.872Z  INFO 42108 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-11T16:49:41.066Z  INFO 42108 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31544822
+2023-11-11T16:49:41.067Z  INFO 42108 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-11T16:49:41.089Z  INFO 42108 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-11T16:49:41.120Z  INFO 42108 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-11-11T16:49:41.121Z  INFO 42108 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-11-11T16:49:41.237Z  INFO 42108 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-11T16:49:41.714Z  INFO 42108 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-11-11T16:49:41.715Z  INFO 42108 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-11T16:49:42.034Z  WARN 42108 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-11T16:49:42.182Z  INFO 42108 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2569fae7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b4f3521, org.springframework.security.web.context.SecurityContextHolderFilter@62290f90, org.springframework.security.web.header.HeaderWriterFilter@1ce925ab, org.springframework.security.web.csrf.CsrfFilter@7a18f16a, org.springframework.security.web.authentication.logout.LogoutFilter@10d24c8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1d4e1ac2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@459eef0d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d3be09c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@363abc80, org.springframework.security.web.access.ExceptionTranslationFilter@7d5d306f, org.springframework.security.web.access.intercept.AuthorizationFilter@6043d378]
+2023-11-11T16:49:42.285Z  INFO 42108 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-11-11T16:49:42.305Z  INFO 42108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-11T16:49:42.310Z  INFO 42108 --- [restartedMain] c.example.stay_mate.StayMateApplication  : Started StayMateApplication in 2.456 seconds (process running for 2.783)
+2023-11-11T16:49:47.142Z  INFO 42108 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11T16:49:47.142Z  INFO 42108 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-11T16:49:47.143Z  INFO 42108 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

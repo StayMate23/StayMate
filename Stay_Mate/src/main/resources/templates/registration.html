@@ -3,47 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: poppins, serif;
+            font-size: 16px;
+            color: #fff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .form-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 50px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+            width: 500px;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .form-box:before {
+            background-image: url("https://i.postimg.cc/8cnYLpfc/ddddd.jpg");
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            display: block;
+            filter: blur(2px);
+        }
+        .form-box .header-text {
+            font-size: 32px;
+            font-weight: 600;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+        .form-box input {
+            margin: 10px 0px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 18px;
+            font-family: poppins;
+        }
+        .form-box span {
+            font-size: 14px;
+        }
+        .form-box button {
+            background-color: deepskyblue;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            padding: 10px;
+            margin: 20px 0px;
+        }
+        span a {
+            color: #BBB;
+        }
+    </style>
+
 </head>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-
-        <a class="navbar-brand active" th:href="@{/}">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand active" th:href="@{/contact}">Contact Us</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-
 <body>
-<h1>Registration</h1>
+<div class="form-box">
+    <div class="header-text">
+        Registration Form
+    </div>
+    <form th:action="@{/partner/reg}" method="post">
 
-<form th:action="@{/partner/reg}" method="post">
+        <div class="”input-form">
+            <label for="partnerName"></label>
+            <input th:field="*{newPartner.partnerName}" type="text" id="partnerName" placeholder="Enter Your Company Name">
 
-    <input th:field="*{newPartner.partnerName}" type="text" placeholder="Company name:"> <br>
+            <label for="address"></label>
+            <input th:field="*{newPartner.address}" type="text" id="address" placeholder="Enter Your Address">
 
-    <input th:field="*{newPartner.address}" type="text" placeholder="Address:"><br>
+            <label for="telNum"></label>
+            <input th:field="*{newPartner.telNum}" type="tel" id="telNum" placeholder="Enter your phone number">
 
-    <input th:field="*{newPartner.telNum}" type="tel" placeholder="Telephone number:"><br>
+            <label for="password"></label>
+            <input th:field="*{newPartner.password}" type="password" id="password" required
+                   placeholder="Enter your Password">
 
-    <input th:field="*{newPartner.password}" type="password" required placeholder="Password:"><br>
+            <label for="email"></label>
+            <input th:field="*{newPartner.email}" type="email" id="email" required placeholder="Enter Your Email Address">
 
-    <input th:field="*{newPartner.email}" type="text" required placeholder="e-Mail:"><br>
+            <label for="companyRegNum"></label>
+            <input th:field="*{newPartner.companyRegNum}" type="text" id="companyRegNum"
+                   placeholder="Enter Your Company Registration Number">
 
-    <input th:field="*{newPartner.companyRegNum}" type="number" placeholder="Registration number:"><br>
+            <label for="taxNum"></label>
+            <input th:field="*{newPartner.taxNum}" type="text" id="taxNum" placeholder="Enter Your Tax Number">
 
-    <input th:field="*{newPartner.taxNum}" type="number" placeholder="Tax number:"><br>
+            <label for="role"></label>
+            <select th:field="*{newPartner.role}" id="role">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+        <div class=”btn”>
+            <button type="submit">Register</button>
 
-    <input th:field="*{newPartner.role}" type="text" placeholder="Admin / User"><br>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+        </div>
+    </form>
+</div>
 </body>
 </html>
