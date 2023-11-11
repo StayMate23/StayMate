@@ -46,7 +46,7 @@ public class RestaurantController {
     public String addRestaurant(@ModelAttribute("new_restaurant") Restaurant restaurant, @PathVariable("partner-id")Integer partnerId) {
         restaurant.setPartner(partnerService.getPartnerById(partnerId));
         restaurantService.saveRestaurant(restaurant);
-        return "redirect:/restaurants/all";
+        return "redirect:/partner/current";
     }
 
     @GetMapping("/{id}/update")
