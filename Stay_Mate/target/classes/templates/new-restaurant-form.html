@@ -19,7 +19,7 @@
 </nav>
 
 <div class="container mt-4">
-  <form method="post" th:action="@{/restaurants/create}">
+  <form method="post" th:action="@{'/restaurants/create/' + ${partnerId}}">
     <input type="hidden" th:value="${new_restaurant.id}" th:field="*{new_restaurant.id}">
 
     <div class="form-group">

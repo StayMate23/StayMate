@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
 
@@ -16,16 +14,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id} + '/update'}">Update Admin</a>
+        <a class="navbar-brand active" th:href="@{'/restaurants/' + ${updated_restaurant.id}}">Restaurant</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <form th:action="@{'/partner-admin/delete/' + ${partner_admin.id}}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-link">Delete Admin</button>
-        </form>
+
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
@@ -34,26 +29,17 @@
     </div>
 </nav>
 <body>
-<table>
-    <thead>
-    <tr>
-        <td>Name</td>
-        <td>Position</td>
-        <td>Phone number</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>
-            <h5 th:text="${partner_admin.name}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner_admin.posRank}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner_admin.telNumber}"></h5>
-        </td>
-    </tr>
+<form th:action="@{'/restaurants/'+${updated_restaurant.id} +'/update'}" method="post">
 
-</table>
+    <input type="hidden" th:value="${updated_restaurant.id}" th:field="*{updated_restaurant.partner.id}">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" th:placeholder="${updated_restaurant.name}" th:field="*{updated_restaurant.name}">
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" th:placeholder="${updated_restaurant.description}" th:field="*{updated_restaurant.description}">
+
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
 </body>
 </html>
