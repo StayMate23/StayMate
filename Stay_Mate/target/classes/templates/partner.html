@@ -91,7 +91,7 @@
         <td>
             <ul>
                 <li th:each="actual : ${hotel}">
-                    <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id}}"></a>
+                    <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id} + '/' + ${partner.id}}"></a>
                 </li>
             </ul>
         </td>

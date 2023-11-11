@@ -26,8 +26,9 @@ public class HotelController {
   //      model.addAttribute("hotels", hotelService.findAllHotel());
   //      return "hotel-list";
   //  }
-    @GetMapping("/{id}")
-    public String getCurrentHotel(Model model, @PathVariable("id") Integer id){
+    @GetMapping("/{id}/{partner-id}")
+    public String getCurrentHotel(Model model, @PathVariable("id") Integer id, @PathVariable("partner-id") Integer partnerId){
+        model.addAttribute("partner", partnerService.getPartnerById(partnerId));
         model.addAttribute("facilities",facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
         model.addAttribute("hotel",hotelService.getHotelById(id));
         return "hotel";
@@ -62,7 +63,8 @@ public class HotelController {
 
     @PostMapping("/delete/{hotel-id}")
     public String deleteHotel(@PathVariable("hotel-id") Integer id) {
+        facilitiesService.deleteFacilitiesByHotel(hotelService.getHotelById(id));
         hotelService.deleteHotelById(id);
-        return "redirect:/partner/all";
+        return "redirect:/partner/current";
     }
 }
