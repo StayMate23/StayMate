@@ -8,7 +8,7 @@
 <form action th:action="${post_url}" method="post" th:object="${user}">
 
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <input type="text" id="name" name="name" th:field="*{name}" required >
 
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" th:field="*{email}" required>
