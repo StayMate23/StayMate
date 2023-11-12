@@ -99,7 +99,7 @@
 
             <label for="password"></label>
             <input th:field="*{newPartner.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
-                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- one special character\n- minimum of 8 characters long.')"
+                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
                    oninput="this.setCustomValidity('')"
                    placeholder="Enter your Password">
 

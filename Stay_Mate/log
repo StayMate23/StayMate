@@ -1781,3 +1781,6 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2023-11-12T20:02:15.595Z  INFO 44519 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-11-12T20:02:15.595Z  INFO 44519 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-11-12T20:02:15.596Z  INFO 44519 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-12T20:42:23.921Z  INFO 44519 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-12T20:42:23.926Z  INFO 44519 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T20:42:23.930Z  INFO 44519 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
