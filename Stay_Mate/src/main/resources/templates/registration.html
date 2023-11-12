@@ -94,12 +94,14 @@
             <label for="telNum"></label>
             <input th:field="*{newPartner.telNum}" type="tel" id="telNum" placeholder="Enter your phone number">
 
-            <label for="password"></label>
-            <input th:field="*{newPartner.password}" type="password" id="password" required
-                   placeholder="Enter your Password">
-
             <label for="email"></label>
             <input th:field="*{newPartner.email}" type="email" id="email" required placeholder="Enter Your Email Address">
+
+            <label for="password"></label>
+            <input th:field="*{newPartner.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+                   oninput="this.setCustomValidity('')"
+                   placeholder="Enter your Password">
 
             <label for="companyRegNum"></label>
             <input th:field="*{newPartner.companyRegNum}" type="text" id="companyRegNum"

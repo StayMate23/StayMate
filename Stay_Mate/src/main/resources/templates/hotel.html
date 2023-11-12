@@ -28,7 +28,11 @@
 
         <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service
         </a>
+
         <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar
+        </a>
+
+        <a th:href="@{'/hotel-restaurant/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Restaurant
         </a>
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
@@ -45,6 +49,7 @@
         <td>Position</td>
         <td>Services</td>
         <td>Bar</td>
+        <td>Restaurant</td>
     </tr>
     </thead>
     <tr>
@@ -65,6 +70,13 @@
             <ul>
                 <li th:each="actual : ${hotel_bar}">
                     <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${hotel_restaurant}">
+                    <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"></a>
                 </li>
             </ul>
         </td>
