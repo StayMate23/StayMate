@@ -7,10 +7,12 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+// itt is table ann
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    // itt is column name
     private Integer roomNumber;
     private Integer roomCapacity;
     private Integer price; // ez szerintem double  - Marika
