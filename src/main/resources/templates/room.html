@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-
+<form method="post" th:action="@{'/room' + ${room.id}}">
+    <input type="hidden" th:value="${room.id}" th:field="*{room.id}">
+    <label for="roomNumber">Room Number</label>
+    <input type="text" id="roomNumber" th:value="${room.roomNumber}" th:placeholder="${room.roomNumber}" th:field="*{room.roomNumber}">
+    <label for="roomCapacity">Room Capacity</label>
+    <input type="text" id="roomCapacity" th:value="${room.roomCapacity}" th:placeholder="${room.roomCapacity}" th:field="*{room.roomCapacity}">
+    <label for="price">Price</label>
+    <input type="text" id="price" th:value="${room.price}" th:placeholder="${room.price}" th:field="*{room.price}">
+    <button type="submit">OK</button>
+</form>
 </body>
 </html>

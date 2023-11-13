@@ -38,5 +38,4 @@ public class RoomController {
         roomService.updateRoom(room);
         return "redirect:/room";
     }
-
 }

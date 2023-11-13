@@ -1,23 +1,23 @@
 package com.example.stay_mate.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
-// hianyzik a table annotacio Marika
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    // hianzoynak a colum name - Marika
-
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "personal_id")
     private String personalId;
+    @Column(name = "birth_date")
     private LocalDate birthdate;
 
     public Integer getId() {

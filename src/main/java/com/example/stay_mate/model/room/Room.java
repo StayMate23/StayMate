@@ -7,15 +7,18 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-// itt is table ann
+@Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    // itt is column name
+    @Column(name = "room_number")
     private Integer roomNumber;
+    @Column(name = "room_capacity")
     private Integer roomCapacity;
-    private Double price; // ez szerintem double  - Marika
+    @Column(name = "price")
+    private Double price;
     @OneToMany(mappedBy = "room")
     @JsonBackReference
     private List<Reservation> reservations;

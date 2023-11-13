@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Room List</title>
 </head>
 <body>
-
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Room Number</th>
+        <th>Room Capacity</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.id}"></td>
+        <td th:text="${room.roomNumber}"></td>
+        <td th:text="${room.roomCapacity}"></td>
+        <td th:text="${room.price}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

@@ -7,15 +7,17 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-// hianyzik a table annotacio Marika
-
+@Table(name = "reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    // hianzoynak a colum name - Marika
+    @Column(name = "start_date")
     private LocalDate startDate;
+    @Column(name = "end_date")
     private LocalDate endDate;
+    @Column(name = "user_number")
     private Integer userNumber;
     @ManyToOne
     @JoinColumn(name = "user_id")

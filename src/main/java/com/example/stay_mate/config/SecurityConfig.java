@@ -44,7 +44,8 @@ public class SecurityConfig {
                                 "/hotels/new-hotel-form","hotels/{id}/update",
                                 "/message","/contact",
                                 "/bars/create","/bars/current","/bars/delete","bars/all",
-                                "/restaurants/all","/restaurants/create")
+                                "/restaurants/all","/restaurants/create",
+                                "/room")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
