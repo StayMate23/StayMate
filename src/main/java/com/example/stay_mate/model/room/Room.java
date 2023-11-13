@@ -15,7 +15,7 @@ public class Room {
     // itt is column name
     private Integer roomNumber;
     private Integer roomCapacity;
-    private Integer price; // ez szerintem double  - Marika
+    private Double price; // ez szerintem double  - Marika
     @OneToMany(mappedBy = "room")
     @JsonBackReference
     private List<Reservation> reservations;
@@ -44,11 +44,11 @@ public class Room {
         this.roomCapacity = roomCapacity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
