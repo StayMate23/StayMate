@@ -4,35 +4,42 @@
   <meta charset="UTF-8">
   <title>Contact Us</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      background: url(https://static.vecteezy.com/system/resources/previews/006/426/019/large_2x/old-wooden-table-with-blurred-hotel-lobby-background-free-photo.jpg);
+      background-size: cover;
+    }
+
+    .navbar {
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: flex-start;
+      padding: 20px;
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+    }
+  </style>
 </head>
-
 <body>
-<body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-
-    <!-- Brand -->
-    <a class="navbar-brand" th:href="@{/}" style="color: #fff;">Profile</a>
-
-    <!-- Toggler button for small screens -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar items -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/partner/all}" style="color: #fff;">Partners</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/contact}" style="color: #fff;">Contact Us</a>
-        </li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Stay Mate</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Profile</a>
+      </li>
+    </ul>
   </div>
 </nav>
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 50vh;">
