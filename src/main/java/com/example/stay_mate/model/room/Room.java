@@ -15,7 +15,7 @@ public class Room {
     // itt is column name
     private Integer roomNumber;
     private Integer roomCapacity;
-    private Integer price; // ez szerintem double  - Marika
+    private Integer price; // ez szerintem double/decimal  - Marika
     @OneToMany(mappedBy = "room")
     @JsonBackReference
     private List<Reservation> reservations;

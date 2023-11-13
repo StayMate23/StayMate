@@ -44,8 +44,10 @@
   <label for="telnum">Telnum</label>
   <input type="number" id="telnum" th:placeholder="${partner.telNum}" th:field="*{partner.telNum}"><br>
 
-  <label for="telnum">Password</label>
-  <input type="password" id="password" th:placeholder="${partner.password}" th:field="*{partner.password}"><br>
+  <label for="password">Password</label>
+  <input type="password" id="password" th:placeholder="${partner.password}" th:field="*{partner.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+         oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+         oninput="this.setCustomValidity('')"><br>
 
   <label for="email">e-Mail</label>
   <input type="text" id="email" th:placeholder="${partner.email}" th:field="*{partner.email}"><br>

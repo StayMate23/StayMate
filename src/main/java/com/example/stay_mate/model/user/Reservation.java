@@ -14,8 +14,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     // hianzoynak a colum name - Marika
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate startDate; // !
+    private LocalDate endDate; //!
     private Integer userNumber;
     @ManyToOne
     @JoinColumn(name = "user_id")
