@@ -13,7 +13,7 @@ public class Room {
     private Integer id;
     private Integer roomNumber;
     private Integer roomCapacity;
-    private Integer price;
+    private Integer price; // ez szerintem double  - Marika
     @OneToMany(mappedBy = "room")
     @JsonBackReference
     private List<Reservation> reservations;

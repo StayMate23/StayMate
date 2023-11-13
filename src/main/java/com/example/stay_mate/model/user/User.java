@@ -8,10 +8,13 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
+// hianyzik a table annotacio Marika
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    // hianzoynak a colum name - Marika
+
     private String name;
     private String email;
     private String personalId;
