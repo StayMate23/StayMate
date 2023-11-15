@@ -10,5 +10,6 @@ import java.util.List;
 public interface HotelRestaurantRepository extends JpaRepository<HotelRestaurant, Integer> {
     List<HotelRestaurant> getHotelRestaurantByHotel(Hotel hotel);
     void deleteHotelRestaurantByPartner(Partner partner);
+    void deleteHotelRestaurantByHotel(Hotel hotel);
     List<HotelRestaurant> getHotelRestaurantByPartner(Partner partner);
 }

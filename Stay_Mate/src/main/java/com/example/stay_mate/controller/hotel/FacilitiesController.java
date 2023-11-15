@@ -45,7 +45,8 @@ public class FacilitiesController {
     }
 
     @PostMapping("/create/{hotel-id}/{partner-id}")
-    public String addFacilities(@ModelAttribute("new_facilities") Facilities facilities, @PathVariable("hotel-id") Integer hotelId,@PathVariable("partner-id") Integer partnerId) {
+    public String addFacilities(@ModelAttribute("new_facilities") Facilities facilities, @PathVariable("hotel-id") Integer hotelId,
+                                @PathVariable("partner-id") Integer partnerId) {
         facilities.setPartner(partnerService.getPartnerById(partnerId));
         facilities.setHotel(hotelService.getHotelById(hotelId));
         facilitiesService.saveFacilities(facilities);

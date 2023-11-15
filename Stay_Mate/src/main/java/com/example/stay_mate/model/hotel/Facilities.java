@@ -3,7 +3,6 @@ package com.example.stay_mate.model.hotel;
 import com.example.stay_mate.model.partner.Partner;
 import jakarta.persistence.*;
 
-import javax.mail.Part;
 
 @Entity
 public class Facilities {

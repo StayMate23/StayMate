@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface HotelBarRepository extends JpaRepository<HotelBar, Integer> {
     void deleteHotelBarByPartner(Partner partner);
+    void deleteHotelBarByHotel(Hotel hotel);
 
     List<HotelBar> getHotelBarByPartner(Partner partner);
 

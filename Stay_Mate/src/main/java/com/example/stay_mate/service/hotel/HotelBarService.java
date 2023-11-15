@@ -37,6 +37,10 @@ public class HotelBarService {
     public void deleteHotelBarById(Integer id) {
         hotelBarRepository.deleteById(id);
     }
+    @Transactional
+    public void deleteHotelBarByHotel(Hotel hotel){
+        hotelBarRepository.deleteHotelBarByHotel(hotel);
+    }
 
     @Transactional
     public void deleteBarByPartner(Partner partner) {

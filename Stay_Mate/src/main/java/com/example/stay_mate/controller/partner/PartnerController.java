@@ -94,7 +94,7 @@ public class PartnerController {
     }
 
     @PostMapping("/reg")
-    public String saveUser(
+    public String savePartner(
             @ModelAttribute("newPartner")
             Partner partner
     ) {

@@ -28,7 +28,7 @@
         }
 
         .form-box:before {
-            background-image: url("https://i.postimg.cc/8cnYLpfc/ddddd.jpg");
+            background-image: url("https://wallpapers.com/images/hd/hotel-background-2qosz2h6xb1xpnka.jpg");
             width: 100%;
             height: 100%;
             background-size: cover;
@@ -75,7 +75,6 @@
             color: #BBB;
         }
     </style>
-
 </head>
 <body>
 <div class="form-box">
@@ -94,14 +93,15 @@
             <label for="telNum"></label>
             <input th:field="*{newPartner.telNum}" type="tel" id="telNum" placeholder="Enter your phone number">
 
-            <label for="email"></label>
-            <input th:field="*{newPartner.email}" type="email" id="email" required placeholder="Enter Your Email Address">
 
             <label for="password"></label>
             <input th:field="*{newPartner.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
-                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- one special character\n- minimum of 8 characters long.')"
                    oninput="this.setCustomValidity('')"
                    placeholder="Enter your Password">
+
+            <label for="email"></label>
+            <input th:field="*{newPartner.email}" type="email" id="email" required placeholder="Enter Your Email Address">
 
             <label for="companyRegNum"></label>
             <input th:field="*{newPartner.companyRegNum}" type="text" id="companyRegNum"
@@ -111,9 +111,9 @@
             <input th:field="*{newPartner.taxNum}" type="text" id="taxNum" placeholder="Enter Your Tax Number">
 
             <label for="role"></label>
-            <select th:field="*{newPartner.role}" id="role">
-                <option value="Admin">Admin</option>
-                <option value="User">User</option>
+            <select name="role">
+                <option th:each="actualRole : ${T(com.example.stay_mate.model.Role).values()}"
+                        th:value="${actualRole}" th:text="${actualRole.toString()}" id="role"></option>
             </select>
         </div>
         <div class=”btn”>

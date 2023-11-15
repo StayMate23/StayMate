@@ -42,6 +42,10 @@ public class HotelRestaurantService {
     public void deleteHotelRestaurantByPartner(Partner partner) {
         hotelRestaurantRepository.deleteHotelRestaurantByPartner(partner);
     }
+    @Transactional
+    public void deleteHotelRestaurantByHotel(Hotel hotel){
+        hotelRestaurantRepository.deleteHotelRestaurantByHotel(hotel);
+    }
 
     public List<HotelRestaurant> getHotelRestaurantByPartner(Partner partner) {
         return hotelRestaurantRepository.getHotelRestaurantByPartner(partner);

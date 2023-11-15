@@ -27,18 +27,19 @@ public class HotelController {
         this.hotelRestaurantService = hotelRestaurantService;
     }
 
-    //  @GetMapping("/all")
-  //  public String getAllHotels(Model model) {
-  //      model.addAttribute("hotels", hotelService.findAllHotel());
-  //      return "hotel-list";
-  //  }
+    @GetMapping("/all")
+    public String getAllHotels(Model model) {
+        model.addAttribute("hotels", hotelService.findAllHotel());
+        return "hotel-list";
+    }
+
     @GetMapping("/{id}/{partner-id}")
-    public String getCurrentHotel(Model model, @PathVariable("id") Integer id, @PathVariable("partner-id") Integer partnerId){
+    public String getCurrentHotel(Model model, @PathVariable("id") Integer id, @PathVariable("partner-id") Integer partnerId) {
         model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByHotel(hotelService.getHotelById(id)));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(id)));
         model.addAttribute("partner", partnerService.getPartnerById(partnerId));
-        model.addAttribute("facilities",facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
-        model.addAttribute("hotel",hotelService.getHotelById(id));
+        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
+        model.addAttribute("hotel", hotelService.getHotelById(id));
         return "hotel";
     }
 
@@ -72,6 +73,8 @@ public class HotelController {
 
     @PostMapping("/delete/{hotel-id}")
     public String deleteHotel(@PathVariable("hotel-id") Integer id) {
+        hotelRestaurantService.deleteHotelRestaurantByHotel(hotelService.getHotelById(id));
+        hotelBarService.deleteHotelBarByHotel(hotelService.getHotelById(id));
         facilitiesService.deleteFacilitiesByHotel(hotelService.getHotelById(id));
         hotelService.deleteHotelById(id);
         return "redirect:/partner/current";

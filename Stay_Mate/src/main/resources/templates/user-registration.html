@@ -75,46 +75,57 @@
             color: #BBB;
         }
     </style>
+
 </head>
 <body>
 <div class="form-box">
     <div class="header-text">
         Registration Form
     </div>
-    <form th:action="@{/partner/reg}" method="post">
+    <form th:action="@{/user/reg}" method="post">
 
         <div class="”input-form">
-            <label for="partnerName"></label>
-            <input th:field="*{newPartner.partnerName}" type="text" id="partnerName" placeholder="Enter Your Company Name">
+            <label for="surname"></label>
+            <select th:field="*{newUser.surName}" id="surname">
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Other">Other</option>
+            </select>
 
-            <label for="address"></label>
-            <input th:field="*{newPartner.address}" type="text" id="address" placeholder="Enter Your Address">
+            <label for="firstname"></label>
+            <input th:field="*{newUser.firstName}" type="text" id="firstname" placeholder="Firstname: ">
 
-            <label for="telNum"></label>
-            <input th:field="*{newPartner.telNum}" type="tel" id="telNum" placeholder="Enter your phone number">
+            <label for="lastname"></label>
+            <input th:field="*{newUser.lastName}" type="tel" id="lastname" placeholder="Lastname:">
 
+            <label for="phoneNum"></label>
+            <input th:field="*{newUser.phoneNumber}" type="tel" id="phoneNum" placeholder="Tel.number:">
+
+            <label for="email"></label>
+            <input th:field="*{newUser.email}" type="email" id="email" required placeholder="Enter Your Email:">
 
             <label for="password"></label>
-            <input th:field="*{newPartner.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+            <input th:field="*{newUser.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                    oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- one special character\n- minimum of 8 characters long.')"
                    oninput="this.setCustomValidity('')"
                    placeholder="Enter your Password">
 
-            <label for="email"></label>
-            <input th:field="*{newPartner.email}" type="email" id="email" required placeholder="Enter Your Email Address">
 
-            <label for="companyRegNum"></label>
-            <input th:field="*{newPartner.companyRegNum}" type="text" id="companyRegNum"
+            <label for="personalId"></label>
+            <input th:field="*{newUser.personalId}" type="text" id="personalId"
                    placeholder="Enter Your Company Registration Number">
 
-            <label for="taxNum"></label>
-            <input th:field="*{newPartner.taxNum}" type="text" id="taxNum" placeholder="Enter Your Tax Number">
+            <label for="birthdate"></label>
+            <input th:field="*{newUser.birthDate}" type="date" id="birthdate">
 
             <label for="role"></label>
-            <select name="role">
-                <option th:each="actualRole : ${T(com.example.stay_mate.model.Role).values()}"
-                        th:value="${actualRole}" th:text="${actualRole.toString()}" id="role"></option>
+            <select th:field="*{newUser.role}" id="role">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
             </select>
+
+
         </div>
         <div class=”btn”>
             <button type="submit">Register</button>

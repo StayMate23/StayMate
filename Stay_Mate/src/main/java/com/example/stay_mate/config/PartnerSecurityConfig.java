@@ -15,11 +15,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class PartnerSecurityConfig {
 
     private final PartnerService partnerService;
 
-    public SecurityConfig(PartnerService partnerService) {
+    public PartnerSecurityConfig(PartnerService partnerService) {
         this.partnerService = partnerService;
     }
 
@@ -44,7 +44,7 @@ public class SecurityConfig {
                                 "/hotels/new-hotel-form","hotels/{id}/update",
                                 "/message","/contact",
                                 "/bars/create","/bars/current","/bars/delete","bars/all",
-                                "/restaurants/all","/restaurants/create")
+                                "/restaurants/all","/restaurants/create","/user/reg","/user-login")
                         .permitAll()
                         .anyRequest().authenticated()
                 )

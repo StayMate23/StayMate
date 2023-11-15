@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomPartnerDetailsService implements UserDetailsService {
 
     private final PartnerService partnerService;
     private final PasswordEncoder passwordEncoder;
     @Autowired
-    public CustomUserDetailsService(PartnerService partnerRepository, PasswordEncoder passwordEncoder) {
+    public CustomPartnerDetailsService(PartnerService partnerRepository, PasswordEncoder passwordEncoder) {
         this.partnerService = partnerRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserDetails userDetails = User.builder()
                 .username(email)
                 .password(passwordEncoder.encode(partner.getPassword())) // Jelszó
-                .roles(partner.getRole()) // Jogosultságok
+                .roles(partner.getRole().toString()) // Jogosultságok ITT LETT MA 11.13 belejavítja a .toString
                 .build();
         return userDetails;
     }
