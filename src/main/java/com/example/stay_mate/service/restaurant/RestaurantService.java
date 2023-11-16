@@ -1,8 +1,10 @@
 package com.example.stay_mate.service.restaurant;
 
+import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.model.restaurant.Restaurant;
 import com.example.stay_mate.repository.restaurant.RestaurantRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,11 +15,12 @@ public class RestaurantService {
     public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }
+
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
 
-    public void save(Restaurant restaurant) {
+    public void saveRestaurant(Restaurant restaurant) {
         restaurantRepository.save(restaurant);
     }
 
@@ -31,5 +34,13 @@ public class RestaurantService {
 
     public void delete(Restaurant restaurant) {
         restaurantRepository.delete(restaurant);
+    }
+
+    public List<Restaurant> getRestaurantByPartner(Partner partner) {
+        return restaurantRepository.getRestaurantByPartner(partner);
+    }
+    @Transactional
+    public void deleteRestaurantByPartner(Partner partner){
+        restaurantRepository.deleteRestaurantByPartner(partner);
     }
 }
