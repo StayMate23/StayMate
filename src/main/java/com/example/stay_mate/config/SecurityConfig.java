@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -39,7 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/","/partner/reg", "/partner/all",
+                        .requestMatchers("/","/partner/reg", "/partner/all","/partner/create",
                                 "/hotel-list","/hotel-update", "/hotels/all","/hotels/create","/add-hotel",
                                 "/hotels/new-hotel-form","hotels/{id}/update",
                                 "/message","/contact",

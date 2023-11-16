@@ -21,15 +21,16 @@ public class HotelController {
         this.facilitiesService = facilitiesService;
     }
 
-    //  @GetMapping("/all")
-  //  public String getAllHotels(Model model) {
-  //      model.addAttribute("hotels", hotelService.findAllHotel());
-  //      return "hotel-list";
-  //  }
+    @GetMapping("/all")
+    public String getAllHotels(Model model) {
+        model.addAttribute("hotels", hotelService.findAllHotel());
+        return "hotel-list";
+    }
+
     @GetMapping("/{id}")
-    public String getCurrentHotel(Model model, @PathVariable("id") Integer id){
-        model.addAttribute("facilities",facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
-        model.addAttribute("hotel",hotelService.getHotelById(id));
+    public String getCurrentHotel(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
+        model.addAttribute("hotel", hotelService.getHotelById(id));
         return "hotel";
     }
 

@@ -1,44 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="ISO-8859-1">
+  <title>New Bar</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" th:href="@{/}">Profile</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" th:href="@{/bars/all}">Bars</a>
-    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/}">Profile</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/bars/all}">Bars</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/contact}">Contact Us</a>
+      </li>
+    </ul>
   </div>
 </nav>
-<body>
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Create New Bar </h1>
+      <div class = "card-body">
+        <form th:action="@{/bars/create}">
+          <input type="hidden" th:value="${new_bar.id}" th:field="*{new_bar.id}">
+          <div class ="form-group">
+            <label> Bar Name </label>
+            <input
+                    type = "text"
+                    name = "name"
+                    th:field = "*{new_bar.name}"
+                    class = "form-control"
+                    placeholder="Name"
+            />
+          </div>
 
+          <div class ="form-group">
+            <label> Description </label>
+            <input
+                    type = "text"
+                    name = "description"
+                    th:field = "*{new_bar.description}"
+                    class = "form-control"
+                    placeholder="Description"
+            />
+          </div>
 
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary">
+              Ready
+            </button>
+          </div>
+        </form>
 
-<h1 Add new bar ></h1>
-  <form method="post" th:action="@{/bars/create}">
-    <input type="hidden" th:value="${new_bar.id}" th:field="*{new_bar.id}">
-
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{new_bar.name}">
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="description">Description</label>
-      <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{new_bar.description}">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Ready</button>
-  </form>
+  </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
