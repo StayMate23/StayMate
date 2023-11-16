@@ -1,60 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
+<body>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{/partner/all}">Partners</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Navbar content -->
+            <!-- Adjust navbar structure as needed -->
+        </nav>
     </div>
 </nav>
-<body>
-<table>
-    <thead>
-    <tr>
-        <td>Name</td>
-        <td>Position</td>
-        <td>Phone number</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>
-            <h5 th:text="${partner_admin.name}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner_admin.posRank}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner_admin.telNumber}"></h5>
-        </td>
-    </tr>
 
-</table>
-<form th:action="@{'/partner-admin/delete/' + ${partner_admin.id}}" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn btn-danger">Delete Admin</button>
-</form>
+<div class="container mt-4">
+    <div class="row">
+        <h1>Partner-Admin</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/partner-admin/new/{partner-id}}" class="btn btn-primary btn-sm mb-3">Add Partner-Admin</a>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Phone number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="partner_admin : ${partner_admins}">
+            <td th:text="${partner_admin.name}"></td>
+            <td th:text="${partner_admin.posRank}"></td>
+            <td th:text="${partner_admin.telNumber}"></td>
+            <td>
+                <a th:href="@{/partner-admins/{id}/update(id=${partner_admin.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/partner-admins/delete/{partner-admin-id}(partner-admin-id=${partner_admin.id})}" class="btn btn-danger">Delete</a>
+                <form th:action="@{'/partner-admin/delete/' + ${partner_admin.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger">Delete Admin</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

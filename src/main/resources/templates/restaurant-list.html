@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Restaurant List</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="ISO-8859-1">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,27 +20,73 @@
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">Log Out</button>
         </form>
-    </div>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/">Restaurant Management System</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/restaurants}">Restaurant Management</a>
+                    </li>
+                    <!--            <li class="nav-item">-->
+                    <!--                <a class="nav-link" th:href="@{/}"> Management</a>-->
+                    <!--            </li>-->
+                </ul>
+            </div>
+        </nav>
+
+        <div class ="container">
+            <div class = "row">
+                <h1> List Restaurants </h1>
+            </div>
 </nav>
 <div class="container mt-4">
     <table class="table">
         <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="restaurant : ${all_restaurant}">
-            <td th:text="${restaurant.name}"></td>
-            <td th:text="${restaurant.description}"></td>
-        </tr>
-        </tbody>
-    </table>
 
+        <div class = "row">
+            <div class = "col-lg-3">
+                <a th:href = "@{/restaurants/create}" class = "btn btn-primary btn-sm mb-3"> Add restaurant</a>
+            </div>
+        </div>
+        <table class = "table table-striped table-bordered">
+            <thead class = "table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="restaurant : ${all_restaurant}">
+                <td th:text="${restaurant.name}"></td>
+                <td th:text="${restaurant.description}"></td>
+            </tr>
+            <td>
+                <a th:href = "@{/restaurants/update/{id}(id=${restaurant.id})}"
+                   class = "btn btn-primary">Update</a>
+
+                <a th:href = "@{/restaurants/{id}(id=${restaurant.id})}"
+                   class = "btn btn-danger">Delete</a>
+
+            </td>
+            </tbody>
+
+        </table>
+        </thead>
+    </table>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
