@@ -3,17 +3,13 @@ package com.example.stay_mate.model.room;
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.model.reservation.Reservation;
-import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
+@Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +18,14 @@ public class Room {
     private Integer roomCapacity;
     private Double pricePerDay;
     @ManyToOne
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
     @ManyToOne
+    @JoinColumn(name = "partner_id")
     private Partner partner;
-   // @OneToMany(mappedBy = "room")
-   // @JsonBackReference
-   // private List<Reservation> reservations;
+    @OneToMany(mappedBy = "room")
+    @JsonBackReference
+    private List<Reservation> reservations;
 
     public Room(Integer id, Integer roomNumber,
                 Integer roomCapacity, Double pricePerDay, Hotel hotel,
@@ -38,7 +36,7 @@ public class Room {
         this.pricePerDay = pricePerDay;
         this.hotel = hotel;
         this.partner = partner;
-        // this.reservations = reservations;
+        this.reservations = reservations;
     }
 
     public Room() {
@@ -92,11 +90,21 @@ public class Room {
         this.partner = partner;
     }
 
-  // public List<Reservation> getReservations() {
-  //     return reservations;
-  // }
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 
-  // public void setReservations(List<Reservation> reservations) {
-  //     this.reservations = reservations;
-  // }
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", roomNumber=" + roomNumber +
+                ", roomCapacity=" + roomCapacity +
+                ", pricePerDay=" + pricePerDay +
+                '}';
+    }
 }

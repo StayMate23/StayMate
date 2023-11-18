@@ -8,12 +8,11 @@ import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.model.restaurant.Restaurant;
 import com.example.stay_mate.model.room.Room;
 import com.example.stay_mate.model.user.User;
-import com.example.stay_mate.service.restaurant.RestaurantService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 @Entity
 public class Reservation {
     @Id
@@ -32,16 +31,15 @@ public class Reservation {
     private HotelRestaurant hotelRestaurant;
     @ManyToOne
     private HotelBar hotelBar;
-
-   // @ManyToOne
-   // @JsonManagedReference
-   // private Room room;
+    @ManyToOne
+    @JsonManagedReference
+    private Room room;
     @ManyToOne
     private Restaurant restaurant;
     @ManyToOne
     private Bar bar;
 
-    public Reservation(Integer id, LocalDateTime startDate, LocalDateTime endDate, Integer userNumber, User user, Partner partner, Hotel hotel, HotelRestaurant hotelRestaurant, HotelBar hotelBar, /* Room room, */ Restaurant restaurant, Bar bar) {
+    public Reservation(Integer id, LocalDateTime startDate, LocalDateTime endDate, Integer userNumber, User user, Partner partner, Hotel hotel, HotelRestaurant hotelRestaurant, HotelBar hotelBar, Room room, Restaurant restaurant, Bar bar) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -51,7 +49,7 @@ public class Reservation {
         this.hotel = hotel;
         this.hotelRestaurant = hotelRestaurant;
         this.hotelBar = hotelBar;
-       // this.room = room;
+        this.room = room;
         this.restaurant = restaurant;
         this.bar = bar;
     }
@@ -131,13 +129,13 @@ public class Reservation {
         this.hotelBar = hotelBar;
     }
 
-  // public Room getRoom() {
-  //     return room;
-  // }
+    public Room getRoom() {
+        return room;
+    }
 
-  // public void setRoom(Room room) {
-  //     this.room = room;
-  // }
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;
