@@ -2,6 +2,7 @@ package com.example.stay_mate.controller.bar;
 
 import com.example.stay_mate.model.bar.Bar;
 import com.example.stay_mate.service.bar.BarService;
+import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import java.util.List;
 @RequestMapping("/bars")
 public class BarController {
     private final BarService barService;
+    private final MenuBookService menuBookService;
     private final PartnerService partnerService;
 
-    public BarController(BarService barService, PartnerService partnerService) {
+    public BarController(BarService barService, MenuBookService menuBookService, PartnerService partnerService) {
         this.barService = barService;
+        this.menuBookService = menuBookService;
         this.partnerService = partnerService;
     }
 
@@ -29,6 +32,8 @@ public class BarController {
 
     @GetMapping("/{id}")
     public String getCurrentBar(Model model, @PathVariable("id") Integer barId) {
+        model.addAttribute("menu_book",menuBookService.getMenuBookByBar
+                (barService.getBarById(barId)));
         model.addAttribute("bar", barService.getBarById(barId));
         return "bar";
     }
@@ -62,6 +67,7 @@ public class BarController {
 
     @PostMapping("/{bar-id}/delete")
     public String deleteBar(@PathVariable("bar-id") Integer barId) {
+        menuBookService.deleteMenuBookByBar(barService.getBarById(barId));
         barService.deleteBarById(barId);
         return "redirect:/partner/current";
     }

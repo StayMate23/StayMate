@@ -17,7 +17,7 @@ public class Partner implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JoinColumn(name = "partner_name")
-    private java.lang.String partnerName;
+    private String partnerName;
     @JoinColumn(name = "address")
     private java.lang.String address;
     @JoinColumn(name = "tel_num")
@@ -104,6 +104,9 @@ public class Partner implements UserDetails {
         this.password = password;
     }
 
+   public String getName(){
+       return this.partnerName;
+   }
     @Override
     public java.lang.String getUsername() {
         return this.email;

@@ -1,8 +1,7 @@
-
-
 package com.example.stay_mate.controller.restaurant;
 
 import com.example.stay_mate.model.restaurant.Restaurant;
+import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
 import org.springframework.stereotype.Controller;
@@ -14,12 +13,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/restaurants")
 public class RestaurantController {
-   private final RestaurantService restaurantService;
-   private final PartnerService partnerService;
+    private final RestaurantService restaurantService;
+    private final PartnerService partnerService;
+    private final MenuBookService menuBookService;
 
-    public RestaurantController(RestaurantService restaurantService, PartnerService partnerService) {
+    public RestaurantController(RestaurantService restaurantService,
+                                PartnerService partnerService,
+                                MenuBookService menuBookService) {
         this.restaurantService = restaurantService;
         this.partnerService = partnerService;
+        this.menuBookService = menuBookService;
     }
 
     @GetMapping("/all")
@@ -30,35 +33,37 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public String getCurrentRestaurant(Model model, @PathVariable("id") Integer restaurantId){
+    public String getCurrentRestaurant(Model model, @PathVariable("id") Integer restaurantId) {
+        model.addAttribute("menu_book", menuBookService.getMenuBookByRestaurant
+                (restaurantService.getRestaurantById(restaurantId)));
         model.addAttribute("restaurant", restaurantService.getRestaurantById(restaurantId));
         return "restaurant";
     }
 
     @GetMapping("/create/{partner-id}")
-    public String addRestaurant(Model model, @PathVariable("partner-id")Integer partnerId) {
-        model.addAttribute("partnerId",partnerId);
+    public String addRestaurant(Model model, @PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("partnerId", partnerId);
         model.addAttribute("new_restaurant", new Restaurant());
         return "new-restaurant-form";
     }
 
     @PostMapping("/create/{partner-id}")
-    public String addRestaurant(@ModelAttribute("new_restaurant") Restaurant restaurant, @PathVariable("partner-id")Integer partnerId) {
+    public String addRestaurant(@ModelAttribute("new_restaurant") Restaurant restaurant, @PathVariable("partner-id") Integer partnerId) {
         restaurant.setPartner(partnerService.getPartnerById(partnerId));
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/partner/current";
     }
 
     @GetMapping("/{id}/update")
-    public String updateRestaurant(Model model, @PathVariable("id")Integer restaurantId){
+    public String updateRestaurant(Model model, @PathVariable("id") Integer restaurantId) {
         model.addAttribute("updated_restaurant", restaurantService.getRestaurantById(restaurantId));
         return "restaurant-update";
     }
 
     @PostMapping("/{id}/update")
-    public String updateRestaurant(@ModelAttribute("updated_restaurant") Restaurant updatedRestaurant,@PathVariable("id")Integer restaurantId){
-    restaurantService.saveRestaurant(updatedRestaurant);
-    return "redirect:/partner/current";
+    public String updateRestaurant(@ModelAttribute("updated_restaurant") Restaurant updatedRestaurant, @PathVariable("id") Integer restaurantId) {
+        restaurantService.saveRestaurant(updatedRestaurant);
+        return "redirect:/partner/current";
     }
 
     @PostMapping("/{id}/delete")

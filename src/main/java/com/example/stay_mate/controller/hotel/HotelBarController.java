@@ -3,6 +3,7 @@ package com.example.stay_mate.controller.hotel;
 import com.example.stay_mate.model.hotel.HotelBar;
 import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelService;
+import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,14 @@ public class HotelBarController {
     private final HotelBarService hotelBarService;
     private final HotelService hotelService;
     private final PartnerService partnerService;
+    private final MenuBookService menuBookService;
 
-    public HotelBarController(HotelBarService hotelBarService, HotelService hotelService, PartnerService partnerService) {
+    public HotelBarController(HotelBarService hotelBarService, HotelService hotelService,
+                              PartnerService partnerService, MenuBookService menuBookService) {
         this.hotelBarService = hotelBarService;
         this.hotelService = hotelService;
         this.partnerService = partnerService;
+        this.menuBookService = menuBookService;
     }
 
     @GetMapping("/all")
@@ -29,6 +33,8 @@ public class HotelBarController {
 
     @GetMapping("/{id}")
     public String getCurrentHotelBar(Model model, @PathVariable("id") Integer hotelBarId) {
+        model.addAttribute("menu_book",
+                menuBookService.getMenuBookByHotelBar(hotelBarService.getHotelBarById(hotelBarId)));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarById(hotelBarId));
         return "hotel-bar";
     }
@@ -61,6 +67,7 @@ public class HotelBarController {
     }
     @PostMapping("/{id}/delete")
     public String deleteHotelBar(@PathVariable("id")Integer hotelBarId, HotelBar hotelBar){
+        menuBookService.deleteMenuBookByHotelBar(hotelBarService.getHotelBarById(hotelBarId));
         hotelBarService.deleteHotelBarById(hotelBarId);
         return "redirect:/partner/current";
     }

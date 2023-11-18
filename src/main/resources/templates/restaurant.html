@@ -21,6 +21,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+
+    <a class="navbar-brand active" th:href="@{'/menu/create-restaurant/' + ${restaurant.id} + '/' + ${restaurant.partner.id}}">Add Menu</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
     <form th:action="@{'/restaurants/' + ${restaurant.id} + '/delete'}" method="post">
       <input type="hidden" name="_method" value="delete">
       <button type="submit" class="btn btn-link">Delete Restaurant</button>
@@ -38,6 +45,7 @@
   <tr>
     <td>Name</td>
     <td>Description</td>
+    <td>Menu</td>
   </tr>
   </thead>
   <tr>
@@ -48,7 +56,13 @@
     <td>
       <h5 th:text="${restaurant.description}"></h5>
     </td>
-
+    <td>
+      <ul>
+        <li th:each="actual : ${menu_book}">
+          <a th:text="${actual.name}" th:href="@{'/menu/restaurant/' + ${actual.id}}"></a>
+        </li>
+      </ul>
+    </td>
   </tr>
 </table>
 </body>

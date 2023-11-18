@@ -6,6 +6,7 @@ import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelRestaurantService;
 import com.example.stay_mate.service.hotel.HotelService;
+import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
@@ -26,12 +27,14 @@ public class PartnerController {
     private final RestaurantService restaurantService;
     private final HotelBarService hotelBarService;
     private final HotelRestaurantService hotelRestaurantService;
+    private final MenuBookService menuBookService;
     private final PasswordEncoder passwordEncoder;
 
     public PartnerController(PartnerService partnerService, PartnerAdminService partnerAdminService,
-                             HotelService hotelService, FacilitiesService facilitiesService, BarService barService,
-                             RestaurantService restaurantService, HotelBarService hotelBarService,
-                             HotelRestaurantService hotelRestaurantService, PasswordEncoder passwordEncoder) {
+                             HotelService hotelService, FacilitiesService facilitiesService,
+                             BarService barService, RestaurantService restaurantService,
+                             HotelBarService hotelBarService, HotelRestaurantService hotelRestaurantService,
+                             MenuBookService menuBookService, PasswordEncoder passwordEncoder) {
         this.partnerService = partnerService;
         this.partnerAdminService = partnerAdminService;
         this.hotelService = hotelService;
@@ -40,6 +43,7 @@ public class PartnerController {
         this.restaurantService = restaurantService;
         this.hotelBarService = hotelBarService;
         this.hotelRestaurantService = hotelRestaurantService;
+        this.menuBookService = menuBookService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -51,6 +55,7 @@ public class PartnerController {
 
     @GetMapping("/current")
     public String getCurrentPartner(Model model, @AuthenticationPrincipal Partner partner) {
+        model.addAttribute("menu_book", menuBookService.getMenuBookByPartner(partner));
         model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByPartner(partner));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarByPartner(partner));
         model.addAttribute("restaurant", restaurantService.getRestaurantByPartner(partner));
@@ -68,14 +73,15 @@ public class PartnerController {
         return "new-partner-form";
     }
 
-    @PostMapping("/create")
-    public String addPartner(@ModelAttribute("partner") Partner partner) {
-        partnerService.savePartner(partner);
-        return "redirect:/";
-    }
+ //  @PostMapping("/create")
+ //  public String addPartner(@ModelAttribute("partner") Partner partner) {
+ //      partnerService.savePartner(partner);
+ //      return "redirect:/";
+ //  }
 
     @PostMapping("/{id}/delete")
     public String deletePartner(@PathVariable("id") Integer id, Partner partner) {
+        menuBookService.deleteMenuBookByPartner(partner);
         hotelRestaurantService.deleteHotelRestaurantByPartner(partner);
         hotelBarService.deleteBarByPartner(partner);
         restaurantService.deleteRestaurantByPartner(partner);

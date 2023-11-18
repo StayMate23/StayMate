@@ -15,29 +15,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a class="navbar-brand active" th:href="@{'/hotels/' + ${hotel_restaurant.hotel.id} + '/' + ${hotel_restaurant.partner.id}}">Hotel</a>
+    <a class="navbar-brand active" th:href="@{'/hotel-bar/' + ${hotel_bar_menu_book.hotelBar.id}}">Bar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a class="navbar-brand active" th:href="@{'/hotel-restaurant/update/' + ${hotel_restaurant.id}}">Update Restaurant</a>
+    <a class="navbar-brand active" th:href="@{'/menu/update-hotel-bar/' + ${hotel_bar_menu_book.hotelBar.id} + '/' + ${hotel_bar_menu_book.id}}">Update Menu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-
-
-    <a class="navbar-brand active" th:href="@{'/menu/create-hotel-restaurant/' + ${hotel_restaurant.id} + '/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.partner.id}}">Add Menu</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <form th:action="@{'/hotel-restaurant/' + ${hotel_restaurant.id} + '/delete'}" method="post">
+    <form th:action="@{'/menu/' + ${hotel_bar_menu_book.id} + '/delete'}" method="post">
       <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-link">Delete Restaurant</button>
+      <button type="submit" class="btn btn-link">Delete Menu</button>
     </form>
 
     <form class="navbar-brand" th:action="@{/logout}" method="post">
@@ -53,22 +45,18 @@
   <tr>
     <td>Name</td>
     <td>Descriptions</td>
-    <td>Menu</td>
+    <td>Price</td>
   </tr>
   </thead>
   <tr>
     <td>
-      <h5 th:text="${hotel_restaurant.name}"></h5>
+      <h5 th:text="${hotel_bar_menu_book.name}"></h5>
     </td>
     <td>
-      <h5 th:text="${hotel_restaurant.description}"></h5>
+      <h5 th:text="${hotel_bar_menu_book.description}"></h5>
     </td>
     <td>
-      <ul>
-        <li th:each="actual : ${menu_book}">
-          <a th:text="${actual.name}" th:href="@{'/menu/hotel-restaurant/' + ${actual.id}}"></a>
-        </li>
-      </ul>
+      <h5 th:text="${hotel_bar_menu_book.price}"></h5>
     </td>
   </tr>
 </table>

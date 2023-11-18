@@ -25,18 +25,20 @@ public class Room {
     private Hotel hotel;
     @ManyToOne
     private Partner partner;
-    @OneToMany(mappedBy = "room")
-    @JsonBackReference
-    private List<Reservation> reservations;
+   // @OneToMany(mappedBy = "room")
+   // @JsonBackReference
+   // private List<Reservation> reservations;
 
-    public Room(Integer id, Integer roomNumber, Integer roomCapacity, Double pricePerDay, Hotel hotel, Partner partner, List<Reservation> reservations) {
+    public Room(Integer id, Integer roomNumber,
+                Integer roomCapacity, Double pricePerDay, Hotel hotel,
+                Partner partner, List<Reservation> reservations) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
         this.pricePerDay = pricePerDay;
         this.hotel = hotel;
         this.partner = partner;
-        this.reservations = reservations;
+        // this.reservations = reservations;
     }
 
     public Room() {
@@ -90,11 +92,11 @@ public class Room {
         this.partner = partner;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
+  // public List<Reservation> getReservations() {
+  //     return reservations;
+  // }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+  // public void setReservations(List<Reservation> reservations) {
+  //     this.reservations = reservations;
+  // }
 }
