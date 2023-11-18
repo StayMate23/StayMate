@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+
+    <a class="navbar-brand active" th:href="@{/}">Profile</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" th:href="@{/partner/all}">Partners</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</nav>
+<body>
+
+<form method="post" th:action="@{'/partner/' +${partner.id} + '/update'}">
+
+  <input type="hidden" th:value="${partner.id}" th:field="*{partner.id}">
+
+  <label for="name">Name</label>
+  <input type="text" id="name" th:placeholder="${partner.partnerName}" th:field="*{partner.partnerName}"><br>
+
+  <label for="address">address</label>
+  <input type="text" id="address" th:placeholder="${partner.address}" th:field="*{partner.address}"><br>
+
+  <label for="telnum">Telnum</label>
+  <input type="number" id="telnum" th:placeholder="${partner.telNum}" th:field="*{partner.telNum}"><br>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" th:placeholder="${partner.password}" th:field="*{partner.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+         oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+         oninput="this.setCustomValidity('')"><br>
+
+  <label for="email">e-Mail</label>
+  <input type="text" id="email" th:placeholder="${partner.email}" th:field="*{partner.email}"><br>
+
+  <label for="compregnum">compregnum</label>
+  <input type="number" id="compregnum" th:placeholder="${partner.companyRegNum}" th:field="*{partner.companyRegNum}"><br>
+
+  <label for="taxnum">taxnum</label>
+  <input type="text" id="taxnum" th:placeholder="${partner.telNum}" th:field="*{partner.taxNum}"><br>
+
+  <label for="role">Role</label>
+  <input type="text" id="role" th:placeholder="${partner.role}" th:field="*{partner.role}"><br>
+
+  <button type="submit" class="btn btn-info">Update</button><br>
+</form>
+</body>
+</html>
