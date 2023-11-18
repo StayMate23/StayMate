@@ -1,24 +1,29 @@
 package com.example.stay_mate.model.restaurant;
 
+import com.example.stay_mate.model.partner.Partner;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
-    @Column(name = "restaurant_id")
     @Id
+    @JoinColumn(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name")
+    @JoinColumn(name = "name")
     private String name;
-    @Column(name = "description")
+    @JoinColumn(name = "description")
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "partner_id")
+    private Partner partner;
 
 
-    public Restaurant(Integer id, String name, String description) {
+    public Restaurant(Integer id, String name, String description, Partner partner) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.partner = partner;
     }
 
     public Restaurant() {
@@ -46,5 +51,13 @@ public class Restaurant {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 }

@@ -33,6 +33,19 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <a class="navbar-brand" th:href="@{'/bars/create/' + ${partner.id}}">Add Bar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/restaurants/create/' + ${partner.id}}">Add Restaurant</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
             <input type="hidden" name="_method" value="delete">
             <button type="submit" class="btn btn-link">Delete Account</button>
@@ -57,6 +70,8 @@
         <td>Tax number</td>
         <td>Contact Person</td>
         <td>Hotels</td>
+        <td>Bars</td>
+        <td>Restaurant</td>
     </tr>
     </thead>
     <tr>
@@ -91,7 +106,21 @@
         <td>
             <ul>
                 <li th:each="actual : ${hotel}">
-                    <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id}}"></a>
+                    <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id} + '/' + ${partner.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${bar}">
+                    <a th:text="${actual.name}" th:href="@{'/bars/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${restaurant}">
+                    <a th:text="${actual.name}" th:href="@{'/restaurants/' + ${actual.id}}"></a>
                 </li>
             </ul>
         </td>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/hotels/' + ${hotel_bar.hotel.id} + '/' + ${hotel_bar.partner.id}}">Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/hotel-bar/update/' + ${hotel_bar.id}}">Update Bar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Bar</button>
+        </form>
+
+        <a class="navbar-brand active" th:href="@{'/menu/create-hotel-bar/' + ${hotel_bar.id} + '/' + ${hotel_bar.hotel.id} +'/'+ ${hotel_bar.partner.id}}">Add Menu</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+
+    </div>
+</nav>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Descriptions</td>
+        <td>Menu</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${hotel_bar.name}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${hotel_bar.description}"></h5>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${menu_book}">
+                    <a th:text="${actual.name}" th:href="@{'/menu/hotel-bar/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

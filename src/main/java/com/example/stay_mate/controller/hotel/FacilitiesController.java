@@ -4,6 +4,7 @@ import com.example.stay_mate.model.hotel.Facilities;
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelService;
+import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,13 @@ public class FacilitiesController {
 
     private final FacilitiesService facilitiesService;
     private final HotelService hotelService;
+    private final PartnerService partnerService;
 
-    public FacilitiesController(FacilitiesService facilitiesService, HotelService hotelService) {
+
+    public FacilitiesController(FacilitiesService facilitiesService, HotelService hotelService, PartnerService partnerService) {
         this.facilitiesService = facilitiesService;
         this.hotelService = hotelService;
+        this.partnerService = partnerService;
     }
 
     @GetMapping("/all")
@@ -32,30 +36,33 @@ public class FacilitiesController {
         return "facility";
     }
 
-    @GetMapping("/create/{hotel-id}")
-    public String addFacilities(Model model, @PathVariable("hotel-id") Integer hotelId) {
+    @GetMapping("/create/{hotel-id}/{partner-id}")
+    public String addFacilities(Model model, @PathVariable("hotel-id") Integer hotelId,@PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("partnerId", partnerId);
         model.addAttribute("hotelId", hotelId);
         model.addAttribute("new_facilities", new Facilities());
         return "new-facilities-form";
     }
 
-    @PostMapping("/create/{hotel-id}")
-    public String addFacilities(@ModelAttribute("new_facilities") Facilities facilities, @PathVariable("hotel-id") Integer hotelId) {
+    @PostMapping("/create/{hotel-id}/{partner-id}")
+    public String addFacilities(@ModelAttribute("new_facilities") Facilities facilities, @PathVariable("hotel-id") Integer hotelId,
+                                @PathVariable("partner-id") Integer partnerId) {
+        facilities.setPartner(partnerService.getPartnerById(partnerId));
         facilities.setHotel(hotelService.getHotelById(hotelId));
         facilitiesService.saveFacilities(facilities);
-        return "redirect:/hotels/" + hotelId;
+        return "redirect:/hotels/" + hotelId + "/" + partnerId;
     }
 
     @GetMapping("/update/{id}")
     public String updateFacilities(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("facilities", facilitiesService.getFacilitiesById(id));
+        model.addAttribute("updated_facilities", facilitiesService.getFacilitiesById(id));
         return "facilities-update";
     }
 
     @PostMapping("/update/{id}")
-    public String updateFacilities(@ModelAttribute("facilities") Facilities updatedFacilities, @PathVariable("id") Integer id) {
+    public String updateFacilities(@ModelAttribute("updated_facilities") Facilities updatedFacilities, @PathVariable("id") Integer id) {
         facilitiesService.saveFacilities(updatedFacilities);
-        return "redirect:/facilities/facilities/" + id;
+        return "redirect:/services/" + id;
     }
 
     @PostMapping("/{id}/delete")

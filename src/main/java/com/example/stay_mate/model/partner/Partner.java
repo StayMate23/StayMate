@@ -1,5 +1,6 @@
 package com.example.stay_mate.model.partner;
 
+import com.example.stay_mate.model.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,21 +19,23 @@ public class Partner implements UserDetails {
     @JoinColumn(name = "partner_name")
     private String partnerName;
     @JoinColumn(name = "address")
-    private String address;
+    private java.lang.String address;
     @JoinColumn(name = "tel_num")
-    private String telNum;
+    private java.lang.String telNum;
     @JoinColumn(name = "email")
-    private String email;
+    private java.lang.String email;
     @JoinColumn(name = "password")
-    private String password;
+    private java.lang.String password;
     @JoinColumn(name = "company_reg_num")
     private Integer companyRegNum;
     @JoinColumn(name = "tax_num")
     private Integer taxNum;
     @JoinColumn(name = "role")
-    private String role;
+    @Column(columnDefinition = "ENUM('ADMIN','USER')")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Partner(Integer id, String partnerName, String address, String telNum, String email, String password, Integer companyRegNum, Integer taxNum, String role) {
+    public Partner(Integer id, java.lang.String partnerName, java.lang.String address, java.lang.String telNum, java.lang.String email, java.lang.String password, Integer companyRegNum, Integer taxNum, Role role) {
         this.id = id;
         this.partnerName = partnerName;
         this.address = address;
@@ -55,35 +58,35 @@ public class Partner implements UserDetails {
         this.id = id;
     }
 
-    public String getPartnerName() {
+    public java.lang.String getPartnerName() {
         return partnerName;
     }
 
-    public void setPartnerName(String partnerName) {
+    public void setPartnerName(java.lang.String partnerName) {
         this.partnerName = partnerName;
     }
 
-    public String getAddress() {
+    public java.lang.String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(java.lang.String address) {
         this.address = address;
     }
 
-    public String getTelNum() {
+    public java.lang.String getTelNum() {
         return telNum;
     }
 
-    public void setTelNum(String telephoneNumber) {
+    public void setTelNum(java.lang.String telephoneNumber) {
         this.telNum = telephoneNumber;
     }
 
-    public String getEmail() {
+    public java.lang.String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(java.lang.String email) {
         this.email = email;
     }
 
@@ -93,16 +96,19 @@ public class Partner implements UserDetails {
         return Collections.singleton(authority);
     }
 
-    public String getPassword() {
+    public java.lang.String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(java.lang.String password) {
         this.password = password;
     }
 
+   public String getName(){
+       return this.partnerName;
+   }
     @Override
-    public String getUsername() {
+    public java.lang.String getUsername() {
         return this.email;
     }
 
@@ -142,16 +148,16 @@ public class Partner implements UserDetails {
         this.taxNum = taxNumber;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Partner{" +
                 "id=" + id +
                 ", partnerName='" + partnerName + '\'' +
