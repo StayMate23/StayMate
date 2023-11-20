@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: poppins, serif;
+            font-size: 16px;
+            color: #fff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .form-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 50px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+            width: 500px;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .form-box:before {
+            background-image: url("https://wallpapers.com/images/hd/hotel-background-2qosz2h6xb1xpnka.jpg");
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            display: block;
+            filter: blur(2px);
+        }
+        .form-box .header-text {
+            font-size: 32px;
+            font-weight: 600;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+        .form-box input {
+            margin: 10px 0px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 18px;
+            font-family: poppins;
+        }
+        .form-box span {
+            font-size: 14px;
+        }
+        .form-box button {
+            background-color: deepskyblue;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            padding: 10px;
+            margin: 20px 0px;
+        }
+        span a {
+            color: #BBB;
+        }
+    </style>
+
+</head>
+<body>
+<div class="form-box">
+    <div class="header-text">
+        Registration Form
+    </div>
+    <form th:action="@{/user/reg}" method="post">
+
+        <div class="”input-form">
+            <label for="surname"></label>
+            <select th:field="*{newUser.surName}" id="surname">
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="firstname"></label>
+            <input th:field="*{newUser.firstName}" type="text" id="firstname" placeholder="Firstname: ">
+
+            <label for="lastname"></label>
+            <input th:field="*{newUser.lastName}" type="tel" id="lastname" placeholder="Lastname:">
+
+            <label for="phoneNum"></label>
+            <input th:field="*{newUser.phoneNumber}" type="tel" id="phoneNum" placeholder="Tel.number:">
+
+            <label for="email"></label>
+            <input th:field="*{newUser.email}" type="email" id="email" required placeholder="Enter Your Email:">
+
+            <label for="password"></label>
+            <input th:field="*{newUser.password}" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- one special character\n- minimum of 8 characters long.')"
+                   oninput="this.setCustomValidity('')"
+                   placeholder="Enter your Password">
+
+
+            <label for="personalId"></label>
+            <input th:field="*{newUser.personalId}" type="text" id="personalId"
+                   placeholder="Enter Your Company Registration Number">
+
+            <label for="birthdate"></label>
+            <input th:field="*{newUser.birthDate}" type="date" id="birthdate">
+
+            <label for="role"></label>
+            <select th:field="*{newUser.role}" id="role">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
+
+
+        </div>
+        <div class=”btn”>
+            <button type="submit">Register</button>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

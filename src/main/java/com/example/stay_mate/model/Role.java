@@ -3,9 +3,9 @@ package com.example.stay_mate.model;
 public enum Role {
     ADMIN("ADMIN"),
     USER("USER");
-    final String roleCode;
+    final java.lang.String roleCode;
 
-    Role(String roleCode) {
+    Role(java.lang.String roleCode) {
         this.roleCode=roleCode;
     }
 }

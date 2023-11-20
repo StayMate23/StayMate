@@ -2,7 +2,10 @@ package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.hotel.FacilitiesService;
+import com.example.stay_mate.service.hotel.HotelBarService;
+import com.example.stay_mate.service.hotel.HotelRestaurantService;
 import com.example.stay_mate.service.hotel.HotelService;
+import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +17,19 @@ public class HotelController {
     private final HotelService hotelService;
     private final PartnerService partnerService;
     private final FacilitiesService facilitiesService;
+    private final HotelBarService hotelBarService;
+    private final HotelRestaurantService hotelRestaurantService;
+    private final MenuBookService menuBookService;
 
-    public HotelController(HotelService hotelService, PartnerService partnerService, FacilitiesService facilitiesService) {
+    public HotelController(HotelService hotelService, PartnerService partnerService,
+                           FacilitiesService facilitiesService, HotelBarService hotelBarService,
+                           HotelRestaurantService hotelRestaurantService, MenuBookService menuBookService) {
         this.hotelService = hotelService;
         this.partnerService = partnerService;
         this.facilitiesService = facilitiesService;
+        this.hotelBarService = hotelBarService;
+        this.hotelRestaurantService = hotelRestaurantService;
+        this.menuBookService = menuBookService;
     }
 
     @GetMapping("/all")
@@ -27,10 +38,14 @@ public class HotelController {
         return "hotel-list";
     }
 
-    @GetMapping("/{id}")
-    public String getCurrentHotel(Model model, @PathVariable("id") Integer id) {
-        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(id)));
-        model.addAttribute("hotel", hotelService.getHotelById(id));
+    @GetMapping("/{id}/{partner-id}")
+    public String getCurrentHotel(Model model, @PathVariable("id") Integer hoteLid, @PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("menu_book", menuBookService.getMenuBookByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("partner", partnerService.getPartnerById(partnerId));
+        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel", hotelService.getHotelById(hoteLid));
         return "hotel";
     }
 
@@ -62,8 +77,12 @@ public class HotelController {
     }
 
     @PostMapping("/delete/{hotel-id}")
-    public String deleteHotel(@PathVariable("hotel-id") Integer id) {
-        hotelService.deleteHotelById(id);
-        return "redirect:/partner/all";
+    public String deleteHotel(@PathVariable("hotel-id") Integer hotelId) {
+        menuBookService.deleteMenuBookByHotel(hotelService.getHotelById(hotelId));
+        hotelRestaurantService.deleteHotelRestaurantByHotel(hotelService.getHotelById(hotelId));
+        hotelBarService.deleteHotelBarByHotel(hotelService.getHotelById(hotelId));
+        facilitiesService.deleteFacilitiesByHotel(hotelService.getHotelById(hotelId));
+        hotelService.deleteHotelById(hotelId);
+        return "redirect:/partner/current";
     }
 }

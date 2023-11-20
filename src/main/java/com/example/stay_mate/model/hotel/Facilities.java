@@ -1,9 +1,8 @@
 package com.example.stay_mate.model.hotel;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import com.example.stay_mate.model.partner.Partner;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "facilities")
@@ -17,13 +16,17 @@ public class Facilities {
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+    @ManyToOne
+    @JoinColumn(name = "partner_id")
+    private Partner partner;
 
-    public Facilities(Integer id, String name, String description, double price, Hotel hotel) {
+    public Facilities(Integer id, String name, String description, double price, Hotel hotel, Partner partner) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.hotel = hotel;
+        this.partner = partner;
     }
 
     public Facilities() {
@@ -67,6 +70,14 @@ public class Facilities {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 }
 

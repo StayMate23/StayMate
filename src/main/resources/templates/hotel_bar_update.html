@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <form method="post" th:action="@{'/hotel-bar/create/' + ${updated_hotel_bar.hotel.id} + '/' + ${updated_hotel_bar.partner.id}}">
+
+        <input type="hidden" th:value="${updated_hotel_bar.hotel.id}" th:field="*{updated_hotel_bar.hotel.id}">
+
+        <input type="hidden" th:value="${updated_hotel_bar.partner.id}" th:field="*{updated_hotel_bar.partner.id}">
+
+        <input type="hidden" th:value="${updated_hotel_bar.id}" th:field="*{updated_hotel_bar.id}">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_hotel_bar.name}">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_hotel_bar.description}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ready</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

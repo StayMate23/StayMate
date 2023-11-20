@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+</head>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Surname</td>
+        <td>Firstname</td>
+        <td>Lastname</td>
+        <td>Phone number</td>
+        <td>e-Mail</td>
+        <td>Personal ID</td>
+        <td>BirthDate</td>
+    </tr>
+    </thead>
+    <tr>
+
+    </tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

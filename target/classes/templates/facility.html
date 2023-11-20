@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Descriptions</td>
+        <td>Price</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${facility.name}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${facility.description}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${facility.price}"></h5>
+        </td>
+    </tr>
+</table>
+<form th:action="@{'/services/' + ${facility.id} + '/delete'}" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Service</button>
+</form>
+</body>
+</html>

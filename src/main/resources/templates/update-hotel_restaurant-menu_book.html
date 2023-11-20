@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+
+    <a class="navbar-brand active" th:href="@{/}">Profile</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand active" th:href="@{'/menu/hotel-restaurant/' + ${hotel_restaurant_update_menu.id}}">Menu</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+      <button type="submit" class="btn btn-link">LogOut</button>
+    </form>
+
+  </div>
+</nav>
+<body>
+<form method="post" th:action="@{'/menu/update-hotel-restaurant/' + ${hotelRestaurantId}}">
+
+  <input type="hidden" th:value="${hotel_restaurant_update_menu.hotelRestaurant.id}" th:field="*{hotel_restaurant_update_menu.hotelRestaurant.id}">
+
+  <input type="hidden" th:value="${hotel_restaurant_update_menu.hotel.id}" th:field="*{hotel_restaurant_update_menu.hotel.id}">
+
+  <input type="hidden" th:value="${hotel_restaurant_update_menu.partner.id}" th:field="*{hotel_restaurant_update_menu.partner.id}">
+
+  <input type="hidden" th:value="${hotel_restaurant_update_menu.id}" th:field="*{hotel_restaurant_update_menu.id}">
+
+  <label for="name">Name</label>
+  <input type="text" id="name" th:placeholder="${hotel_restaurant_update_menu.name}" th:field="*{hotel_restaurant_update_menu.name}">
+
+  <label for="description">description</label>
+  <input type="text" id="description" th:placeholder="${hotel_restaurant_update_menu.description}" th:field="*{hotel_restaurant_update_menu.description}">
+
+  <label for="price">price</label>
+  <input type="number" id="price" th:placeholder="${hotel_restaurant_update_menu.price}" th:field="*{hotel_restaurant_update_menu.price}">
+
+  <button class="btn btn-info">Update</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -52,6 +52,6 @@ public class PartnerAdminController {
     @PostMapping("/delete/{partner-admin-id}")
     public String deleteAdmin(@PathVariable("partner-admin-id") Integer partnerAdminId){
         partnerAdminService.deletePartnerAdminById(partnerAdminId);
-        return "redirect:/";
+        return "redirect:/partner/current";
     }
 }
