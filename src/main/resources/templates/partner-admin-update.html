@@ -81,8 +81,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id}}">Admin</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{/partner-admin/all}">Admins</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
@@ -112,18 +111,18 @@
 
     <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{partner_admin.name}"><br>
+    <input type="text" class="form-control" id="name" th:placeholder="${partner_admin.name}" th:field="*{partner_admin.name}"><br>
     </div>
 
     <div class="form-group">
-    <label for="birthplace">Birthplace</label>
-    <input type="text" class="form-control" id="birthplace" placeholder="Birthplace"
+    <label for="posrank">Positition</label>
+    <input type="text" class="form-control" id="posrank" th:placeholder="${partner_admin.posRank}"
            th:field="*{partner_admin.posRank}"><br>
     </div>
 
     <div class="form-group">
     <label for="telnum">Telephone Number</label>
-    <input type="number" class="form-control" id="telnum" placeholder="Telephone Number"
+    <input type="number" class="form-control" id="telnum" th:placeholder="${partner_admin.telNumber}"
            th:field="*{partner_admin.telNumber}"><br>
     </div>
 

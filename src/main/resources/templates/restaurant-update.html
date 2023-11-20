@@ -79,9 +79,8 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/restaurants/' + ${updated_restaurant.id}}">Restaurant</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
+        <a class="navbar-brand" th:href="@{/restaurants/all}">Restaurants</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
@@ -108,12 +107,12 @@
 
     <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_restaurant.name}">
+    <input type="text" class="form-control" id="name" th:placeholder="${updated_restaurant.name}" th:field="*{updated_restaurant.name}">
     </div>
 
     <div class="form-group">
     <label for="description">Description:</label>
-    <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_restaurant.description}">
+    <input type="text" class="form-control" id="description" th:placeholder="${updated_restaurant.description}" th:field="*{updated_restaurant.description}">
     </div>
 
     <div class = "box-footer">

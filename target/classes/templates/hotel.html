@@ -26,6 +26,9 @@
             <button type="submit" class="btn btn-link">Delete Hotel</button>
         </form>
 
+        <a th:href="@{'/room/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Room
+        </a>
+
         <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service
         </a>
 
@@ -47,6 +50,7 @@
     <tr>
         <td>Name</td>
         <td>Position</td>
+        <td>Room</td>
         <td>Services</td>
         <td>Bar</td>
         <td>Restaurant</td>
@@ -58,6 +62,13 @@
         </td>
         <td>
             <h5 th:text="${hotel.description}"></h5>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${room}">
+                    <a th:text="${actual.roomNumber}" th:href="@{'/room/' + ${actual.id}}"></a>
+                </li>
+            </ul>
         </td>
         <td>
             <ul>
