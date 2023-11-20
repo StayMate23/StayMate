@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand,
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .navbar-brand:hover,
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #fff;
+            width: 100%;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #fff;
+            color: #000;
+        }
+
+
+        .table th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .btn-logout {
+            color: #000;
+        }
+
+        .btn-logout:hover {
+            color: #333;
+        }
+        table td {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
+<body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
 
@@ -57,77 +134,52 @@
 
     </div>
 </nav>
-<body>
-<table>
-    <thead>
-    <tr>
-        <td>ID</td>
-        <td>Partner</td>
-        <td>Address</td>
-        <td>Phone</td>
-        <td>e-mail</td>
-        <td>Company registration number</td>
-        <td>Tax number</td>
-        <td>Contact Person</td>
-        <td>Hotels</td>
-        <td>Bars</td>
-        <td>Restaurant</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>
-            <h5 th:text="${partner.id}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.getName()}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.address}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.telNum}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.email}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.companyRegNum}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${partner.taxNum}"></h5>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${partner_admin}">
+
+<div class="container">
+    <div>
+        <h2>Partner Information</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>ID:</td>
+                <td><h5 th:text="${partner.id}"></h5></td>
+            </tr>
+            <tr>
+                <td>Partner:</td>
+                <td><h5 th:text="${partner.partnerName}"></h5></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><h5 th:text="${partner.address}"></h5></td>
+            </tr>
+            <tr>
+                <td>Contact Persons:</td>
+                <td th:each="actual : ${partner_admin}">
                     <a th:text="${actual.name}" th:href="@{'/partner-admin/' + ${actual.id}}"></a>
-                </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${hotel}">
+            </tr>
+            <tr>
+                <td>Hotels:</td>
+                <td  th:each="actual : ${hotel}">
                     <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id} + '/' + ${partner.id}}"></a>
-                </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${bar}">
+            </tr>
+            <tr>
+                <td>Bars: </td>
+                <td  th:each="actual : ${bar}">
                     <a th:text="${actual.name}" th:href="@{'/bars/' + ${actual.id}}"></a>
-                </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li th:each="actual : ${restaurant}">
+            </tr>
+            <tr>
+                <td>Restaurants: </td>
+                <td th:each="actual : ${restaurant}">
                     <a th:text="${actual.name}" th:href="@{'/restaurants/' + ${actual.id}}"></a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</table>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+
+
 </html>
