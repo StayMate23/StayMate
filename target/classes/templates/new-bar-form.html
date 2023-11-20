@@ -5,6 +5,8 @@
   <title>Title</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" th:href="@{/}">Profile</a>
@@ -15,12 +17,9 @@
     <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
   </div>
 </nav>
-<body>
 
-
-
-<h1 Add new bar ></h1>
-  <form method="post" th:action="@{/bars/create}">
+<div class="container mt-4">
+  <form method="post" th:action="@{'/bars/create/' + ${partnerId}}">
     <input type="hidden" th:value="${new_bar.id}" th:field="*{new_bar.id}">
 
     <div class="form-group">

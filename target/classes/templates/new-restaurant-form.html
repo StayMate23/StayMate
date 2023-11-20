@@ -17,9 +17,9 @@
     <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
   </div>
 </nav>
-<h1>Add new restaurant</h1>
+
 <div class="container mt-4">
-  <form method="post" th:action="@{/restaurants/create}">
+  <form method="post" th:action="@{'/restaurants/create/' + ${partnerId}}">
     <input type="hidden" th:value="${new_restaurant.id}" th:field="*{new_restaurant.id}">
 
     <div class="form-group">
