@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/partner/'+ ${partner.id} + '/update'}">Update</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/partner-admin/new/' + ${partner.id}}">Add Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/hotels/create/' + ${partner.id}}">Add Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/bars/create/' + ${partner.id}}">Add Bar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" th:href="@{'/restaurants/create/' + ${partner.id}}">Add Restaurant</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Account</button>
+        </form>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Partner</td>
+        <td>Address</td>
+        <td>Phone</td>
+        <td>e-mail</td>
+        <td>Company registration number</td>
+        <td>Tax number</td>
+        <td>Contact Person</td>
+        <td>Hotels</td>
+        <td>Bars</td>
+        <td>Restaurant</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${partner.id}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.partnerName}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.address}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.telNum}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.email}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.companyRegNum}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${partner.taxNum}"></h5>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${partner_admin}">
+                    <a th:text="${actual.name}" th:href="@{'/partner-admin/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${hotel}">
+                    <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id} + '/' + ${partner.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${bar}">
+                    <a th:text="${actual.name}" th:href="@{'/bars/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${restaurant}">
+                    <a th:text="${actual.name}" th:href="@{'/restaurants/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

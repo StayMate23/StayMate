@@ -1,6 +1,7 @@
 package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Hotel;
+import com.example.stay_mate.service.RoomService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelRestaurantService;
@@ -20,16 +21,19 @@ public class HotelController {
     private final HotelBarService hotelBarService;
     private final HotelRestaurantService hotelRestaurantService;
     private final MenuBookService menuBookService;
+    private final RoomService roomService;
 
     public HotelController(HotelService hotelService, PartnerService partnerService,
                            FacilitiesService facilitiesService, HotelBarService hotelBarService,
-                           HotelRestaurantService hotelRestaurantService, MenuBookService menuBookService) {
+                           HotelRestaurantService hotelRestaurantService, MenuBookService menuBookService,
+                           RoomService roomService) {
         this.hotelService = hotelService;
         this.partnerService = partnerService;
         this.facilitiesService = facilitiesService;
         this.hotelBarService = hotelBarService;
         this.hotelRestaurantService = hotelRestaurantService;
         this.menuBookService = menuBookService;
+        this.roomService = roomService;
     }
 
     @GetMapping("/all")
@@ -40,6 +44,7 @@ public class HotelController {
 
     @GetMapping("/{id}/{partner-id}")
     public String getCurrentHotel(Model model, @PathVariable("id") Integer hoteLid, @PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("room",roomService.getRoomByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("menu_book", menuBookService.getMenuBookByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(hoteLid)));
@@ -79,6 +84,7 @@ public class HotelController {
 
     @PostMapping("/delete/{hotel-id}")
     public String deleteHotel(@PathVariable("hotel-id") Integer hotelId) {
+        roomService.deleteRoomByHotel(hotelService.getHotelById(hotelId));
         menuBookService.deleteMenuBookByHotel(hotelService.getHotelById(hotelId));
         hotelRestaurantService.deleteHotelRestaurantByHotel(hotelService.getHotelById(hotelId));
         hotelBarService.deleteHotelBarByHotel(hotelService.getHotelById(hotelId));

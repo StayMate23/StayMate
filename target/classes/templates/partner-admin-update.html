@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Partner Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
+        <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id}}">Admin</a>
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+    </div>
+</nav>
+
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/partner}">Update Partner Admin</a>
+        </li>
+    </ul>
+</div>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Partner Admin </h1>
+            <div class = "card-body">
+<form method="post" th:action="@{'/partner-admin/' + ${partner_admin.id} + '/update'}">
+
+    <input type="hidden" th:value="${partner_admin.partner.id}" th:field="*{partner_admin.partner.id}">
+
+    <input type="hidden" th:value="${partner_admin.id}" th:field="*{partner_admin.id}">
+
+    <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{partner_admin.name}"><br>
+    </div>
+
+    <div class="form-group">
+    <label for="birthplace">Birthplace</label>
+    <input type="text" class="form-control" id="birthplace" placeholder="Birthplace"
+           th:field="*{partner_admin.posRank}"><br>
+    </div>
+
+    <div class="form-group">
+    <label for="telnum">Telephone Number</label>
+    <input type="number" class="form-control" id="telnum" placeholder="Telephone Number"
+           th:field="*{partner_admin.telNumber}"><br>
+    </div>
+
+    <div class = "box-footer">
+        <button type="submit" class = "btn btn-primary">
+            Submit
+        </button>
+    </div>
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
