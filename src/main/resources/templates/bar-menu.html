@@ -4,28 +4,87 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      margin: 0; /* Remove default body margin */
+    }
 
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+
+    .navbar-brand,
+    .btn-link,
+    .btn-logout {
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .navbar-brand:hover,
+    .btn-link:hover,
+    .btn-logout:hover {
+      color: #ffcc00;
+    }
+
+    .container-content {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .custom-table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border: 1px solid #fff;
+    }
+
+    .custom-table th,
+    .custom-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #fff;
+      color: #000;
+    }
+
+    .custom-table th {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    .custom-table tbody tr:nth-of-type(odd) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-logout {
+      color: #000;
+      background-color: #343a40;
+      border: 1px solid #fff;
+      padding: 8px 12px;
+      margin-left: 10px;
+    }
+
+    .btn-logout:hover {
+      color: #333;
+      background-color: #ffcc00;
+    }
+  </style>
 </head>
+<body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-
     <a class="navbar-brand active" th:href="@{/}">Profile</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <a class="navbar-brand active" th:href="@{'/bars/' + ${bar_menu_book.bar.id}}">Bar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <a class="navbar-brand active" th:href="@{'/menu/update-bar/' + ${bar_menu_book.bar.id} + '/' + ${bar_menu_book.id}}">Update Menu</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
+    <!-- Remove duplicated toggler buttons -->
 
     <form th:action="@{'/menu/' + ${bar_menu_book.id} + '/delete'}" method="post">
       <input type="hidden" name="_method" value="delete">
@@ -33,32 +92,28 @@
     </form>
 
     <form class="navbar-brand" th:action="@{/logout}" method="post">
-      <button type="submit" class="btn btn-link">LogOut</button>
+      <button type="submit" class="btn btn-logout">Log Out</button>
     </form>
-
-
   </div>
 </nav>
-<body>
-<table>
-  <thead>
-  <tr>
-    <td>Name</td>
-    <td>Descriptions</td>
-    <td>Price</td>
-  </tr>
-  </thead>
-  <tr>
-    <td>
-      <h5 th:text="${bar_menu_book.name}"></h5>
-    </td>
-    <td>
-      <h5 th:text="${bar_menu_book.description}"></h5>
-    </td>
-    <td>
-      <h5 th:text="${bar_menu_book.price}"></h5>
-    </td>
-  </tr>
-</table>
+
+<div class="container-content">
+  <table class="custom-table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Descriptions</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h5 th:text="${bar_menu_book.name}"></h5></td>
+      <td><h5 th:text="${bar_menu_book.description}"></h5></td>
+      <td><h5 th:text="${bar_menu_book.price}"></h5></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>

@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Bar</title>
+  <title>Restaurant</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    margin: 0;
+  }
+
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .navbar-brand,
+  .btn-link {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .navbar-brand:hover,
+  .btn-link:hover {
+    color: #ffcc00;
+  }
+
+  .container {
+    margin-top: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #fff;
+    width: 100%;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+    color: #000;
+  }
+
+  .table th {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  .table tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-link {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .btn-link:hover {
+    color: #ffcc00;
+  }
+
+  .btn-logout {
+    color: #000;
+  }
+
+  .btn-logout:hover {
+    color: #333;
+  }
+
+  table td {
+    font-weight: bold;
+  }
+</style>
+
+<body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
 
@@ -20,7 +99,6 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
 
     <a class="navbar-brand active" th:href="@{'/menu/create-restaurant/' + ${restaurant.id} + '/' + ${restaurant.partner.id}}">Add Menu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -39,31 +117,37 @@
 
   </div>
 </nav>
-<body>
-<table>
-  <thead>
-  <tr>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Menu</td>
-  </tr>
-  </thead>
-  <tr>
 
-    <td>
-      <h5 th:text="${restaurant.name}"></h5>
-    </td>
-    <td>
-      <h5 th:text="${restaurant.description}"></h5>
-    </td>
-    <td>
-      <ul>
-        <li th:each="actual : ${menu_book}">
-          <a th:text="${actual.name}" th:href="@{'/menu/restaurant/' + ${actual.id}}"></a>
-        </li>
-      </ul>
-    </td>
-  </tr>
-</table>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Menu</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>
+        <h5 th:text="${restaurant.name}"></h5>
+      </td>
+      <td>
+        <h5 th:text="${restaurant.description}"></h5>
+      </td>
+      <td>
+        <ul>
+          <li th:each="actual : ${menu_book}">
+            <a th:text="${actual.name}" th:href="@{'/menu/restaurant/' + ${actual.id}}"></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
