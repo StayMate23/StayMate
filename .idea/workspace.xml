@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7505c60b-beb4-4465-bd22-a3a798eeca93" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/images/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/new-facilities-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7505c60b-beb4-4465-bd22-a3a798eeca93" name="Changes" comment="log+ modules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/hotel/HotelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/hotel/HotelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/room/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/room/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-bar-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-bar-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-hotel-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-hotel-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-partner-admin-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-partner-admin-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-partner-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-partner-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/hotel/HotelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/hotel/HotelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/facilities-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/facilities-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/hotel-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hotel-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-bar-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-bar-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-hotel-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-hotel-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-partner-admin-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-partner-admin-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-partner-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-partner-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-restaurant-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-restaurant-form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="marika" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,10 +45,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging CzuprikTamás-dev",
+    "git-widget-placeholder": "dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,9 +80,22 @@
       <updated>1700508696821</updated>
       <workItem from="1700508698389" duration="754000" />
     </task>
+    <task id="LOCAL-00001" summary="log+ modules">
+      <option name="closed" value="true" />
+      <created>1700763596377</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700763596377</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="log+ modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="log+ modules" />
   </component>
 </project>
