@@ -97,17 +97,14 @@
 
             <form th:action="@{'/bars/' + ${bar.id} + '/delete'}" method="post">
                 <input type="hidden" name="_method" value="delete">
-                <!-- A btn-logout osztály hozzáadva a Delete Bar gombhoz -->
                 <button type="submit" class="btn btn-link btn-logout">Delete Bar</button>
             </form>
 
             <form class="navbar-brand" th:action="@{/logout}" method="post">
-                <!-- A btn-logout osztály hozzáadva a LogOut gombhoz -->
                 <button type="submit" class="btn btn-link btn-logout">LogOut</button>
             </form>
 
             <form class="navbar-brand" th:action="@{'/deleteaccount'}" method="post">
-                <!-- A btn-logout osztály hozzáadva a Delete Account gombhoz -->
                 <button type="submit" class="btn btn-link btn-logout">Delete Account</button>
             </form>
 

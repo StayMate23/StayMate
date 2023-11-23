@@ -1,54 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="ISO-8859-1">
+<title>Update Bar</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand,
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .navbar-brand:hover,
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #fff; /*White border /
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #fff; / White bottom border /
+            color: #000; / Black text */
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .btn-logout {
+            color: #000;
+        }
+
+        .btn-logout:hover {
+            color: #333;
+        }
+        .text-center{
+            color: black;
+        }
+        form{
+            flex-direction: row;
+        }
+    </style>
+    <title></title>
 
 </head>
+
+<body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand active" th:href="@{'/menu/' + ${bar_update_menu.id}}">Menu</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
+        <a class="navbar-brand" th:href="@{'/menu/' + ${bar_update_menu.id}}">Menu</a>
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-link">LogOut</button>
+            <button type="submit" class="btn-logout">LogOut</button>
         </form>
-
     </div>
 </nav>
-<body>
-<form method="post" th:action="@{'/menu/update-bar/' + ${bar_update_menu.bar.id}}">
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Bar Drink List </h1>
+            <div class = "card-body">
+                <form method="post" th:action="@{'/menu/update-bar/' + ${bar_update_menu.bar.id}}">
 
-    <input type="hidden" th:value="${bar_update_menu.bar.id}" th:field="*{bar_update_menu.bar.id}">
+                    <input type="hidden" th:value="${bar_update_menu.bar.id}" th:field="*{bar_update_menu.bar.id}">
 
-    <input type="hidden" th:value="${bar_update_menu.partner.id}" th:field="*{bar_update_menu.partner.id}">
+                    <input type="hidden" th:value="${bar_update_menu.partner.id}"
+                           th:field="*{bar_update_menu.partner.id}">
 
-    <input type="hidden" th:value="${bar_update_menu.id}" th:field="*{bar_update_menu.id}">
+                    <input type="hidden" th:value="${bar_update_menu.id}" th:field="*{bar_update_menu.id}">
 
-    <label for="name">Name</label>
-    <input type="text" id="name" th:placeholder="${bar_update_menu.name}" th:field="*{bar_update_menu.name}">
+                    <label for="name" style="color: black;">Name</label>
+                    <input type="text" id="name" class="form-control" th:placeholder="${bar_update_menu.name}" th:field="*{bar_update_menu.name}">
 
-    <label for="description">description</label>
-    <input type="text" id="description" th:placeholder="${bar_update_menu.description}" th:field="*{bar_update_menu.description}">
+                    <label for="description" style="color:black;">Description</label>
+                    <input type="text" class="form-control" id="description" th:placeholder="${bar_update_menu.description}"
+                           th:field="*{bar_update_menu.description}">
 
-    <label for="price">price</label>
-    <input type="number" id="price" th:placeholder="${bar_update_menu.price}" th:field="*{bar_update_menu.price}">
+                    <label for="price" style="color:black;">Price</label>
+                    <input type="number" class="form-control" id="price" th:placeholder="${bar_update_menu.price}"
+                           th:field="*{bar_update_menu.price}">
 
-    <button class="btn btn-info">Update</button>
-</form>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                    <button class="btn-link">Update</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+

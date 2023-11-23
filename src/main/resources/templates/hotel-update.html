@@ -83,7 +83,7 @@
         <a class="navbar-brand active" th:href="@{'/hotels/' + ${update_hotel.id} +'/'+${update_hotel.partner.id}}">Hotel</a>
         <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-link">LogOut</button>
+            <button type="submit" class="btn-logout">LogOut</button>
         </form>
     </div>
 </nav>
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class = "box-footer">
-                        <button type="submit" class = "btn btn-primary">
+                        <button type="submit" class = "btn-link">
                             Submit
                         </button>
                     </div>
