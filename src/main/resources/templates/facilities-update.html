@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <style>
     body {
@@ -80,8 +80,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <a class="navbar-brand" th:href="@{/}">Profile</a>
-  <a class="navbar-brand active" th:href="@{'/services/' + ${updated_facilities.id}}">Services</a>
-  <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+  <a class="navbar-brand" th:href="@{'/hotels/' + ${updated_facilities.hotel.id} +'/'+${updated_facilities.partner.id}}">Hotel</a>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn-logout ">LogOut</button>
   </form>
@@ -91,7 +90,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/bars}">Update Facilities</a>
+        <a class="nav-link" th:href="@{/bars}">Update Services</a>
       </li>
     </ul>
   </div>
@@ -101,7 +100,7 @@
 <div class = "container">
   <div class = "row">
     <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-      <h1 class = "text-center"> Update Facilities </h1>
+      <h1 class = "text-center"> Update Service </h1>
       <div class = "card-body">
         <form method="post" th:action="@{'/services/update/' + ${updated_facilities.id}}">
 
@@ -113,17 +112,17 @@
 
           <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_facilities.name}">
+          <input type="text" class="form-control" id="name" th:placeholder="${updated_facilities.name}" th:field="*{updated_facilities.name}">
           </div>
 
           <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_facilities.description}">
+            <input type="text" class="form-control" id="description" th:placeholder="${updated_facilities.description}" th:field="*{updated_facilities.description}">
           </div>
 
           <div class="form-group">
           <label for="price">Price</label>
-          <input type="number" class="form-control" id="price" placeholder="Price" th:field="*{updated_facilities.price}">
+          <input type="number" class="form-control" id="price" th:placeholder="${updated_facilities.price}" th:field="*{updated_facilities.price}">
           </div>
 
           <div class = "box-footer">

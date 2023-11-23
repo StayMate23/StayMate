@@ -80,8 +80,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/hotels/' + ${update_hotel.id} +'/'+${update_hotel.partner.id}}">Hotel</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{'/hotels/' + ${update_hotel.id} +'/'+${update_hotel.partner.id}}">Hotel</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn-logout">LogOut</button>
         </form>

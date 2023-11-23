@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <style>
     body {
@@ -80,8 +80,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <a class="navbar-brand" th:href="@{/}">Profile</a>
-  <a class="navbar-brand active" th:href="@{'/services/' + ${updated_facilities.id}}">Services</a>
-  <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+  <a class="navbar-brand" th:href="@{'/hotels/' + ${updated_facilities.hotel.id} +'/'+${updated_facilities.partner.id}}">Hotel</a>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn-logout ">LogOut</button>
   </form>
@@ -101,7 +100,7 @@
 <div class = "container">
   <div class = "row">
     <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-      <h1 class = "text-center"> Update Facilities </h1>
+      <h1 class = "text-center"> Update Service </h1>
       <div class = "card-body">
         <form method="post" th:action="@{'/services/update/' + ${updated_facilities.id}}">
 
