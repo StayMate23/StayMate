@@ -1,16 +1,86 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar-brand,
+    .btn-link {
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .navbar-brand:hover,
+    .btn-link:hover {
+      color: #ffcc00;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border: 1px solid #fff; /*White border /
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #fff; / White bottom border /
+            color: #000; / Black text */
+    }
+
+    .table th {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-link {
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btn-link:hover {
+      color: #ffcc00;
+    }
+
+    .btn-logout {
+      color: #000;
+    }
+
+    .btn-logout:hover {
+      color: #333;
+    }
+  </style>
   <meta charset="ISO-8859-1">
   <title>Update Facilities</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
   <a class="navbar-brand" th:href="@{/}">Profile</a>
-  <a class="navbar-brand active" th:href="@{'/services/' + ${updated_facilities.id}}">Services</a>
-  <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+  <a class="navbar-brand" th:href="@{'/hotels/' + ${updated_facilities.hotel.id} +'/'+${updated_facilities.partner.id}}">Hotel</a>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn btn-link">LogOut</button>
   </form>
@@ -30,7 +100,7 @@
 <div class = "container">
   <div class = "row">
     <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-      <h1 class = "text-center"> Update Facilities </h1>
+      <h1 class = "text-center"> Update Service </h1>
       <div class = "card-body">
         <form method="post" th:action="@{'/services/update/' + ${updated_facilities.id}}">
 

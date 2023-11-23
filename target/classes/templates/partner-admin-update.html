@@ -1,17 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand,
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .navbar-brand:hover,
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #fff; /*White border /
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #fff; / White bottom border /
+            color: #000; / Black text */
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-link {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-link:hover {
+            color: #ffcc00;
+        }
+
+        .btn-logout {
+            color: #000;
+        }
+
+        .btn-logout:hover {
+            color: #333;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Update Partner Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id}}">Admin</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{/partner-admin/all}">Admins</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
@@ -41,18 +111,18 @@
 
     <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{partner_admin.name}"><br>
+    <input type="text" class="form-control" id="name" th:placeholder="${partner_admin.getName()}" th:field="*{partner_admin.name}"><br>
     </div>
 
     <div class="form-group">
-    <label for="birthplace">Birthplace</label>
-    <input type="text" class="form-control" id="birthplace" placeholder="Birthplace"
+    <label for="posrank">Positition Rank</label>
+    <input type="text" class="form-control" id="posrank" th:placeholder="${partner_admin.getPosRank()}"
            th:field="*{partner_admin.posRank}"><br>
     </div>
 
     <div class="form-group">
     <label for="telnum">Telephone Number</label>
-    <input type="number" class="form-control" id="telnum" placeholder="Telephone Number"
+    <input type="number" class="form-control" id="telnum" th:placeholder="${partner_admin.getTelNumber()}"
            th:field="*{partner_admin.telNumber}"><br>
     </div>
 

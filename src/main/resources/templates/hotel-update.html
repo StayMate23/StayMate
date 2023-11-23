@@ -80,8 +80,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/hotels/' + ${update_hotel.id} +'/'+${update_hotel.partner.id}}">Hotel</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{'/hotels/' + ${update_hotel.id} +'/'+${update_hotel.partner.id}}">Hotel</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
@@ -109,12 +108,12 @@
 
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{update_hotel.name}">
+                        <input type="text" class="form-control" id="name" th:placeholder="${update_hotel.name}" th:field="*{update_hotel.name}">
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{update_hotel.description}">
+                        <input type="text" class="form-control" id="description" th:placeholder="${update_hotel.description}" th:field="*{update_hotel.description}">
                     </div>
 
                     <div class = "box-footer">

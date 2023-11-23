@@ -80,8 +80,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <a class="navbar-brand active" th:href="@{'/hotels/' + ${updated_hotel_restaurant.id} +'/'+${updated_hotel_restaurant.partner.id}}">Hotel</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+        <a class="navbar-brand" th:href="@{'/hotels/' + ${updated_hotel_restaurant.hotel.id} +'/'+${updated_hotel_restaurant.partner.id}}">Hotel</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
@@ -91,7 +90,7 @@
 <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bars}">Update Facilities</a>
+            <a class="nav-link" th:href="@{/bars}">Update Hotel Restaurant</a>
         </li>
     </ul>
 </div>
@@ -101,7 +100,7 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Update Facilities </h1>
+            <h1 class = "text-center"> Update Hotel Restaurant </h1>
             <div class = "card-body">
      <form method="post" th:action="@{'/hotel-restaurant/create/' + ${updated_hotel_restaurant.hotel.id} + '/' + ${updated_hotel_restaurant.partner.id}}">
 
@@ -113,12 +112,12 @@
 
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_hotel_restaurant.name}">
+            <input type="text" class="form-control" id="name" th:placeholder="${updated_hotel_restaurant.name}" th:field="*{updated_hotel_restaurant.name}">
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_hotel_restaurant.description}">
+            <input type="text" class="form-control" id="description" th:placeholder="${updated_hotel_restaurant.description}" th:field="*{updated_hotel_restaurant.description}">
         </div>
 
          <div class = "box-footer">

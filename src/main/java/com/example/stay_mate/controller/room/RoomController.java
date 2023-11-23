@@ -1,12 +1,12 @@
 package com.example.stay_mate.controller.room;
 
 import com.example.stay_mate.model.room.Room;
-import com.example.stay_mate.service.RoomService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.stay_mate.service.RoomService;
 
 @Controller
 @RequestMapping("/room")
