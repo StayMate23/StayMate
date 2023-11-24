@@ -1,24 +1,16 @@
-/*package com.example.stay_mate.login;
+package com.example.stay_mate.login;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserLoginController {
-
     @GetMapping("/user-login")
-    String login() {
-        return "user-login";
+    String userLogin() {
+        return "/user-login";
     }
-
     @PostMapping("/user-logout")
-    public String performLogout() {
+    public String userPerformLogout() {
         return "redirect:/home";
     }
 }
-
- */
-
-

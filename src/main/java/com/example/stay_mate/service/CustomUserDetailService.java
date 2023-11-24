@@ -1,4 +1,4 @@
-/*package com.example.stay_mate.service;
+package com.example.stay_mate.service;
 
 import com.example.stay_mate.model.user.User;
 import com.example.stay_mate.service.user.UserService;
@@ -24,16 +24,17 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findByEmail(email);
-        if (user == null){
-            throw new UsernameNotFoundException("User not found");
-        }
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-                .username(email)
-                .password(passwordEncoder.encode(user.getPassword()))
-                .roles(user.getRole().toString())
-                .build();
+        if (user != null) {
+            UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+                    .username(email)
+                    .password(passwordEncoder.encode(user.getPassword()))
+                    .roles(user.getRole().toString())
+                    .build();
             return userDetails;
+        }
+        throw new UsernameNotFoundException("User not foud: " + email);
     }
 }
 
- */
+
+

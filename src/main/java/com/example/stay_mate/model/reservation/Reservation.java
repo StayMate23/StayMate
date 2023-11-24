@@ -14,29 +14,42 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "id")
     private Integer id;
+    @JoinColumn(name = "start_date")
     private LocalDateTime startDate;
+    @JoinColumn(name = "end_date")
     private LocalDateTime endDate;
+    @JoinColumn(name = "user_number")
     private Integer userNumber;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "partner_id")
     private Partner partner;
     @ManyToOne
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
     @ManyToOne
+    @JoinColumn(name = "hotel_restaurant_id")
     private HotelRestaurant hotelRestaurant;
     @ManyToOne
+    @JoinColumn(name = "hotel_bar_id")
     private HotelBar hotelBar;
     @ManyToOne
     @JsonManagedReference
+    @JoinColumn(name = "room_id")
     private Room room;
     @ManyToOne
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     @ManyToOne
+    @JoinColumn(name = "bar_id")
     private Bar bar;
 
     public Reservation(Integer id, LocalDateTime startDate, LocalDateTime endDate, Integer userNumber, User user, Partner partner, Hotel hotel, HotelRestaurant hotelRestaurant, HotelBar hotelBar, Room room, Restaurant restaurant, Bar bar) {

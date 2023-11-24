@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     private final PasswordEncoder passwordEncoder;
@@ -30,16 +30,16 @@ public class UserController {
         model.addAttribute("user", user);
         return "user";
     }
-    @GetMapping("/create")
-    public String addUser(Model model){
-        model.addAttribute("new_user", new User());
-        return "new-user-form";
-    }
-    @PostMapping("/create")
-    public String addUser(@ModelAttribute("new_user") User user){
-        userService.saveUser(user);
-        return "redirect:/";
-    }
+   @GetMapping("/create")
+   public String addUser(Model model){
+       model.addAttribute("new_user", new User());
+       return "new-user-form";
+   }
+ //   @PostMapping("/create")
+ //   public String addUser(@ModelAttribute("new_user") User user){
+ //       userService.saveUser(user);
+ //       return "redirect:/";
+ //   }
     @PostMapping("{id}/delete")
     public String deleteUser(@PathVariable("id")Integer userId, User user){
         userService.deleteUser(user);

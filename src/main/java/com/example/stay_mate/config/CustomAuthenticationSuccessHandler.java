@@ -1,5 +1,5 @@
-package com.example.stay_mate.config;
-/*
+/*package com.example.stay_mate.config;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +28,4 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     }
 }
-
-
  */

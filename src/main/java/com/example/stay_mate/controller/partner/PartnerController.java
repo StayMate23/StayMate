@@ -1,7 +1,7 @@
 package com.example.stay_mate.controller.partner;
 
 import com.example.stay_mate.model.partner.Partner;
-import com.example.stay_mate.service.RoomService;
+import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/partner")
+@RequestMapping(value = "/partner")
 public class PartnerController {
     private final PartnerService partnerService;
     private final PartnerAdminService partnerAdminService;
