@@ -154,7 +154,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
       <h1 class="text-center"> Create New Bar </h1>
       <div class="card-body">
-        <form th:action="@{/bars/create}" method="post">
+        <form th:action="'/bars/create/' +${partnerId}" method="post">
           <input type="hidden" th:field="*{new_bar.id}">
           <div class="form-group">
             <label> Bar Name </label>

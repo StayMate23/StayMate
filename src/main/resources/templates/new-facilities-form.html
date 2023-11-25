@@ -143,58 +143,10 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/home.html}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-list}">Partners</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-form}">Add new partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-admin-form}">Add new partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin}">Partner Admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-update.html}">Update partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin-update.html}">Update partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/all}">Hotels</a>
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/contact}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/create}">Add hotel</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/update}">Update Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-list}">Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-update.html}">Update Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-facilities-form.html}">Add facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-restaurant-form.html}">Add restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/restaurant-list}">Restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/bar-list.html}">Bar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-bar-form.html}">Add bar</a>
             </li>
         </ul>
     </div>
@@ -206,45 +158,31 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Services </h1>
             <div class="card-body">
-                <form th:action="@{'/services/create/' + ${hotelId}}" method="post">
-                    <div class="form-group">
-                        <label> Name </label>
-                        <input
-                                type="text"
-                                name="name"
-                                th:field="*{new_facilities.name}"
-                                class="form-control"
-                                placeholder="Service name"
-                        />
-                    </div>
+                    <form th:action="'/services/create/' + ${hotelId} + '/' + ${partnerId}" method="post">
 
                     <div class="form-group">
-                        <label> Description </label>
-                        <input
-                                type="text"
-                                name="description"
-                                th:field="*{new_facilities.description}"
-                                class="form-control"
-                                placeholder="Description"
-                        />
-                    </div>
+                            <label>Name</label>
+                            <label>
+                                <input type="text" name="name" th:field="*{new_facilities.name}" class="form-control" placeholder="Service name" />
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <label>
+                                <input type="text" name="description" th:field="*{new_facilities.description}" class="form-control" placeholder="Description" />
+                            </label>
+                        </div>
 
-                    <div class="form-group">
-                        <label> Price </label>
-                        <input
-                                type="text"
-                                name="price"
-                                th:field="*{new_facilities.price}"
-                                class="form-control"
-                                placeholder="Price"
-                        />
-                    </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <label>
+                                <input type="text" name="price" th:field="*{new_facilities.price}" class="form-control" placeholder="Price" />
+                            </label>
+                        </div>
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Ready
-                        </button>
-                    </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Ready</button>
+                        </div>
                 </form>
 
             </div>

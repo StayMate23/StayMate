@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7505c60b-beb4-4465-bd22-a3a798eeca93" name="Changes" comment="log+ modules">
+    <list default="true" id="7505c60b-beb4-4465-bd22-a3a798eeca93" name="Changes" comment="hotels/all is done">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/hotel/HotelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/hotel/HotelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/facilities-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/facilities-update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/hotel-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hotel-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.2023-11-20.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/hotel/FacilitiesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/hotel/FacilitiesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-bar-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-bar-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-facilities-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-facilities-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant_menu-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new-restaurant_menu-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/new-bar-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-bar-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-hotel-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-hotel-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-partner-admin-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-partner-admin-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-partner-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-partner-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/new-restaurant-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new-restaurant-form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,24 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;08d6d9880f108eecc308d05feec75ae5&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="StayMateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Stay_Mate" />
@@ -79,6 +81,8 @@
       <option name="presentableId" value="Default" />
       <updated>1700508696821</updated>
       <workItem from="1700508698389" duration="754000" />
+      <workItem from="1700842233270" duration="233000" />
+      <workItem from="1700891453421" duration="3460000" />
     </task>
     <task id="LOCAL-00001" summary="log+ modules">
       <option name="closed" value="true" />
