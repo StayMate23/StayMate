@@ -3,17 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/hotels/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/room/' + ${room.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Room</button>
+        </form>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+
+    </div>
+</nav>
 <body>
-<form method="post" th:action="@{'/room' + ${room.id}}">
-    <input type="hidden" th:value="${room.id}" th:field="*{room.id}">
-    <label for="roomNumber">Room Number</label>
-    <input type="text" id="roomNumber" th:value="${room.roomNumber}" th:placeholder="${room.roomNumber}" th:field="*{room.roomNumber}">
-    <label for="roomCapacity">Room Capacity</label>
-    <input type="text" id="roomCapacity" th:value="${room.roomCapacity}" th:placeholder="${room.roomCapacity}" th:field="*{room.roomCapacity}">
-    <label for="price">Price</label>
-    <input type="text" id="price" th:value="${room.price}" th:placeholder="${room.price}" th:field="*{room.price}">
-    <button type="submit">OK</button>
-</form>
+<table>
+    <thead>
+    <tr>
+        <td>Room Number</td>
+        <td>Capacity</td>
+        <td>Price</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            <h5 th:text="${room.roomNumber}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${room.roomCapacity}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${room.pricePerDay}"></h5>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

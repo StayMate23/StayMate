@@ -92,7 +92,7 @@ public class Partner implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_PARTNER");
         return Collections.singleton(authority);
     }
 

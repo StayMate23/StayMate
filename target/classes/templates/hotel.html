@@ -6,15 +6,54 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
 
+        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <a class="navbar-brand" th:href="@{'/hotels/' + ${hotel.id} + '/update'}">Update Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Hotel</button>
+        </form>
+
+        <a th:href="@{'/room/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Room
+        </a>
+
+        <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service
+        </a>
+
+        <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar
+        </a>
+
+        <a th:href="@{'/hotel-restaurant/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Restaurant
+        </a>
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
 <body>
 <table>
     <thead>
     <tr>
         <td>Name</td>
         <td>Position</td>
+        <td>Room</td>
         <td>Services</td>
+        <td>Bar</td>
+        <td>Restaurant</td>
     </tr>
     </thead>
     <tr>
@@ -26,23 +65,33 @@
         </td>
         <td>
             <ul>
+                <li th:each="actual : ${room}">
+                    <a th:text="${actual.roomNumber}" th:href="@{'/room/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
                 <li th:each="actual : ${facilities}">
                     <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}"></a>
                 </li>
             </ul>
         </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${hotel_bar}">
+                    <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="actual : ${hotel_restaurant}">
+                    <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"></a>
+                </li>
+            </ul>
+        </td>
     </tr>
-
 </table>
-<form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn btn-danger">Delete Hotel</button>
-</form>
-<a th:href="@{'/hotels/'+ ${hotel.id} + '/update'}">
-<button type="submit" class="btn btn-info">Update Hotel Info</button>
-</a>
-<a th:href="@{'/services/create/'+ ${hotel.id}}">
-    <button type="submit" class="btn btn-info">Add Service</button>
-</a>
 </body>
 </html>
