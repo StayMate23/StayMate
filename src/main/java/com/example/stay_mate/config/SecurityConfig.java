@@ -1,13 +1,13 @@
 package com.example.stay_mate.config;
 
 
-import com.example.stay_mate.service.partner.PartnerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.stay_mate.security.UserDetailsServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,16 +18,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class PartnerSecurityConfig {
+@EnableMethodSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
 
-    private final PartnerService partnerService;
-
-
-    @Autowired
-    public PartnerSecurityConfig(PartnerService partnerService) {
-        this.partnerService = partnerService;
-    }
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -35,18 +30,20 @@ public class PartnerSecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider DaoAuthenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(partnerService);
+        provider.setUserDetailsService(userDetailsService);
         return provider;
     }
 
-
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .authenticationProvider(authenticationProvider())
+                .build();
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,10 +58,19 @@ public class PartnerSecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin
-                        .loginPage("/login")
-                        .permitAll()
-                       // .loginPage("/user-login")
-                       // .permitAll()
+                                .loginPage("/login")
+                                .successForwardUrl("/login-redirect")
+                                .permitAll()
+//                                .successHandler((request, response, authentication) -> {
+//                                    if (authentication.getAuthorities().contains("ROLE_PARTNER")){
+//                                        response.sendRedirect("/partner/current");
+//                                    }
+//                                    else {
+//                                        response.sendRedirect("/user/current");
+//                                    }
+//                                })
+                        // .loginPage("/user-login")
+                        // .permitAll()
                 )
                 .logout((logout) -> logout.logoutSuccessUrl("/")
                         .deleteCookies("JSESSIONID"));
