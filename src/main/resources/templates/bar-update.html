@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="ISO-8859-1">
+    <title>Update Bar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" th:href="@{/bars/all}">Bars</a>
-        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
-    </div>
+    <a class="navbar-brand" th:href="@{/}">Profile</a>
+    <a class="navbar-brand" th:href="@{/bars/all}">Bars</a>
+    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-link">LogOut</button>
+    </form>
+  </div>
 </nav>
 
-<div class="container mt-4">
-    <form method="post" th:action="@{'/bars/' + ${updated_bar.id} + '/update'}">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/bars}">Update Bar</a>
+            </li>
+        </ul>
+    </div>
 
-        <input type="hidden" th:value="${updated_bar.partner.id}" th:field="*{updated_bar.partner.id}">
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Bar </h1>
+            <div class = "card-body">
+                <form method="post" th:action="@{'/bars/' + ${updated_bar.id} + '/update'}">
 
-        <input type="hidden" th:value="${updated_bar.id}" th:field="*{updated_bar.id}">
+                    <input type="hidden" th:value="${updated_bar.partner.id}" th:field="*{updated_bar.partner.id}">
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_bar.name}">
+                    <input type="hidden" th:value="${updated_bar.id}" th:field="*{updated_bar.id}">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_bar.name}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_bar.description}">
+                    </div>
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_bar.description}">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Ready</button>
-    </form>
+    </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
