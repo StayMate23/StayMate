@@ -2,44 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Update Restaurant</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
         <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <a class="navbar-brand active" th:href="@{'/restaurants/' + ${updated_restaurant.id}}">Restaurant</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
-
     </div>
 </nav>
-<body>
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/partner}">Update Restaurant</a>
+        </li>
+    </ul>
+</div>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Restaurant </h1>
+            <div class = "card-body">
 <form th:action="@{'/restaurants/'+${updated_restaurant.id} +'/update'}" method="post">
 
     <input type="hidden" th:value="${updated_restaurant.id}" th:field="*{updated_restaurant.partner.id}">
 
+    <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" id="name" th:placeholder="${updated_restaurant.name}" th:field="*{updated_restaurant.name}">
+    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_restaurant.name}">
+    </div>
 
+    <div class="form-group">
     <label for="description">Description:</label>
-    <input type="text" id="description" th:placeholder="${updated_restaurant.description}" th:field="*{updated_restaurant.description}">
+    <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_restaurant.description}">
+    </div>
 
-    <button type="submit" class="btn btn-success">Update</button>
+    <div class = "box-footer">
+        <button type="submit" class = "btn btn-primary">
+            Submit
+        </button>
+    </div>
 </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

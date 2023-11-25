@@ -2,51 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <title>Update Partner Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+<body>
 
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
         <a class="navbar-brand active" th:href="@{'/partner-admin/' + ${partner_admin.id}}">Admin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+        <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
         </form>
-
     </div>
 </nav>
-<body>
+
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/partner}">Update Partner Admin</a>
+        </li>
+    </ul>
+</div>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Partner Admin </h1>
+            <div class = "card-body">
 <form method="post" th:action="@{'/partner-admin/' + ${partner_admin.id} + '/update'}">
 
     <input type="hidden" th:value="${partner_admin.partner.id}" th:field="*{partner_admin.partner.id}">
 
     <input type="hidden" th:value="${partner_admin.id}" th:field="*{partner_admin.id}">
 
+    <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" id="name" th:placeholder="${partner_admin.name}" th:field="*{partner_admin.name}"><br>
+    <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{partner_admin.name}"><br>
+    </div>
 
+    <div class="form-group">
     <label for="birthplace">Birthplace</label>
-    <input type="text" id="birthplace" th:placeholder="${partner_admin.posRank}"
+    <input type="text" class="form-control" id="birthplace" placeholder="Birthplace"
            th:field="*{partner_admin.posRank}"><br>
+    </div>
 
-    <label for="telnum">telnum</label>
-    <input type="number" id="telnum" th:placeholder="${partner_admin.telNumber}"
+    <div class="form-group">
+    <label for="telnum">Telephone Number</label>
+    <input type="number" class="form-control" id="telnum" placeholder="Telephone Number"
            th:field="*{partner_admin.telNumber}"><br>
+    </div>
 
-    <button class="btn btn-info">Update</button>
-
+    <div class = "box-footer">
+        <button type="submit" class = "btn btn-primary">
+            Submit
+        </button>
+    </div>
 </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
