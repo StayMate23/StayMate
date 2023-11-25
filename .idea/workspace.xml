@@ -5,22 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba0e2a6-71b3-49d8-aa17-6a52b7a3bb9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log" beforeDir="false" afterPath="$PROJECT_DIR$/log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/config/CustomAuthenticationSuccessHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/config/UserSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/login/UserLoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/partner/PartnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/partner/PartnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/user/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/model/partner/Partner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/model/partner/Partner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/model/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/CustomPartnerDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/CustomUserDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/partner/PartnerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/partner/PartnerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/stay_mate/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/partner-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/partner-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/partner.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/partner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user-registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/partner/PartnerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/partner/PartnerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/controller/user/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/model/partner/Partner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/model/partner/Partner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/model/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/service/partner/PartnerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/service/partner/PartnerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/stay_mate/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/stay_mate/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/partner-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/partner-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/partner.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/partner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/registration.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +138,7 @@
       <workItem from="1699694256968" duration="164000" />
       <workItem from="1699694423746" duration="10772000" />
       <workItem from="1700295176023" duration="8290000" />
-      <workItem from="1700911891439" duration="4066000" />
+      <workItem from="1700911891439" duration="13274000" />
     </task>
     <task id="LOCAL-00001" summary="user + reservation + room">
       <option name="closed" value="true" />
@@ -148,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700912378993</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="CleanUp code">
+      <option name="closed" value="true" />
+      <created>1700918437023</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700918437023</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +184,28 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user + reservation + room" />
     <MESSAGE value="Login users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login users" />
+    <MESSAGE value="CleanUp code" />
+    <option name="LAST_COMMIT_MESSAGE" value="CleanUp code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/partner/PartnerController.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/stay_mate/controller/partner/PartnerController.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="this" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

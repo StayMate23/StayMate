@@ -1,6 +1,6 @@
 package com.example.stay_mate.model.partner;
 
-import com.example.stay_mate.model.Role;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,27 +20,23 @@ import java.util.Collections;
 @Getter
 @Setter
 public class Partner implements UserDetails {
-    // ROLE-t listába? / ROLE mint enititás / ROLE mint enum
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JoinColumn(name = "partner_name")
     private String partnerName;
     @JoinColumn(name = "address")
-    private java.lang.String address;
+    private String address;
     @JoinColumn(name = "tel_num")
-    private java.lang.String telNum;
+    private String telNum;
     @JoinColumn(name = "email")
-    private java.lang.String email;
+    private String email;
     @JoinColumn(name = "password")
-    private java.lang.String password;
+    private String password;
     @JoinColumn(name = "company_reg_num")
     private Integer companyRegNum;
     @JoinColumn(name = "tax_num")
     private Integer taxNum;
-    @JoinColumn(name = "role")
-    @Column(columnDefinition = "ENUM('ADMIN','USER')")
-    @Enumerated(EnumType.STRING)
 
 
     @Override
@@ -74,4 +70,17 @@ public class Partner implements UserDetails {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Partner{" +
+                "id=" + id +
+                ", partnerName='" + partnerName + '\'' +
+                ", address='" + address + '\'' +
+                ", telNum='" + telNum + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", companyRegNum=" + companyRegNum +
+                ", taxNum=" + taxNum +
+                '}';
+    }
 }

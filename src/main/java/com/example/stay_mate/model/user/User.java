@@ -1,6 +1,5 @@
 package com.example.stay_mate.model.user;
 
-import com.example.stay_mate.model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

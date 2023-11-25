@@ -35,11 +35,13 @@ public class UserController {
        model.addAttribute("new_user", new User());
        return "new-user-form";
    }
+
  //   @PostMapping("/create")
  //   public String addUser(@ModelAttribute("new_user") User user){
  //       userService.saveUser(user);
  //       return "redirect:/";
  //   }
+
     @PostMapping("{id}/delete")
     public String deleteUser(@PathVariable("id")Integer userId, User user){
         userService.deleteUser(user);

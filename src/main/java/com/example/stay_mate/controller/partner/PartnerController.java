@@ -11,6 +11,8 @@ import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
+import jakarta.annotation.security.RolesAllowed;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -105,12 +107,19 @@ public class PartnerController {
     }
 
     @PostMapping("/reg")
+    @RolesAllowed(value = "ROLE_PARTNER")
     public String savePartner(
             @ModelAttribute("newPartner")
             Partner partner
     ) {
-        partner.setPassword(passwordEncoder.encode(partner.getPassword()));
-        partnerService.savePartner(partner);
+        try {
+            partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+            System.out.println(partner);
+            partnerService.savePartner(partner);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "redirect:/login";
     }
 
