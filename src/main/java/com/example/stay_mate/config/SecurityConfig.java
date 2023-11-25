@@ -51,72 +51,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/hotels/all")
                         .permitAll()
-                        .requestMatchers("/partner/**")
+                        .requestMatchers("/partner/**","/user/**")
                         .permitAll()
-                        //.requestMatchers("/user/**")
-                        //.permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin
                                 .loginPage("/login")
                                 .successForwardUrl("/login-redirect")
                                 .permitAll()
-//                                .successHandler((request, response, authentication) -> {
-//                                    if (authentication.getAuthorities().contains("ROLE_PARTNER")){
-//                                        response.sendRedirect("/partner/current");
-//                                    }
-//                                    else {
-//                                        response.sendRedirect("/user/current");
-//                                    }
-//                                })
-                        // .loginPage("/user-login")
-                        // .permitAll()
                 )
                 .logout((logout) -> logout.logoutSuccessUrl("/")
                         .deleteCookies("JSESSIONID"));
         return http.build();
     }
-/*
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .requestMatchers("/login", "/reg").permitAll()
-                .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/partner").hasAnyRole("ADMIN")
-                .and()
-                .formLogin().defaultSuccessUrl("/user").permitAll()
-                .successHandler((request, response, authentication) -> {
-                    for (GrantedAuthority authority : authentication.getAuthorities()) {
-                        if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                            response.sendRedirect("/admin");
-                        } else if (authority.getAuthority().equals("ROLE_USER")) {
-                            response.sendRedirect("/user");
-                        }
-                    }
-                })
-                .and()
-                .logout()
-                .logoutUrl("/logout") // Kijelentkezés URL-je
-                .logoutSuccessUrl("/") // Kijelentkezés utáni átirányítás
-                .permitAll();
-        return http.build();
-    }
-
-
-
-    @Bean
-    public SecurityFilterChain userFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/", "/user-login")
-                                .permitAll()
-                                .anyRequest()
-                                .authenticated()
-                )
-                .formLogin((formLogin) -> formLogin
-                        .loginPage("/user-login")
-                        .permitAll()
-                ).logout((logout) -> logout.logoutSuccessUrl("/"));
-        return http.build();
-    } */
 }
