@@ -48,6 +48,13 @@ public class ReservationController {
         reservationService.getAllReservation();
         return "all_reservations";
     }
+    @GetMapping("/{user-id}")
+    public String getAllRoom(Model model,
+                             @PathVariable("user-id")Integer userId){
+        model.addAttribute("room",roomService.getAllRooms());
+        model.addAttribute("userId",userService.getUserById(userId));
+        return "logged-in-room";
+    }
 
     @GetMapping("/restaurant/{r_res-id}")
     public String getRestaurantReservations(Model model,
@@ -56,7 +63,7 @@ public class ReservationController {
         return "restaurant-reservation";
     }
 
-    @GetMapping("/bar/{b_reserv-id}")
+    @GetMapping("/bar/{b_res-id}")
     public String getBarReservations(Model model,
                                             @PathVariable("b_res-id") Integer bReservId) {
         model.addAttribute("res_reserv", reservationService.getReservationById(bReservId));
@@ -84,15 +91,19 @@ public class ReservationController {
         return "user-reservation";
     }
 
-    @GetMapping("/create/date/{user-id}/{room-id}/{hotel-id}/{partner-id}")
+    @GetMapping("/{user-id}/create/date/{room-id}")
     // ez az elérés is változhat pl all avaibleRooms-ra vagy ezt majd megbeszéljük
-    public String createRoomReservationDate(Model model){
+    public String createRoomReservationDate(Model model,
+                                            @PathVariable("room-id")Integer roomId,
+                                            @PathVariable("user-id")Integer userId){
         model.addAttribute("new_reservation",new Reservation());
-        return "new-room-reservation-date-form"; // itt majd ennek megfelelően adjuk meg az elérést
+        model.addAttribute("roomId",roomService.getRoomById(roomId));
+        model.addAttribute("userId",userService.getUserById(userId));
+        return "reservation"; // itt majd ennek megfelelően adjuk meg az elérést
         // itt lehetne úgy, hogy egy oldalon beállítjuk a dátumot és a létszámot
         // betölti az összes elérhető szobát arra az időszakra?
     }
-    @GetMapping("/create/{user-id}/{room-id}/{hotel-id}/{partner-id}")
+    @GetMapping("/{user-id}/create/{room-id}/{hotel-id}/{partner-id}")
     public String createRoomReservation(Model model,
                                         @ModelAttribute("new_reservation")Reservation newReservation,
                                         @PathVariable("user-id")Integer userId,
@@ -104,12 +115,12 @@ public class ReservationController {
         model.addAttribute("partnerId",partnerId);
         model.addAttribute("hotelId", hotelId);
         model.addAttribute("roomId",roomId);
-        model.addAttribute("avaibleRoom",roomService.getAllAvaibleRooms(
+        model.addAttribute("availableRoom",roomService.getAllAvaibleRooms(
                 newReservation.getStartDate(),
                 newReservation.getEndDate(),
                 newReservation.getUserNumber()
         ));
-        return "confirm-registration";
+        return "reservation";
     }
     @PostMapping("/create/{user-id}/{room-id}/{hotel-id}/{partner-id}")
     public String createRoomReservation(@ModelAttribute("new_reservation")Reservation newReservation,

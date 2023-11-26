@@ -1,6 +1,7 @@
 package com.example.stay_mate.controller.user;
 
 import com.example.stay_mate.model.user.User;
+import com.example.stay_mate.service.ReservationService;
 import com.example.stay_mate.service.user.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,10 +15,14 @@ public class UserController {
 
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
+    private final ReservationService reservationService;
 
-    public UserController(PasswordEncoder passwordEncoder, UserService userService) {
+    public UserController(PasswordEncoder passwordEncoder,
+                          UserService userService,
+                          ReservationService reservationService) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
+        this.reservationService = reservationService;
     }
 
     @GetMapping("/all") // ez a funkció várhatóan csak nekünk kellhet
@@ -27,6 +32,7 @@ public class UserController {
     }
     @GetMapping("/current")
     public String getCurrentUser(Model model, @AuthenticationPrincipal User user){
+        model.addAttribute("reservation", reservationService.getReservationByUser(user));
         model.addAttribute("user", user);
         return "user";
     }
@@ -44,6 +50,7 @@ public class UserController {
 
     @PostMapping("{id}/delete")
     public String deleteUser(@PathVariable("id")Integer userId, User user){
+        reservationService.deleteReservationByUser(user);
         userService.deleteUser(user);
         return "redirect:/";
     }

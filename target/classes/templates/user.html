@@ -10,11 +10,28 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
 
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+        <a class="navbar-brand active" th:href="@{/user/current}">Profile</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <a class="navbar-brand" th:href="@{'/user/'+ ${user.id} + '/update'}">Update</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/reservation/'+${user.id}}">Reserve </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/user/' + ${user.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Account</button>
+        </form>
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
@@ -59,7 +76,7 @@
             <h5 th:text="${user.personalId}"></h5>
         </td>
         <td>
-            <h5 th:text="${user.birthDate}"></h5>
+            <h5 th:date="${user.birthDate}"></h5>
         </td>
     </tr>
 </table>

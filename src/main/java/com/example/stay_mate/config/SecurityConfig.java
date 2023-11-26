@@ -54,7 +54,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/hotels/all")
+                        .requestMatchers("/", "/hotels/all","/room/all")
                         .permitAll()
                         .requestMatchers("/partner/**","/user/reg")
                         .permitAll()

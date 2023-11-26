@@ -7,6 +7,7 @@ import com.example.stay_mate.model.hotel.HotelRestaurant;
 import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.model.reservation.Reservation;
 import com.example.stay_mate.model.restaurant.Restaurant;
+import com.example.stay_mate.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +21,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     List<Reservation> findAllByStartDateIsBetweenOrEndDateIsBetween(LocalDateTime start, LocalDateTime end, LocalDateTime startD, LocalDateTime endD);
 
     List<Reservation> getReservationById(Integer id);
+    List<Reservation> getReservationByUser(User user);
 
     Integer countByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDateTime startDate, LocalDateTime endDate);
     @Query(value = "SELECT SUM (r.pricePerDay)FROM Room r WHERE r.reservations = :id")
@@ -50,5 +52,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     void deleteReservationByHotelRestaurant(HotelRestaurant hotelRestaurant);
 
     void deleteReservationByHotelBar(HotelBar hotelBar);
+    void deleteReservationByUser(User user);
 
 }
