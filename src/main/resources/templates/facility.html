@@ -16,19 +16,58 @@
             margin: 0;
         }
 
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
         }
 
-        .navbar-brand,
-        .btn-link {
-            color: #fff;
-            cursor: pointer;
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
         }
 
-        .navbar-brand:hover,
-        .btn-link:hover {
-            color: #ffcc00;
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        .btn-contact {
+            color: black;
+            background-color: dodgerblue;
+            padding: 0 10px;
         }
 
         .container {
@@ -79,36 +118,28 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a th:href="@{/}">Profile</a>
+    <a th:href="@{'/hotels/' + ${facility.hotel.id} + '/' + ${facility.partner.id}}">Hotel</a>
+    <a th:href="@{'/services/create/' + ${facility.hotel.id} + '/' + ${facility.partner.id}}">Add Service</a>
+    <a  th:href="@{'/services/update/' + ${facility.id}}">Update Service</a>
+    <form th:action="@{'/services/' + ${facility.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <a >Delete Service</a>
+    </form>
+<!--    <a th:href="@{/partner/all}">Partners</a>-->
+<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+<!--    <a th:href="@{/bars/all}">Bars</a>-->
+<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+<!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn-logout">LogOut</button>
+    </form>
+</div>
 
-        <a class="navbar-brand active" th:href="@{'/hotels/' + ${facility.hotel.id} + '/' + ${facility.partner.id}}">Hotel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand active" th:href="@{'/services/update/' + ${facility.id}}">Update Service</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <form th:action="@{'/services/' + ${facility.id} + '/delete'}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-link">Delete Service</button>
-        </form>
-
-        <form class="navbar-brand" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-link">LogOut</button>
-        </form>
-    </div>
-</nav>
 <div class="container mt-4">
     <table class="table">
         <thead>
@@ -134,5 +165,18 @@
     </table>
 </div>
 </body>
+</body>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
 
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
 </html>
