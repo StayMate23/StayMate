@@ -19,7 +19,7 @@ public class PartnerService implements UserDetailsService {
         this.partnerRepository = partnerRepository;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_PARTNER')")
     public void savePartner(Partner partner) {
         partnerRepository.save(partner);
     }
@@ -31,9 +31,12 @@ public class PartnerService implements UserDetailsService {
     public Partner getPartnerById(Integer id) {
         return partnerRepository.findPartnerById(id);
     }
-    public Partner getPartnerByEmail(String email){
+
+    public Partner getPartnerByEmail(String email) {
         return partnerRepository.getPartnerByEmail(email);
-    };
+    }
+
+    ;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -51,6 +54,6 @@ public class PartnerService implements UserDetailsService {
     }
 
     public Partner findByEmail(String email) {
-       return partnerRepository.findByEmail(email).orElse(null);
+        return partnerRepository.findByEmail(email).orElse(null);
     }
 }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Partner</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand active" th:href="@{/user/current}">Profile</a>
+    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+      <button type="submit" class="btn btn-link">LogOut</button>
+    </form>
+  </div>
+</nav>
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/partner}">Update Partner</a>
+    </li>
+  </ul>
+</div>
+
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Update Partner </h1>
+      <div class = "card-body">
+        <form method="post" th:action="@{'/user/' +${user.id} + '/update'}">
+
+          <input type="hidden" th:value="${user.id}" th:field="*{user.id}">
+
+          <div class="form-group">
+            <label for="name">Surname</label>
+            <input type="text" id="name" th:placeholder="${user.surName}" th:field="*{user.surName}"><br>
+          </div>
+
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" th:placeholder="${user.firstName}" th:field="*{user.firstName}"><br>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" th:placeholder="${user.lastName}" th:field="*{user.lastName}"><br>
+          </div>
+
+
+          <div class="form-group">
+            <label for="email">Phone number: </label>
+            <input type="text" id="phoneNumber" th:placeholder="${user.phoneNumber}" th:field="*{user.phoneNumber}"><br>
+          </div>
+
+
+          <div class="form-group">
+            <label for="email">e-Mail</label>
+            <input type="text" id="email" th:placeholder="${user.email}" th:field="*{user.email}"><br>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="********" th:field="*{user.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+                   oninput="this.setCustomValidity('')"><br>
+          </div>
+
+          <div class="form-group">
+            <label for="personalID">Personal ID: </label>
+            <input type="number" id="personalID" th:placeholder="${user.personalId}" th:field="*{user.personalId}"><br>
+          </div>
+
+          <div class="form-group">
+            <label for="taxnum">Birth Date: </label>
+            <input type="date" id="taxnum" th:placeholder="${user.birthDate}" th:field="*{user.birthDate}"><br>
+          </div>
+
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

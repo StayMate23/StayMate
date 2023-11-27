@@ -6,88 +6,32 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: #fff;
-        margin: 0;
-    }
 
-    .navbar {
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .navbar-brand,
-    .btn-link {
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .navbar-brand:hover,
-    .btn-link:hover {
-        color: #ffcc00;
-    }
-
-    .container {
-        margin-top: 20px;
-    }
-
-    table {
-        border-collapse: collapse;
-        margin-top: 20px;
-        border: 1px solid #fff;
-        width: 100%;
-    }
-
-    .table th,
-    .table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #fff;
-        color: #000;
-    }
-
-    .table th {
-        background-color: #343a40;
-        color: #fff;
-    }
-
-    .table tbody tr:nth-of-type(odd) {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-link {
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .btn-link:hover {
-        color: #ffcc00;
-    }
-
-    .btn-logout {
-        color: #000;
-    }
-
-    .btn-logout:hover {
-        color: #333;
-    }
-
-    table td {
-        font-weight: bold;
-    }
-</style>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
+
+        <a class="navbar-brand active" th:href="@{/user/current}">Profile</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <a class="navbar-brand" th:href="@{'/user/'+ ${user.id} + '/update'}">Update</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand active" th:href="@{'/reservation/'+${user.id}}">Reserve </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form th:action="@{'/user/' + ${user.id} + '/delete'}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-link">Delete Account</button>
+        </form>
 
         <form class="navbar-brand" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-link">LogOut</button>
@@ -96,7 +40,7 @@
     </div>
 </nav>
 <body>
-<table class="table">
+<table>
     <thead>
     <tr>
         <td>ID</td>
@@ -109,18 +53,32 @@
         <td>BirthDate</td>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.surname}"></td>
-        <td th:text="${user.firstname}"></td>
-        <td th:text="${user.lastname}"></td>
-        <td th:text="${user.phoneNumber}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.personalId}"></td>
-        <td th:text="${user.birthDate}"></td>
+    <tr>
+        <td>
+            <h5 th:text="${user.id}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.surName}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.firstName}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.lastName}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.phoneNumber}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.email}"></h5>
+        </td>
+        <td>
+            <h5 th:text="${user.personalId}"></h5>
+        </td>
+        <td>
+            <h5 th:date="${user.birthDate}"></h5>
+        </td>
     </tr>
-    </tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

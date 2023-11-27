@@ -1,7 +1,7 @@
 package com.example.stay_mate.controller.partner;
 
 import com.example.stay_mate.model.partner.Partner;
-import com.example.stay_mate.service.RoomService;
+import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
@@ -11,6 +11,8 @@ import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
+import jakarta.annotation.security.RolesAllowed;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/partner")
+@RequestMapping(value = "/partner")
 public class PartnerController {
     private final PartnerService partnerService;
     private final PartnerAdminService partnerAdminService;
@@ -105,12 +107,19 @@ public class PartnerController {
     }
 
     @PostMapping("/reg")
+    @RolesAllowed(value = "ROLE_PARTNER")
     public String savePartner(
             @ModelAttribute("newPartner")
             Partner partner
     ) {
-        partner.setPassword(passwordEncoder.encode(partner.getPassword()));
-        partnerService.savePartner(partner);
+        try {
+            partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+            System.out.println(partner);
+            partnerService.savePartner(partner);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "redirect:/login";
     }
 
