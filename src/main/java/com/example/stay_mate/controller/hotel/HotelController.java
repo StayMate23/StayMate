@@ -68,7 +68,6 @@ public class HotelController {
         return "redirect:/partner/current";
     }
 
-
     @GetMapping("/{id}/update")
     // @PreAuthorize("hasRole('ADMIN')")
     public String updateHotel(@PathVariable("id") Integer id, Model model) {

@@ -36,7 +36,7 @@ replay_pid*
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
+/log
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -177,4 +177,4 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
-
+*.properties

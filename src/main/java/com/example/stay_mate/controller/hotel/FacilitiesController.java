@@ -50,7 +50,7 @@ public class FacilitiesController {
         facilities.setPartner(partnerService.getPartnerById(partnerId));
         facilities.setHotel(hotelService.getHotelById(hotelId));
         facilitiesService.saveFacilities(facilities);
-        return "redirect:/hotels/" + hotelId + "/" + partnerId;
+        return "redirect:/hotels/" + hotelId + '/'+ partnerId;
     }
 
     @GetMapping("/update/{id}")
