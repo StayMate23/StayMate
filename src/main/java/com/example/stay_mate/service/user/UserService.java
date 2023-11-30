@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
     public User getUserById(Integer userId) {
         return userRepository.findById(userId).orElse(null);
     }
-    @PreAuthorize("hasRole('USER')")
+    // @PreAuthorize("hasRole('USER')")
     public void saveUser(User user){
         userRepository.save(user);
     }

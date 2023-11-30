@@ -15,22 +15,59 @@
         color: #fff;
         margin: 0;
     }
-
-    .navbar {
-        background-color: rgba(0, 0, 0, 0.7);
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
     }
 
-    .navbar-brand,
-    .btn-link {
-        color: #fff;
-        cursor: pointer;
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
     }
 
-    .navbar-brand:hover,
-    .btn-link:hover {
-        color: #ffcc00;
+    .sidenav a:hover {
+        color: #f1f1f1;
     }
 
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+
+    .btn-contact {
+        color: black;
+        background-color: dodgerblue;
+        padding: 0 10px;
+    }
     .container {
         margin-top: 20px;
     }
@@ -130,121 +167,57 @@
     }
 </style>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">StayMate</a>
-
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/home.html}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-list}">Partners</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-form}">Add new partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-partner-admin-form}">Add new partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin}">Partner Admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-update.html}">Update partner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/partner-admin-update.html}">Update partner admin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/all}">Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/contact}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/create}">Add hotel</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/hotels/update}">Update Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-list}">Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/facilities-update.html}">Update Facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-facilities-form.html}">Add facilities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-restaurant-form.html}">Add restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/restaurant-list}">Restaurant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/bar-list.html}">Bar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/new-bar-form.html}">Add bar</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-<br>
+<span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a th:href="@{/}">Profile</a>
+<!--    <a th:href="@{/partner/all}">Partners</a>-->
+<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+<!--    <a th:href="@{/bars/all}">Bars</a>-->
+<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+<!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn-logout">LogOut</button>
+    </form>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Services </h1>
             <div class="card-body">
-                <form th:action="@{'/services/create/' + ${hotelId}}" method="post">
-                    <div class="form-group">
-                        <label> Name </label>
-                        <input
-                                type="text"
-                                name="name"
-                                th:field="*{new_facilities.name}"
-                                class="form-control"
-                                placeholder="Service name"
-                        />
-                    </div>
+                    <form th:action="'/services/create/' + ${hotelId} + '/' + ${partnerId}" method="post">
 
                     <div class="form-group">
-                        <label> Description </label>
-                        <input
-                                type="text"
-                                name="description"
-                                th:field="*{new_facilities.description}"
-                                class="form-control"
-                                placeholder="Description"
-                        />
-                    </div>
+                            <label>Name</label>
+                            <label>
+                                <input type="text" name="name" th:field="*{new_facilities.name}" class="form-control" placeholder="Service name" />
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <label>
+                                <input type="text" name="description" th:field="*{new_facilities.description}" class="form-control" placeholder="Description" />
+                            </label>
+                        </div>
 
-                    <div class="form-group">
-                        <label> Price </label>
-                        <input
-                                type="text"
-                                name="price"
-                                th:field="*{new_facilities.price}"
-                                class="form-control"
-                                placeholder="Price"
-                        />
-                    </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <label>
+                                <input type="text" name="price" th:field="*{new_facilities.price}" class="form-control" placeholder="Price" />
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <label>
+                                <input type="image" name="image" th:field="*{new_facilities.price}" class="form-control" placeholder="Upload your Image
+"  alt="Service Image"/>
+                            </label>
+                        </div>
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Ready
-                        </button>
-                    </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Ready</button>
+                        </div>
                 </form>
 
             </div>
@@ -252,4 +225,17 @@
     </div>
 </div>
 </body>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
 </html>

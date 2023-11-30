@@ -114,16 +114,11 @@
 
             <label for="personalId"></label>
             <input th:field="*{newUser.personalId}" type="text" id="personalId"
-                   placeholder="Enter Your Company Registration Number">
+                   placeholder="Personal ID: ">
 
             <label for="birthdate"></label>
             <input th:field="*{newUser.birthDate}" type="date" id="birthdate">
 
-            <label for="role"></label>
-            <select th:field="*{newUser.role}" id="role">
-                <option value="ADMIN">ADMIN</option>
-                <option value="USER">USER</option>
-            </select>
 
 
         </div>

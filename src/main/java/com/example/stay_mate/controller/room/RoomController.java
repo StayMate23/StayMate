@@ -1,21 +1,23 @@
 package com.example.stay_mate.controller.room;
 
 import com.example.stay_mate.model.room.Room;
+import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.stay_mate.service.RoomService;
 
 @Controller
 @RequestMapping("/room")
-public class RoomController {
+public class  RoomController {
     private final RoomService roomService;
     private final HotelService hotelService;
     private final PartnerService partnerService;
 
-    public RoomController(RoomService roomService, HotelService hotelService, PartnerService partnerService) {
+    public RoomController(RoomService roomService,
+                          HotelService hotelService,
+                          PartnerService partnerService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
         this.partnerService = partnerService;
@@ -56,7 +58,8 @@ public class RoomController {
     @GetMapping("/update/{id}")
     public String updateRoom(Model model,
                              @PathVariable("id") Integer roomId) {
-        model.addAttribute("updated_room", roomService.getRoomById(roomId));
+        model.addAttribute("updated_room",
+                roomService.getRoomById(roomId));
         return "update-room-form";
     }
 

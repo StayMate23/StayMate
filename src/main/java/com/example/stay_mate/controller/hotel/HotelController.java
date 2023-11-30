@@ -1,7 +1,7 @@
 package com.example.stay_mate.controller.hotel;
 
 import com.example.stay_mate.model.hotel.Hotel;
-import com.example.stay_mate.service.RoomService;
+import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelRestaurantService;

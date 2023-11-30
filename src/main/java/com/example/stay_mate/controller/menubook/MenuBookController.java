@@ -8,6 +8,7 @@ import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/menu")
 public class MenuBookController {
-    public final MenuBookService menuBookService;
-    public final PartnerService partnerService;
-    public final RestaurantService restaurantService;
-    public final BarService barService;
-    public final HotelService hotelService;
-    public final HotelRestaurantService hotelRestaurantService;
-    public final HotelBarService hotelBarService;
+    private final MenuBookService menuBookService;
+    private final PartnerService partnerService;
+    private final RestaurantService restaurantService;
+    private final BarService barService;
+    private final HotelService hotelService;
+    private final HotelRestaurantService hotelRestaurantService;
+    private final HotelBarService hotelBarService;
 
     public MenuBookController(MenuBookService menuBookService, PartnerService partnerService,
                               RestaurantService restaurantService, BarService barService,
@@ -47,16 +48,19 @@ public class MenuBookController {
         model.addAttribute("restaurant_menu_book", menuBookService.getMenuBookById(restaurantMenuId));
         return "restaurant-menu";
     }
+
     @GetMapping("/bar/{bar-menu-id}")
     public String getBarMenuBookById(Model model, @PathVariable("bar-menu-id") Integer barMenuId) {
         model.addAttribute("bar_menu_book", menuBookService.getMenuBookById(barMenuId));
         return "bar-menu";
     }
+
     @GetMapping("/hotel-restaurant/{hotel_restaurant-menu-id}")
     public String getHotelRestaurantMenuBookById(Model model, @PathVariable("hotel_restaurant-menu-id") Integer hotelRestaurantMenuId) {
         model.addAttribute("hotel_restaurant_menu_book", menuBookService.getMenuBookById(hotelRestaurantMenuId));
         return "hotel_restaurant-menu";
     }
+
     @GetMapping("/hotel-bar/{hotel_bar-id}")
     public String getHotelBarMenuBookById(Model model, @PathVariable("hotel_bar-id") Integer hotelBarMenuId) {
         model.addAttribute("hotel_bar_menu_book", menuBookService.getMenuBookById(hotelBarMenuId));
@@ -204,7 +208,7 @@ public class MenuBookController {
     public String updateHotelBarMenu(Model model,
                                      @PathVariable("hotel_bar-menu_id") Integer menuId,
                                      @PathVariable("hotel_bar-id") Integer hotelBarId) {
-        model.addAttribute("hotelBarId",hotelBarId);
+        model.addAttribute("hotelBarId", hotelBarId);
         model.addAttribute("hotel_bar_update_menu", menuBookService.getMenuBookById(menuId));
         return "update-hotel_bar-menu_book";
     }

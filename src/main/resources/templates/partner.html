@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Current Partner</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -14,43 +14,79 @@
             background-position: center;
             background-attachment: fixed;
             color: #fff;
-            margin: 0;
         }
 
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
         }
 
-        .navbar-brand,
-        .btn-link {
-            color: #fff;
-            cursor: pointer;
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
         }
 
-        .navbar-brand:hover,
-        .btn-link:hover {
-            color: #ffcc00;
+        .sidenav a:hover {
+            color: #f1f1f1;
         }
 
-        .container {
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 20px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+        .btn-contact {
+            color: black;
+            background-color: dodgerblue;
+            padding: 0 10px;
+        }
+
+        .content{
             margin-top: 20px;
+            text-align: center;
         }
 
-        table {
+        .table {
+            position: relative;
+            width: 60%; /* Adjusted width to 80% of the container */
+            margin: 0 auto;
             border-collapse: collapse;
             margin-top: 20px;
             border: 1px solid #fff;
-            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+
         }
 
         .table th,
         .table td {
             padding: 12px;
-            text-align: left;
+            text-align: left; /* Centered text in cells */
             border-bottom: 1px solid #fff;
             color: #000;
         }
-
 
         .table th {
             background-color: #343a40;
@@ -60,6 +96,7 @@
         .table tbody tr:nth-of-type(odd) {
             background-color: rgba(255, 255, 255, 0.1);
         }
+
 
         .btn-link {
             color: #fff;
@@ -80,63 +117,44 @@
         table td {
             font-weight: bold;
         }
+        table a{
+            text-decoration: underline;
+            color: black;
+            font-weight: bold;
+            padding: 12px;
+            text-align: left; /* Centered text in cells */
+            border-bottom: 1px solid #fff;
+        }
     </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+<span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a th:href="@{/}" >Profile</a>
+    <a th:href="@{'/partner/'+ ${partner.id} + '/update'}">Update Partner</a>
+    <a th:href="@{'/partner-admin/new/' + ${partner.id}}">Add admin</a>
+    <a th:href="@{'/hotels/create/' + ${partner.id}}" >Add hotel</a>
+    <a th:href="@{'/bars/create/' + ${partner.id}}">Add bar</a>
+    <a th:href="@{'/restaurants/create/' + ${partner.id}}">Add Restaurant</a>
+<!--    <a th:href="@{/partner/all}">Partners</a>-->
+<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+<!--    <a th:href="@{/bars/all}">Bars</a>-->
+<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+<!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn btn-link">Delete Account</button>
+    </form>
+    <form class="navbar-brand" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn-logout">LogOut</button>
+    </form>
+</div>
 
-        <a class="navbar-brand active" th:href="@{/}">Profile</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{'/partner/'+ ${partner.id} + '/update'}">Update</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{'/partner-admin/new/' + ${partner.id}}">Add Admin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{'/hotels/create/' + ${partner.id}}">Add Hotel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{'/bars/create/' + ${partner.id}}">Add Bar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand" th:href="@{'/restaurants/create/' + ${partner.id}}">Add Restaurant</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-link">Delete Account</button>
-        </form>
-
-        <form class="navbar-brand" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-link">LogOut</button>
-        </form>
-
-    </div>
-</nav>
-
-<div class="container">
-    <div>
+<div class="content">
+    <div id="main">
         <h2>Partner Information</h2>
         <table class="table">
             <tbody>
@@ -156,30 +174,43 @@
                 <td>Contact Persons:</td>
                 <td th:each="actual : ${partner_admin}">
                     <a th:text="${actual.name}" th:href="@{'/partner-admin/' + ${actual.id}}"></a>
+                </td>
             </tr>
             <tr>
                 <td>Hotels:</td>
-                <td  th:each="actual : ${hotel}">
+                <td th:each="actual : ${hotel}">
                     <a th:text="${actual.name}" th:href="@{'/hotels/' + ${actual.id} + '/' + ${partner.id}}"></a>
+                </td>
             </tr>
             <tr>
                 <td>Bars: </td>
-                <td  th:each="actual : ${bar}">
+                <td th:each="actual : ${bar}">
                     <a th:text="${actual.name}" th:href="@{'/bars/' + ${actual.id}}"></a>
+                </td>
             </tr>
             <tr>
                 <td>Restaurants: </td>
                 <td th:each="actual : ${restaurant}">
                     <a th:text="${actual.name}" th:href="@{'/restaurants/' + ${actual.id}}"></a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </html>

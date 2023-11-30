@@ -110,11 +110,6 @@
             <label for="taxNum"></label>
             <input th:field="*{newPartner.taxNum}" type="text" id="taxNum" placeholder="Enter Your Tax Number">
 
-            <label for="role"></label>
-            <select name="role">
-                <option th:each="actualRole : ${T(com.example.stay_mate.model.Role).values()}"
-                        th:value="${actualRole}" th:text="${actualRole.toString()}" id="role"></option>
-            </select>
         </div>
         <div class=”btn”>
             <button type="submit">Register</button>
