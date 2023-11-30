@@ -187,7 +187,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Hotel </h1>
             <div class="card-body">
-                <form th:action="@{'/hotels/create/' + ${partnerId}}" method="post">
+                <form th:action="@{'/hotels/create/' + ${partnerId}}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
 
                         <input type="hidden" th:field="*{new_hotel.name}">
@@ -215,19 +215,9 @@
                             />
                         </label>
                     </div>
-                    <div class="image">
-                        <label> Image </label>
-                        <label>
-                            <input
-                                    type="image"
-                                    name="image"
-                                    th:field="*{new_hotel.description}"
-                                    class="form-control"
-                                    placeholder="Upload your image"
-                                    alt="Hotel Image"/>
-                        </label>
-                    </div>
-
+                        <div class="form-group">
+                            <input type="file" name="image" accept="image/*" class="form-control-file">
+                        </div>
                     <div class="box-footer">
                         <button type="submit" class="btn-submit">
                             Ready
