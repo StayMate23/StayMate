@@ -42,7 +42,7 @@ public class PartnerSecurityConfig {
                         .requestMatchers("/","/partner/reg", "/partner/all",
                                 "/hotel-list","/hotel-update", "/hotels/all","/hotels/create","/add-hotel",
                                 "/hotels/new-hotel-form","hotels/{id}/update",
-                                "/message","/contact",
+                                "/message","/contact","/aboutus", "/Logo.png",
                                 "/bars/create","/bars/current","/bars/delete","bars/all",
                                 "/restaurants/all","/restaurants/create","/user/reg","/user-login")
                         .permitAll()
