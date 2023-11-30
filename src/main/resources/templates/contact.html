@@ -54,15 +54,14 @@
         }
 
         @media screen and (max-height: 450px) {
-            .sidenav {
-                padding-top: 15px;
-            }
-
-            .sidenav a {
-                font-size: 18px;
-            }
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
         }
-
+        .btn-contact {
+            color: black;
+            background-color: dodgerblue;
+            padding: 0 10px;
+        }
 
         .contact {
             position: relative;
@@ -197,6 +196,33 @@
 
             .container .contactInfo {
                 margin-bottom: 40px;
+            }
+
+            .navbar ul {
+                float: right;
+                margin-right: 20px;
+            }
+
+            .navbar ul li {
+                list-style: none;
+                margin: 0 8px;
+                display: inline-block;
+                line-height: 80px;
+            }
+
+            .navbar ul li a {
+                font-size: 20px;
+                font-family: 'Roboto', sans-serif;
+                color: black;
+                padding: 6px 13px;
+                text-decoration: none;
+                transition: .4s;
+            }
+
+            .navbar ul li a.active,
+            .navbar ul li a:hover {
+                background: red;
+                border-radius: 2px;
             }
         }
 

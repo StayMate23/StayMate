@@ -2,91 +2,311 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Update Partner</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update my profile</title>
+  <!--    <link rel="stylesheet" href="style.css">-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
+<style>
+  * {
+    font-family: "poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #333;
+    height: 100vh;
+  }
+
+  .icons-size {
+    color: #333;
+    font-size: 14px;
+  }
+
+  .action {
+    position: fixed;
+    right: 30px;
+    top: 20px
+  }
+
+  .action .profile {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    width: 60px;
+  }
+
+  .action .profile img {
+    width: 100%;
+    top: 0;
+    position: absolute;
+    object-fit: cover;
+    left: 0;
+    height: 100%;
+  }
+
+  .action .menu {
+    background-color: #FFF;
+    /*box-sizing:  25px;*/
+    border-radius: 15px;
+    padding: 10px 20px;
+    position: absolute;
+    right: -10px;
+    width: 200px;
+    transition: 0.5s;
+    top: 120px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .action .menu.active {
+    opacity: 1;
+    top: 80px;
+    visibility: visible;
+  }
+
+  .action .menu::before {
+    background-color: #fff;
+    content: '';
+    height: 20px;
+    position: absolute;
+    right: 30px;
+    transform: rotate(45deg);
+    top: -5px;
+    width: 20px;
+  }
+
+  .action .menu h3 {
+    color: #555;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3em;
+    padding: 20px 0px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .action .menu h3 div {
+    color: #818181;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .action .menu ul li {
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    padding: 10px 0px;
+  }
+
+  .action .menu ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s
+  }
+
+  .action .menu ul li a {
+    display: inline-block;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+  }
+
+  .action .menu ul li:hover img {
+    opacity: 1;
+  }
+
+  .action .menu ul li:hover a {
+    color: #ff00ff;
+  }
+
+
+  body {
+    background: url("https://wallpapers.com/images/hd/boho-background-c3iksuh9tng2435l.jpg") center/cover;
+  }
+
+  /*.container {*/
+  /*  margin-top: 50px; !* Adjust as needed to center the form on the page *!*/
+  /*}*/
+
+  /*.card {*/
+  /*  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); !* Add a subtle shadow to the card *!*/
+  /*}*/
+
+  .card-body {
+    padding: 20px; /* Add some padding inside the card */
+  }
+
+  form {
+    max-width: 400px; /* Limit the width of the form for better readability */
+    margin: auto; /* Center the form within the card */
+  }
+
+  .form-group {
+    margin-bottom: 20px; /* Add space between form groups */
+  }
+
+  label {
+    font-weight: bold; /* Make labels bold for better visibility */
+  }
+
+  /* Style the submit button */
+  .btn-primary {
+    background-color: #007bff; /* Set the button color */
+    color: #fff; /* Set the text color */
+    border: none; /* Remove the button border */
+    padding: 10px 20px; /* Add padding to the button */
+    cursor: pointer; /* Add a pointer cursor on hover */
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3; /* Change button color on hover */
+  }
+
+  .container h1{
+    padding-top: 100px;
+    text-align: center;
+  }
+  .form-group{
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+</style>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand active" th:href="@{/user/current}">Profile</a>
-    <a class="navbar-brand" th:href="@{/contact}">Contact Us</a>
-    <form class="navbar-brand" th:action="@{/logout}" method="post">
-      <button type="submit" class="btn btn-link">LogOut</button>
-    </form>
+<div class="action">
+  <div class="profile" onclick="menuToggle();">
+    <img src="data:image/jpeg;base64,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" alt="">
   </div>
-</nav>
-<div class="collapse navbar-collapse" id="collapsibleNavbar">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" th:href="@{/partner}">Update Partner</a>
-    </li>
-  </ul>
+
+  <div class="menu">
+    <h3 th:text="${user.surName + ' ' + user.firstName + ' ' + user.lastName}"></h3>
+    <div>
+
+    </div>
+
+    <ul>
+      <li>
+        <span class="material-icons icons-size">person</span>
+        <a href="#">My Profile</a>
+      </li>
+      <li>
+        <span class="material-icons icons-size">mode</span>
+        <a th:href="@{'/user/'+ ${user.id} + '/update'}">Edit Account</a>
+
+      </li>
+      <li>
+        <span class="material-icons icons-size">book_online</span>
+        <a th:href="@{'/reservation/'+${user.id}}">Reservation </a>
+
+      </li>
+      <li>
+        <span class="material-symbols-outlined">logout</span>
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+          <button type="submit" class="btn-logout">LogOut</button>
+        </form>
+      </li>
+      <li>
+        <span class="material-icons icons-size">delete</span>
+        <form th:action="@{'/user/' + ${user.id} + '/delete'}" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn-link">Delete Account</button>
+        </form>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">contact_page</span>
+        <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<br>
-<br>
-<div class = "container">
-  <div class = "row">
-    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-      <h1 class = "text-center"> Update Partner </h1>
-      <div class = "card-body">
-        <form method="post" th:action="@{'/user/' +${user.id} + '/update'}">
+  <div class = "container">
+    <div class = "row">
+      <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+        <h1 class = "text-center"> Update My Profile </h1>
+        <div class = "card-body">
+          <form method="post" th:action="@{'/user/' +${user.id} + '/update'}">
 
-          <input type="hidden" th:value="${user.id}" th:field="*{user.id}">
+            <input type="hidden" th:value="${user.id}" th:field="*{user.id}">
 
-          <div class="form-group">
-            <label for="name">Surname</label>
-            <input type="text" id="name" th:placeholder="${user.surName}" th:field="*{user.surName}"><br>
-          </div>
+            <div class="form-group">
+              <label for="name">Surname</label>
+              <input type="text" id="name" th:placeholder="${user.surName}" th:field="*{user.surName}"><br>
+            </div>
 
-          <div class="form-group">
-            <label for="firstName">First name</label>
-            <input type="text" id="firstName" th:placeholder="${user.firstName}" th:field="*{user.firstName}"><br>
-          </div>
+            <div class="form-group">
+              <label for="firstName">First name</label>
+              <input type="text" id="firstName" th:placeholder="${user.firstName}" th:field="*{user.firstName}"><br>
+            </div>
 
-          <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input type="text" id="lastName" th:placeholder="${user.lastName}" th:field="*{user.lastName}"><br>
-          </div>
+            <div class="form-group">
+              <label for="lastName">Last name</label>
+              <input type="text" id="lastName" th:placeholder="${user.lastName}" th:field="*{user.lastName}"><br>
+            </div>
 
 
-          <div class="form-group">
-            <label for="email">Phone number: </label>
-            <input type="text" id="phoneNumber" th:placeholder="${user.phoneNumber}" th:field="*{user.phoneNumber}"><br>
-          </div>
+            <div class="form-group">
+              <label for="email">Phone number: </label>
+              <input type="text" id="phoneNumber" th:placeholder="${user.phoneNumber}" th:field="*{user.phoneNumber}"><br>
+            </div>
 
 
-          <div class="form-group">
-            <label for="email">e-Mail</label>
-            <input type="text" id="email" th:placeholder="${user.email}" th:field="*{user.email}"><br>
-          </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" id="email" th:placeholder="${user.email}" th:field="*{user.email}"><br>
+            </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="********" th:field="*{user.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
-                   oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
-                   oninput="this.setCustomValidity('')"><br>
-          </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="********" th:field="*{user.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                     oninvalid="this.setCustomValidity('- must contains min. one digit\n- one lowercase & uppercase letter\n- minimum of 8 characters long.')"
+                     oninput="this.setCustomValidity('')"><br>
+            </div>
 
-          <div class="form-group">
-            <label for="personalID">Personal ID: </label>
-            <input type="number" id="personalID" th:placeholder="${user.personalId}" th:field="*{user.personalId}"><br>
-          </div>
+            <div class="form-group">
+              <label for="personalID">Personal ID: </label>
+              <input type="number" id="personalID" th:placeholder="${user.personalId}" th:field="*{user.personalId}"><br>
+            </div>
 
-          <div class="form-group">
-            <label for="taxnum">Birth Date: </label>
-            <input type="date" id="taxnum" th:placeholder="${user.birthDate}" th:field="*{user.birthDate}"><br>
-          </div>
+            <div class="form-group">
+              <label for="taxnum">Birth Date: </label>
+              <input type="date" id="taxnum" th:placeholder="${user.birthDate}" th:field="*{user.birthDate}"><br>
+            </div>
 
-          <div class = "box-footer">
-            <button type="submit" class = "btn btn-primary">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div class = "box-footer">
+              <button type="submit" class = "btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector('.menu');
+    toggleMenu.classList.toggle('active')
+  }
+</script>
 </body>
 </html>
+
+
+
