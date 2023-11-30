@@ -14,9 +14,10 @@
             color: #fff;
         }
 
+
         .sidenav {
             height: 100%;
-            width: 20%;
+            width: 0;
             position: fixed;
             z-index: 1;
             top: 0;
@@ -49,13 +50,25 @@
 
         #main {
             transition: margin-left .5s;
-            padding: 20px;
+            padding: 16px;
         }
 
         @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
         }
+
+        .btn-contact {
+            color: black;
+            background-color: dodgerblue;
+            padding: 0 10px;
+        }
+
 
         .content{
             margin-top: 20px;
@@ -137,7 +150,7 @@
 <!--    <a th:href="@{/bars/all}">Bars</a>-->
 <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--    <a th:href="@{/services/all}">Services</a>-->
-    <a th:href="@{/contact}" class="btn-btn-link">Contact Us!</a>
+    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
         <input type="hidden" name="_method" value="delete">
         <button type="submit" class="btn btn-link">Delete Account</button>
