@@ -59,6 +59,8 @@ public class HotelController {
         model.addAttribute("partner", partnerService.getPartnerById(partnerId));
         model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("hotel", hotelService.getHotelById(hoteLid));
+        model.addAttribute("image", "/uploads/" + partnerId + "-" + "hotel" + "-" + hotelService.getHotelById(hoteLid).getName());
+                //Tomi kép hozzáadása
         return "hotel";
     }
 
