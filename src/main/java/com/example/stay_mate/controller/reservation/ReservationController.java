@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -40,11 +42,11 @@ public class ReservationController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/all")
-    public String getAllReservations() {
-        reservationService.getAllReservation();
-        return "all_reservations";
-    }
+  // @GetMapping("/all")
+  // public String getAllReservations() {
+  //     reservationService.getAllReservation();
+  //     return "all_reservations";
+  // }
 
     @GetMapping("/{user-id}")
     public String getAllRoom(Model model,
@@ -52,6 +54,14 @@ public class ReservationController {
         model.addAttribute("room", roomService.getAllRooms());
         model.addAttribute("userId", userService.getUserById(userId));
         return "logged-in-room";
+    }
+    @PostMapping("/available")
+    public String getAvailableRoom(Model model, LocalDateTime start, LocalDateTime end, Integer guests){
+        roomService.getAllAvailableRooms(start,end,guests);
+        model.addAttribute("start",start);
+        model.addAttribute("end",end);
+        model.addAttribute("numberOfGuests",guests);
+        return "offer";
     }
     @GetMapping("/{user-id}/all")
     public String getRoom(Model model,
@@ -62,73 +72,18 @@ public class ReservationController {
         model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
         model.addAttribute("hotelBar", hotelBarService.getAllHotelBars());
         model.addAttribute("userId", userService.getUserById(userId));
+        return "offer";
+    }
+
+    @GetMapping("/all")
+    public String getRoomNotLoggedIn(Model model) {
+        model.addAttribute("room", roomService.getAllRooms());
+        model.addAttribute("restaurant", restaurantService.getAllRestaurants());
+        model.addAttribute("bar", barService.getAllBar());
+        model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
+        model.addAttribute("hotelBar", hotelBarService.getAllHotelBars());
         return "all-reservation-type";
     }
-// @GetMapping("/{user-id}/restaurant")
-// public String getAllRestaurant(Model model,
-//                          @PathVariable("user-id") Integer userId) {
-//     model.addAttribute("restaurant", restaurantService.getAllRestaurants());
-//     model.addAttribute("userId", userService.getUserById(userId));
-//     return "all-reservation-type";
-// }
-// @GetMapping("/{user-id}/bar")
-// public String getAllBar(Model model,
-//                          @PathVariable("user-id") Integer userId) {
-//     model.addAttribute("bar", barService.getAllBar());
-//     model.addAttribute("userId", userService.getUserById(userId));
-//     return "all-reservation-type";
-// }
-
-// @GetMapping("/{user-id}/hotel-restaurant")
-// public String getAllHotelRestaurant(Model model,
-//                          @PathVariable("user-id") Integer userId) {
-//     model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
-//     model.addAttribute("userId", userService.getUserById(userId));
-//     return "all-reservation-type";
-// }
-
-// @GetMapping("/{user-id}/hotel-bar")
-// public String getAllHotelBar(Model model,
-//                          @PathVariable("user-id") Integer userId) {
-//     model.addAttribute("hotelBar", hotelBarService.getAllHotelBars());
-//     model.addAttribute("userId", userService.getUserById(userId));
-//     return "all-reservation-type";
-// }
-
-// @GetMapping("/restaurant/{r_res-id}")
-// public String getRestaurantReservations(Model model,
-//                                         @PathVariable("r_res-id") Integer rReservId) {
-//     model.addAttribute("res_reserv", reservationService.getReservationById(rReservId));
-//     return "restaurant-reservation";
-// }
-
-// @GetMapping("/bar/{b_res-id}")
-// public String getBarReservations(Model model,
-//                                  @PathVariable("b_res-id") Integer bReservId) {
-//     model.addAttribute("res_reserv", reservationService.getReservationById(bReservId));
-//     return "bar-reservation";
-// }
-
-// @GetMapping("/hotel-restaurant/{hr_res-id}")
-// public String getHotelRestaurantReservations(Model model,
-//                                              @PathVariable("hr_res-id") Integer h_r_ReservId) {
-//     model.addAttribute("res_reserv", reservationService.getReservationById(h_r_ReservId));
-//     return "hotel-restaurant-reservation";
-// }
-
-// @GetMapping("/hotel-bar/{hb_res-id}")
-// public String getHotelBarReservations(Model model,
-//                                       @PathVariable("hb_res-id") Integer h_b_ReservId) {
-//     model.addAttribute("res_reserv", reservationService.getReservationById(h_b_ReservId));
-//     return "hotel-bar-reservation";
-// }
-
-// @GetMapping("/user/{user-id}")
-// public String getUserReservations(Model model,
-//                                   @PathVariable("user-id") Integer userReservId) {
-//     model.addAttribute("res_reserv", reservationService.getReservationById(userReservId));
-//     return "user-reservation";
-// }
 
     // @GetMapping("/{user-id}/create/date/{room-id}")
     // // ez az elérés is változhat pl all avaibleRooms-ra vagy ezt majd megbeszéljük
