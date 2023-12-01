@@ -22,7 +22,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand active" th:href="@{'/reservation/'+${user.id}}">Reserve </a>
+        <a class="navbar-brand active" th:href="@{'/reservation/'+${user.id} + '/all' }">Reserve </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,7 +76,7 @@
             <h5 th:text="${user.personalId}"></h5>
         </td>
         <td>
-            <h5 th:date="${user.birthDate}"></h5>
+            <h5 th:text="${user.birthDate}"></h5>
         </td>
     </tr>
 </table>
