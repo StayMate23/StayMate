@@ -139,6 +139,7 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Image</th>
             <th>Menu</th>
         </tr>
         </thead>
@@ -148,6 +149,14 @@
             </td>
             <td>
                 <h5 th:text="${bar.description}"></h5>
+            </td>
+            <td>
+                <ul>
+                    <li th:each="actual : ${bar}">
+                        <img th:src="@{'/uploads/' + ${bar.partner.id} + '-hotel-' + ${bar.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
+                    </li>
+
+                </ul>
             </td>
             <td>
                 <ul>

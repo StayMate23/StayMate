@@ -117,9 +117,7 @@
 </head>
 
 <body>
-<div class="about-left">
-    <img th:src="${image}"/>
-</div>
+
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -148,7 +146,8 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Position</th>
+            <th>Description</th>
+            <th>Image</th>
             <th>Services</th>
             <th>Bar</th>
             <th>Restaurant</th>
@@ -161,6 +160,14 @@
             </td>
             <td>
                 <h5 th:text="${hotel.description}"></h5>
+            </td>
+            <td>
+            <ul>
+                <li th:each="actual : ${hotel}">
+                    <img th:src="@{'/uploads/' + ${partner.id} + '-hotel-' + ${actual.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
+                </li>
+
+            </ul>
             </td>
             <td>
                 <ul>
@@ -182,6 +189,7 @@
                         <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"></a>
                     </li>
                 </ul>
+
             </td>
         </tr>
         </tbody>

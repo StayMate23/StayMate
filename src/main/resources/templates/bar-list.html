@@ -119,11 +119,20 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Image</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="bar : ${all_bars}">
             <td th:text="${bar.name}"></td>
+            <td>
+                <ul>
+                    <li th:each="actual : ${bar}">
+                        <img th:src="@{'/uploads/' + ${bar.partner.id} + '-hotel-' + ${bar.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
+                    </li>
+
+                </ul>
+            </td>
             <td th:text="${bar.description}"></td>
         </tr>
         </tbody>

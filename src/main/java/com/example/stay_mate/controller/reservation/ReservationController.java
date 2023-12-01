@@ -14,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -42,11 +40,11 @@ public class ReservationController {
         this.roomService = roomService;
     }
 
-  // @GetMapping("/all")
-  // public String getAllReservations() {
-  //     reservationService.getAllReservation();
-  //     return "all_reservations";
-  // }
+//    @GetMapping("/all")
+//    public String getAllReservations() {
+//        reservationService.getAllReservation();
+//        return "all_reservations";
+//    }
 
     @GetMapping("/{user-id}")
     public String getAllRoom(Model model,
@@ -54,14 +52,6 @@ public class ReservationController {
         model.addAttribute("room", roomService.getAllRooms());
         model.addAttribute("userId", userService.getUserById(userId));
         return "logged-in-room";
-    }
-    @PostMapping("/available")
-    public String getAvailableRoom(Model model, LocalDateTime start, LocalDateTime end, Integer guests){
-        roomService.getAllAvailableRooms(start,end,guests);
-        model.addAttribute("start",start);
-        model.addAttribute("end",end);
-        model.addAttribute("numberOfGuests",guests);
-        return "offer";
     }
     @GetMapping("/{user-id}/all")
     public String getRoom(Model model,
@@ -74,29 +64,6 @@ public class ReservationController {
         model.addAttribute("userId", userService.getUserById(userId));
         return "offer";
     }
-
-    @GetMapping("/all")
-    public String getRoomNotLoggedIn(Model model) {
-        model.addAttribute("room", roomService.getAllRooms());
-        model.addAttribute("restaurant", restaurantService.getAllRestaurants());
-        model.addAttribute("bar", barService.getAllBar());
-        model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
-        model.addAttribute("hotelBar", hotelBarService.getAllHotelBars());
-        return "all-reservation-type";
-    }
-
-    // @GetMapping("/{user-id}/create/date/{room-id}")
-    // // ez az elérés is változhat pl all avaibleRooms-ra vagy ezt majd megbeszéljük
-    // public String createRoomReservationDate(Model model,
-    //                                         @PathVariable("room-id")Integer roomId,
-    //                                         @PathVariable("user-id")Integer userId){
-    //     model.addAttribute("new_reservation",new Reservation());
-    //     model.addAttribute("roomId",roomService.getRoomById(roomId));
-    //     model.addAttribute("userId",userService.getUserById(userId));
-    //     return "reservation"; // itt majd ennek megfelelően adjuk meg az elérést
-    //     // itt lehetne úgy, hogy egy oldalon beállítjuk a dátumot és a létszámot
-    //     // betölti az összes elérhető szobát arra az időszakra?
-    // }
     @GetMapping("/{user-id}/create-room/{room-id}")
     public String createRoomReservation(Model model,
                                         @PathVariable("user-id") Integer userId,
@@ -194,5 +161,15 @@ public class ReservationController {
         newReservation.setHotelBar(hotelBarService.getHotelBarById(hotelBarId));
         reservationService.saveReservation(newReservation);
         return "redirect:/user/current";
+    }
+// ez user nelkul tolti be a home pagen
+    @GetMapping("/all")
+    public String getRoom(Model model) {
+        model.addAttribute("room", roomService.getAllRooms());
+        model.addAttribute("restaurant", restaurantService.getAllRestaurants());
+        model.addAttribute("bar", barService.getAllBar());
+        model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
+        model.addAttribute("hotelBar", hotelBarService.getAllHotelBars());
+        return "all-reservation-type";
     }
 }
