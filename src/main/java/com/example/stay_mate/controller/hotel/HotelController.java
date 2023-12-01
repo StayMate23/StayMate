@@ -8,12 +8,13 @@ import com.example.stay_mate.service.hotel.HotelRestaurantService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,10 +32,7 @@ public class HotelController {
     private final MenuBookService menuBookService;
     private final RoomService roomService;
 
-    public HotelController(HotelService hotelService, PartnerService partnerService,
-                           FacilitiesService facilitiesService, HotelBarService hotelBarService,
-                           HotelRestaurantService hotelRestaurantService, MenuBookService menuBookService,
-                           RoomService roomService) {
+    public HotelController(HotelService hotelService, PartnerService partnerService, FacilitiesService facilitiesService, HotelBarService hotelBarService, HotelRestaurantService hotelRestaurantService, MenuBookService menuBookService, RoomService roomService) {
         this.hotelService = hotelService;
         this.partnerService = partnerService;
         this.facilitiesService = facilitiesService;
@@ -42,7 +40,9 @@ public class HotelController {
         this.hotelRestaurantService = hotelRestaurantService;
         this.menuBookService = menuBookService;
         this.roomService = roomService;
+
     }
+
 
     @GetMapping("/all")
     public String getAllHotels(Model model) {
@@ -60,7 +60,7 @@ public class HotelController {
         model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("hotel", hotelService.getHotelById(hoteLid));
         model.addAttribute("image", "/uploads/" + partnerId + "-" + "hotel" + "-" + hotelService.getHotelById(hoteLid).getName());
-                //Tomi kép hozzáadása
+
         return "hotel";
     }
 
@@ -81,7 +81,9 @@ public class HotelController {
                         partnerId + "-" + "hotel" + "-"+ hotel.getName());
         fileNames.append(partnerId + "-" + "hotel" + "-"+ hotel.getName());
         Files.write(fileNameAndPath, hotelimage.getBytes());
+
         return "redirect:/partner/current";
+
     }
 
     @GetMapping("/{id}/update")

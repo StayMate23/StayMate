@@ -268,7 +268,7 @@
 
     </div>
     <div class="main-form">
-        <form th:action="@{'/reservation/' + ${userId} + '/create/' + ${roomId}}"  method="post">
+        <form th:action="@{'/reservation/' + ${userId} + '/create-room/' + ${roomId}}"  method="post">
 
         <div>
                 <!-- <---this is the select option--->
@@ -280,8 +280,8 @@
             </div>
             <div>
                 <span>What is the date ?</span>
-                <label for="startDate"></label><input type="datetime-local" id="startDate" name="startDate" placeholder="Check in date:" th:field="{new_reservation.startDate}">
-                <label for="endDate"></label><input type="datetime-local" id="endDate" name="endDate" th:field="{new_reservation.endDate}">
+                <label for="startDate"></label><input type="datetime-local" id="startDate" name="startDate" placeholder="Check in date:" th:field="*{new_reservation.startDate}">
+                <label for="endDate"></label><input type="datetime-local" id="endDate" name="endDate" th:field="*{new_reservation.endDate}">
             </div>
             <div id="submit">
                 <input type="submit" value="SUBMIT">

@@ -12,6 +12,7 @@ import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -43,11 +44,11 @@ public class ReservationController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/all")
-    public String getAllReservations() {
-        reservationService.getAllReservation();
-        return "all_reservations";
-    }
+//    @GetMapping("/all")
+//    public String getAllReservations() {
+//        reservationService.getAllReservation();
+//        return "all_reservations";
+//    }
     @GetMapping("/{user-id}")
     public String getAllRoom(Model model,
                              @PathVariable("user-id")Integer userId){
@@ -103,38 +104,43 @@ public class ReservationController {
         // itt lehetne úgy, hogy egy oldalon beállítjuk a dátumot és a létszámot
         // betölti az összes elérhető szobát arra az időszakra?
     }
-    @GetMapping("/{user-id}/create/{room-id}/{hotel-id}/{partner-id}")
+    @GetMapping("/{user-id}/create-room/{room-id}")
     public String createRoomReservation(Model model,
-                                        @ModelAttribute("new_reservation")Reservation newReservation,
-                                        @PathVariable("user-id")Integer userId,
-                                        @PathVariable("room-id")Integer roomId,
-                                        @PathVariable("hotel-id")Integer hotelId,
-                                        @PathVariable("partner-id")Integer partnerId){
-        model.addAttribute("new_reservation",newReservation);
-        model.addAttribute("userId",userId);
-        model.addAttribute("partnerId",partnerId);
-        model.addAttribute("hotelId", hotelId);
-        model.addAttribute("roomId",roomId);
-        model.addAttribute("availableRoom",roomService.getAllAvaibleRooms(
-                newReservation.getStartDate(),
-                newReservation.getEndDate(),
-                newReservation.getUserNumber()
-        ));
+                                        @PathVariable("user-id") Integer userId,
+                                        @PathVariable("room-id") Integer roomId) {
+        model.addAttribute("userId", userId);
+        model.addAttribute("roomId", roomId);
+        model.addAttribute("new_reservation", new Reservation());
         return "new-room-reservation";
     }
-    @PostMapping("/create/{user-id}/{room-id}/{hotel-id}/{partner-id}")
-    public String createRoomReservation(@ModelAttribute("new_reservation")Reservation newReservation,
-                                        @PathVariable("user-id")Integer userId,
-                                        @PathVariable("room-id")Integer roomId,
-                                        @PathVariable("hotel-id")Integer hotelId,
-                                        @PathVariable("partner-id")Integer partnerId){
+    @PostMapping("/{user-id}/create-room/{room-id}")
+    public String createRoomReservation(@ModelAttribute("new_reservation") @Validated Reservation newReservation,
+                                        @PathVariable("user-id") Integer userId,
+                                        @PathVariable("room-id") Integer roomId) {
         newReservation.setUser(userService.getUserById(userId));
-        newReservation.setPartner(partnerService.getPartnerById(partnerId));
-        newReservation.setHotel(hotelService.getHotelById(hotelId));
         newReservation.setRoom(roomService.getRoomById(roomId));
-        return "redirect:/";
-        // itt is még ki kell találni, hogy hova menjen vissza pl egy visszaigazoló oldalra.
-        // Tomi, ehhez tudsz írni egy emailes visszaigazoló metódust,
-        // ami visszaadja a nevét, dátumot, összeget és a választott hotelt, szobát?
+        reservationService.saveReservation(newReservation);
+        return "redirect:/user/current";
+    }
+
+    @GetMapping("/{user-id}/all")
+    public String getRoom(Model model,
+                          @PathVariable("user-id") Integer userId) {
+        model.addAttribute("room", roomService.getAllRooms());
+        model.addAttribute("restaurant", restaurantService.getAllRestaurants());
+        model.addAttribute("bar", barService.findAllBar());
+        model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
+        model.addAttribute("hotelBar", hotelBarService.findAllHotelBars());
+        model.addAttribute("userId", userService.getUserById(userId));
+        return "offer";
+    }
+    @GetMapping("/all")
+    public String getRoom(Model model) {
+        model.addAttribute("room", roomService.getAllRooms());
+        model.addAttribute("restaurant", restaurantService.getAllRestaurants());
+        model.addAttribute("bar", barService.findAllBar());
+        model.addAttribute("hotelRestaurant", hotelRestaurantService.getAllHotelRestaurants());
+        model.addAttribute("hotelBar", hotelBarService.findAllHotelBars());
+        return "all-reservation-type";
     }
 }
