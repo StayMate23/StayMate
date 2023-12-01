@@ -53,7 +53,7 @@ public class ReservationController {
                              @PathVariable("user-id")Integer userId){
         model.addAttribute("room",roomService.getAllRooms());
         model.addAttribute("userId",userService.getUserById(userId));
-        return "logged-in-room";
+        return "all-reservation-type";
     }
 
     @GetMapping("/restaurant/{r_res-id}")
