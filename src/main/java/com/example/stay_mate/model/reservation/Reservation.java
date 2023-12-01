@@ -11,6 +11,7 @@ import com.example.stay_mate.model.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +28,10 @@ public class Reservation {
     @JoinColumn(name = "id")
     private Integer id;
     @JoinColumn(name = "start_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime startDate;
     @JoinColumn(name = "end_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime endDate;
     @JoinColumn(name = "user_number")
     private Integer userNumber;
@@ -57,4 +60,5 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "bar_id")
     private Bar bar;
+
 }

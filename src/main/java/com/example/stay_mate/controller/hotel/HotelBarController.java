@@ -27,7 +27,7 @@ public class HotelBarController {
 
     @GetMapping("/all")
     public String getAllHotelBars(Model model) {
-        model.addAttribute("all_hotel_bar", hotelBarService.findAllHotelBars());
+        model.addAttribute("all_hotel_bar", hotelBarService.getAllHotelBars());
         return "hotel-bar-list";
     }
 
