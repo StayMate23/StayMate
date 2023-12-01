@@ -3,8 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
 
+        <a class="navbar-brand active" th:href="@{/user/current}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <form class="navbar-brand" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link">LogOut</button>
+        </form>
+
+    </div>
+</nav>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Hotel</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr th:each="actualRoom : ${room}">
+        <td th:text="${actualRoom.id}"></td>
+        <td th:text="${actualRoom.roomNumber}"></td>
+        <td th:text="${actualRoom.hotel.description}"></td>
+        <td>
+            <a th:href="@{'/reservation/'+${userId.id} + '/create-room/' + ${actualRoom.id}}">
+                <button class="btn btn-secondary">Reserve</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="actualRest : ${restaurant}">
+        <td th:text="${actualRest.id}"></td>
+        <td th:text="${actualRest.name}"></td>
+        <td th:text="${actualRest.description}"></td>
+        <td>
+            <a th:href="@{'/reservation/'+${userId.id} + '/create-restaurant/' + ${actualRest.id}}">
+                <button class="btn btn-secondary">Reserve</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="actualBar : ${bar}">
+        <td th:text="${actualBar.id}"></td>
+        <td th:text="${actualBar.name}"></td>
+        <td th:text="${actualBar.description}"></td>
+        <td>
+            <a th:href="@{'/reservation/'+${userId.id} + '/create-bar/' + ${actualBar.id}}">
+                <button class="btn btn-secondary">Reserve</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="hr : ${hotelRestaurant}">
+        <td th:text="${hr.id}"></td>
+        <td th:text="${hr.name}"></td>
+        <td th:text="${hr.description}"></td>
+        <td>
+            <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-restaurant/' + ${hr.id}}">
+                <button class="btn btn-secondary">Reserve</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="hb : ${hotelBar}">
+        <td th:text="${hb.id}"></td>
+        <td th:text="${hb.name}"></td>
+        <td th:text="${hb.description}"></td>
+        <td>
+            <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-bar/' + ${hb.id}}">
+                <button class="btn btn-secondary">Reserve</button>
+            </a>
+        </td>
+    </tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

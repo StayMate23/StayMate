@@ -25,7 +25,7 @@ public class BarController {
 
     @GetMapping("/all")
     public String getAllBars(Model model) {
-        List<Bar> all_bars = barService.findAllBar();
+        List<Bar> all_bars = barService.getAllBar();
         model.addAttribute("all_bars", all_bars);
         return "bar-list";
     }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/reservation/' + ${userId} + '/create-hotel-restaurant/' + ${hotelRestaurantId}}"  method="post">
+  <label>
+    <input type="datetime-local" id="startDate" name="startDate" placeholder="Check in date:" th:field="*{new_reservation.startDate}">
+    <input type="datetime-local" id="endDate" name="endDate" th:field="*{new_reservation.endDate}">
+    <input type="number" min="1" max="10" placeholder="Number of guests" th:field="*{new_reservation.userNumber}">
+  </label>
+  <button type="submit" class="btn btn-primary">Ok!</button>
+</form>
+</body>
+</html>

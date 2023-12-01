@@ -17,7 +17,7 @@ public class HotelBarService {
         this.hotelBarRepository = hotelBarRepository;
     }
 
-    public List<HotelBar> findAllHotelBars() {
+    public List<HotelBar> getAllHotelBars() {
         return hotelBarRepository.findAll();
     }
 

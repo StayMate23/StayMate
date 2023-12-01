@@ -44,10 +44,10 @@ public class RoomService {
         return roomRepository.getRoomByHotel(hotel);
     }
 
-    public List<Room> getAllAvaibleRooms(LocalDateTime startDate, LocalDateTime endDate, Integer numberOfGuests) {
-        List<Reservation> notAvaible = reservationService.getReservationToExactDate(startDate, endDate);
+    public List<Room> getAllAvailableRooms(LocalDateTime startDate, LocalDateTime endDate, Integer numberOfGuests) {
+        List<Reservation> notAvailable = reservationService.getReservationToExactDate(startDate, endDate);
         Set<Integer> wrongRoom = new HashSet<>();
-        for (Reservation actual : notAvaible) {
+        for (Reservation actual : notAvailable) {
             wrongRoom.add(actual.getRoom().getId());
         }
         return roomRepository.findAllByIdNotInAndRoomCapacityGreaterThanEqual(wrongRoom, numberOfGuests);
