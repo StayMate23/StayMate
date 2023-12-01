@@ -11,6 +11,14 @@ import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 @Controller
 @RequestMapping("/hotels")
@@ -43,14 +51,16 @@ public class HotelController {
     }
 
     @GetMapping("/{id}/{partner-id}")
-    public String getCurrentHotel(Model model, @PathVariable("id") Integer hotelId, @PathVariable("partner-id") Integer partnerId) {
-        model.addAttribute("room",roomService.getRoomByHotel(hotelService.getHotelById(hotelId)));
-        model.addAttribute("menu_book", menuBookService.getMenuBookByHotel(hotelService.getHotelById(hotelId)));
-        model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByHotel(hotelService.getHotelById(hotelId)));
-        model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(hotelId)));
+    public String getCurrentHotel(Model model, @PathVariable("id") Integer hoteLid, @PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("room",roomService.getRoomByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("menu_book", menuBookService.getMenuBookByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel_bar", hotelBarService.getHotelBarByHotel(hotelService.getHotelById(hoteLid)));
         model.addAttribute("partner", partnerService.getPartnerById(partnerId));
-        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(hotelId)));
-        model.addAttribute("hotel", hotelService.getHotelById(hotelId));
+        model.addAttribute("facilities", facilitiesService.getFacilitiesByHotel(hotelService.getHotelById(hoteLid)));
+        model.addAttribute("hotel", hotelService.getHotelById(hoteLid));
+        model.addAttribute("image", "/uploads/" + partnerId + "-" + "hotel" + "-" + hotelService.getHotelById(hoteLid).getName());
+                //Tomi kép hozzáadása
         return "hotel";
     }
 
@@ -62,9 +72,15 @@ public class HotelController {
     }
 
     @PostMapping("/create/{partner-id}")
-    public String addHotel(@ModelAttribute("new_hotel") Hotel hotel, @PathVariable("partner-id") Integer partnerId) {
+    public String addHotel(@ModelAttribute("new_hotel") Hotel hotel, @PathVariable("partner-id") Integer partnerId, @RequestParam("image") MultipartFile hotelimage) throws IOException {
         hotel.setPartner(partnerService.getPartnerById(partnerId));
         hotelService.saveHotel(hotel);
+        StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath =
+                Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/uploads",
+                        partnerId + "-" + "hotel" + "-"+ hotel.getName());
+        fileNames.append(partnerId + "-" + "hotel" + "-"+ hotel.getName());
+        Files.write(fileNameAndPath, hotelimage.getBytes());
         return "redirect:/partner/current";
     }
 

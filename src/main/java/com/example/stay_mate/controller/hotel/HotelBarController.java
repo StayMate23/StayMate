@@ -52,7 +52,7 @@ public class HotelBarController {
         hotelBar.setPartner(partnerService.getPartnerById(partnerId));
         hotelBar.setHotel(hotelService.getHotelById(hotelId));
         hotelBarService.saveHotelBar(hotelBar);
-        return "redirect:/hotels/" + hotelId + "/" + partnerId;
+        return "redirect:/hotels/" + hotelId + '/' + partnerId;
     }
 
     @GetMapping("/update/{id}")
