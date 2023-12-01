@@ -350,7 +350,7 @@
         <h1 class="head">WELCOME TO OUR <span>WEBSITE!</span></h1>
         <h3 class="sub">Stay Mate</h3>
         <div class="btns">
-            <a class="btn1" href="/reservation">Check Our Offers</a>
+            <a class="btn1" th:href="@{'/reservation/'+ ${user.id} + '/all'}">Check Our Offers </a>
             <a class="btn2" href="/contact">Contact Us</a>
             <a href="/">HOME</a>
             <a href="/aboutus">ABOUT US</a>
@@ -371,7 +371,7 @@
             <ul>
                 <li>
                     <span class="material-icons icons-size">person</span>
-                    <a href="/user">My Profile</a>
+                    <a href="/user/current">My Profile</a>
                 </li>
                 <li>
                     <span class="material-icons icons-size">mode</span>

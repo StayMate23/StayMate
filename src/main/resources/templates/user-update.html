@@ -236,7 +236,7 @@
       </li>
       <li>
         <span class="material-icons icons-size">book_online</span>
-        <a th:href="@{'/reservation/'+${user.id}}">Reservation </a>
+        <a th:href="@{'/reservation/'+${user.id} + '/all'}">Reservation </a>
 
       </li>
       <li>
@@ -271,8 +271,13 @@
             <input type="hidden" th:value="${user.id}" th:field="*{user.id}">
 
             <div class="form-group">
-              <label for="name">Surname</label>
-              <input type="text" id="name" th:placeholder="${user.surName}" th:field="*{user.surName}"><br>
+              <label for="surname"></label>
+              <select th:field="*{user.surName}" id="surname">
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
 
             <div class="form-group">
