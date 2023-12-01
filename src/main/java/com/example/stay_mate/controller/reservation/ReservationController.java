@@ -99,7 +99,7 @@ public class ReservationController {
         model.addAttribute("new_reservation",new Reservation());
         model.addAttribute("roomId",roomService.getRoomById(roomId));
         model.addAttribute("userId",userService.getUserById(userId));
-        return "reservation"; // itt majd ennek megfelelően adjuk meg az elérést
+        return "new-room-reservation"; // itt majd ennek megfelelően adjuk meg az elérést
         // itt lehetne úgy, hogy egy oldalon beállítjuk a dátumot és a létszámot
         // betölti az összes elérhető szobát arra az időszakra?
     }
@@ -120,7 +120,7 @@ public class ReservationController {
                 newReservation.getEndDate(),
                 newReservation.getUserNumber()
         ));
-        return "reservation";
+        return "new-room-reservation";
     }
     @PostMapping("/create/{user-id}/{room-id}/{hotel-id}/{partner-id}")
     public String createRoomReservation(@ModelAttribute("new_reservation")Reservation newReservation,
