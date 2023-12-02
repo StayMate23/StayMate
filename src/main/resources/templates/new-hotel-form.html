@@ -196,6 +196,7 @@
                 <form th:action="@{'/hotels/create/' + ${partnerId}}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
 
+                        <input type="hidden" th:field="*{new_hotel.id}">
                         <label> Hotel Name </label>
                         <label>
                             <input
