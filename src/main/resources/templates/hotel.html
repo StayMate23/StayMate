@@ -113,6 +113,9 @@
         .btn-logout:hover {
             color: #333;
         }
+        .table li{
+            color: black;
+        }
     </style>
 </head>
 
@@ -123,10 +126,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}">Profile</a>
     <a  th:href="@{'/hotels/' + ${hotel.id} + '/update'}">Update Hotel</a>
-    <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <a>Delete Hotel</a>
-    </form>
+
     <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service</a>
     <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar</a>
     <a th:href="@{'/hotel-restaurant/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Restaurant</a>
@@ -136,6 +136,10 @@
 <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn-logout">Delete Hotel</button>
+    </form>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
@@ -172,21 +176,21 @@
             <td>
                 <ul>
                     <li th:each="actual : ${facilities}">
-                        <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}"></a>
+                        <a th:text="${actual.name}" th:href="@{'/services/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline" ></a>
                     </li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li th:each="actual : ${hotel_bar}">
-                        <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"></a>
+                        <a th:text="${actual.name}" th:href="@{'/hotel-bar/' + ${actual.id}}"  style="color: black; font-size: larger;text-decoration: underline"></a>
                     </li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li th:each="actual : ${hotel_restaurant}">
-                        <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"></a>
+                        <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"  style="color: black; font-size: larger;text-decoration: underline"></a>
                     </li>
                 </ul>
 
