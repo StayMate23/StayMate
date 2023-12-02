@@ -143,6 +143,14 @@
             </td>
             <td>
                 <ul>
+                    <li th:each="actual : ${bar}">
+                        <img th:src="@{'/uploads/' + ${hotel_bar.id} + '-hotelbar-' + ${hotel_bar.name}} " style="width: 100px; height: auto;" alt="HotelBar Image" >
+                    </li>
+
+                </ul>
+            </td>
+            <td>
+                <ul>
                     <li th:each="actual : ${menu_book}">
                         <a th:text="${actual.name}" th:href="@{'/menu/hotel-bar/' + ${actual.id}}"></a>
                     </li>

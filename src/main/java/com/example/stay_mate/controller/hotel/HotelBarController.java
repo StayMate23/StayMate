@@ -8,6 +8,12 @@ import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/hotel-bar")
@@ -36,6 +42,7 @@ public class HotelBarController {
         model.addAttribute("menu_book",
                 menuBookService.getMenuBookByHotelBar(hotelBarService.getHotelBarById(hotelBarId)));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarById(hotelBarId));
+        model.addAttribute("image","/uploads/" + hotelBarId + "-hotelBar-" + hotelBarService.getHotelBarById(hotelBarId).getName());
         return "hotel-bar";
     }
 
@@ -48,10 +55,19 @@ public class HotelBarController {
     }
 
     @PostMapping("/create/{hotel-id}/{partner-id}")
-    public String addHotelBar(@ModelAttribute("new_hotel_bar") HotelBar hotelBar, @PathVariable("hotel-id") Integer hotelId, @PathVariable("partner-id") Integer partnerId) {
+    public String addHotelBar(@ModelAttribute("new_hotel_bar") HotelBar hotelBar,
+                              @PathVariable("hotel-id") Integer hotelId,
+                              @PathVariable("partner-id") Integer partnerId,
+                              @RequestParam("hotelBarImage")MultipartFile hotelBarImage) throws IOException {
         hotelBar.setPartner(partnerService.getPartnerById(partnerId));
         hotelBar.setHotel(hotelService.getHotelById(hotelId));
         hotelBarService.saveHotelBar(hotelBar);
+        StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath =
+                Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/uploads",
+                        partnerService.getPartnerById(partnerId).getId() + "-hotelBar-"+ partnerService.getPartnerById(partnerId).getPartnerName());
+        fileNames.append(partnerService.getPartnerById(partnerId).getId() + "-hotelBar-"+ partnerService.getPartnerById(partnerId).getPartnerName());
+        Files.write(fileNameAndPath, hotelBarImage.getBytes());
         return "redirect:/hotels/" + hotelId + '/' + partnerId;
     }
 

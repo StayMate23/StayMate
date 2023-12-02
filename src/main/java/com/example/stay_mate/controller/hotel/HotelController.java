@@ -72,7 +72,9 @@ public class HotelController {
     }
 
     @PostMapping("/create/{partner-id}")
-    public String addHotel(@ModelAttribute("new_hotel") Hotel hotel, @PathVariable("partner-id") Integer partnerId, @RequestParam("image") MultipartFile hotelimage) throws IOException {
+    public String addHotel(@ModelAttribute("new_hotel") Hotel hotel,
+                           @PathVariable("partner-id") Integer partnerId,
+                           @RequestParam("image") MultipartFile hotelimage) throws IOException {
         hotel.setPartner(partnerService.getPartnerById(partnerId));
         hotelService.saveHotel(hotel);
         StringBuilder fileNames = new StringBuilder();
