@@ -153,7 +153,7 @@
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form th:action="@{'/partner/' + ${partner.id} + '/delete'}" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button type="submit" class="btn btn-link">Delete Account</button>
+        <button type="submit" class="btn-logout">Delete Account</button>
     </form>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>

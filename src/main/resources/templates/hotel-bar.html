@@ -108,10 +108,7 @@
     <a th:href="@{'/hotels/' + ${hotel_bar.hotel.id} + '/' + ${hotel_bar.partner.id}}">Hotel</a>
     <a th:href="@{'/hotel-bar/update/' + ${hotel_bar.id}}">Update Bar</a>
     <a th:href="@{'/bars/create/' + ${hotel_bar.partner.id}}">Add bar</a>
-    <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <a>Delete Bar</a>
-    </form>
+
     <a th:href="@{'/menu/create-hotel-bar/' + ${hotel_bar.id} + '/' + ${hotel_bar.hotel.id} +'/'+ ${hotel_bar.partner.id}}">Add
         Drink Menu </a>
 <!--    <a th:href="@{/partner/all}">Partners</a>-->
@@ -120,6 +117,10 @@
 <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn-logout">Delete Bar</button>
+    </form>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>

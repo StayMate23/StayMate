@@ -81,7 +81,7 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setRoom(roomService.getRoomById(roomId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/thankyou";
     }
     // TODO kitalálni hogyan legyen a navigáció, aztán az árat visszaadni majd a szűrést dátumra és utána főre
 

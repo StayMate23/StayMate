@@ -119,16 +119,17 @@
   <a  th:href="@{'/hotel-restaurant/update/' + ${hotel_restaurant.id}}">Update Restaurant</a>
   <a  th:href="@{'/menu/create-hotel-restaurant/' + ${hotel_restaurant.id} + '/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.partner.id}}">Add
     Menu</a>
-  <form th:action="@{'/hotel-restaurant/' + ${hotel_restaurant.id} + '/delete'}" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <a>Delete Restaurant</a>
-  </form>
+
 <!--  <a th:href="@{/partner/all}">Partners</a>-->
 <!--  <a th:href="@{/hotels/all}">Hotels</a>-->
 <!--  <a th:href="@{/bars/all}">Bars</a>-->
 <!--  <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--  <a th:href="@{/services/all}">Services</a>-->
   <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+  <form th:action="@{'/hotel-restaurant/' + ${hotel_restaurant.id} + '/delete'}" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn-logout">Delete Restaurant</button>
+  </form>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn-logout">LogOut</button>
   </form>
