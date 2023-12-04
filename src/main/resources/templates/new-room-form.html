@@ -186,7 +186,7 @@
         <form method="post" th:action="@{'/room/create/' + ${hotelId} + '/' + ${partnerId}}">
           <input type="hidden" th:value="${new_room.id}" th:field="*{new_room.id}">
           <div class ="form-group">
-            <label> Partner Name </label>
+            <label> Room number</label>
             <label>
               <input
                       type = "text"
@@ -198,7 +198,7 @@
             </label>
           </div>
           <div class ="form-group">
-            <label> Address </label>
+            <label> Room capacity </label>
             <label>
               <input
                       type = "text"

@@ -118,32 +118,32 @@
         }
     </style>
 </head>
-
 <body>
 
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}">Profile</a>
-    <a  th:href="@{'/hotels/' + ${hotel.id} + '/update'}">Update Hotel</a>
+    <a th:href="@{'/hotels/' + ${hotel.id} + '/update'}">Update Hotel</a>
 
-    <a th:href="@{'/services/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Service</a>
-    <a th:href="@{'/hotel-bar/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Bar</a>
-    <a th:href="@{'/hotel-restaurant/create/'+ ${hotel.id} + '/' + ${partner.id}}">Add Restaurant</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--    <a th:href="@{/bars/all}">Bars</a>-->
-<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{'/services/create/' + ${hotel.id} + '/' + ${partner.id}}">Add Service</a>
+    <a th:href="@{'/hotel-bar/create/' + ${hotel.id} + '/' + ${partner.id}}">Add Bar</a>
+    <a th:href="@{'/hotel-restaurant/create/' + ${hotel.id} + '/' + ${partner.id}}">Add Restaurant</a>
+    <a th:href="@{'/room/create/' + ${hotel.id} + '/' + ${partner.id}}"> Add room</a>
+
+
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+
     <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post">
         <input type="hidden" name="_method" value="delete">
         <button type="submit" class="btn-logout">Delete Hotel</button>
     </form>
+
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
 </div>
+</body>
 
 <div class="container mt-4">
     <table class="table">
@@ -155,6 +155,7 @@
             <th>Services</th>
             <th>Bar</th>
             <th>Restaurant</th>
+            <th>Room</th>
         </tr>
         </thead>
         <tbody>
@@ -188,14 +189,20 @@
                         <a th:text="${actual.name}" th:href="@{'/hotel-restaurant/' + ${actual.id}}"  style="color: black; font-size: larger;text-decoration: underline"></a>
                     </li>
                 </ul>
-
+            </td>
+            <td>
+                <ul>
+                    <li th:each="actual : ${room}">
+                        <a th:text="${actual.roomNumber}" th:href="@{'/room/' + ${actual.id}}"  style="color: black; font-size: larger;text-decoration: underline"></a>
+                    </li>
+                </ul>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-</body>
+
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
