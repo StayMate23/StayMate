@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-        * {
+        *{
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -100,9 +99,6 @@
 
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             position: fixed;
             height: 80px;
             width: 100%;
@@ -112,30 +108,30 @@
         }
 
         .navbar ul {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            float: right;
             margin-right: 20px;
-            flex: 1;
         }
 
         .navbar ul li {
             list-style: none;
-            margin: 0 8px;
-            line-height: 80px;
+            /**/
+            display: inline-block;
+            line-height: 60px;
         }
 
         .navbar ul li a {
             font-size: 20px;
             font-family: 'Roboto', sans-serif;
-            color: black;
+            color: white;
             padding: 6px 13px;
             text-decoration: none;
             transition: .4s;
         }
 
+        .navbar ul li a.active,
         .navbar ul li a:hover {
-            color: red;
+            background: red;
+            border-radius: 2px;
         }
 
     </style>

@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/hotels/all","/room/all", "/aboutus", "logo.png")
                         .permitAll()
-                        .requestMatchers("/partner/**","/user/reg","/reservation/all")
+                        .requestMatchers("/partner/**","/user/reg","/reservation/all","/contact")
                         .permitAll()
 
                         .anyRequest().authenticated()

@@ -7,63 +7,17 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url("https://img.freepik.com/free-vector/hand-drawn-boho-background-with-leaves_23-2149068411.jpg") center/cover;
+            background: url("https://paperclipbw.com/wp-content/uploads/2022/08/web-contact-us.jpg");
             color: #fff;
             margin: 0;
+            overflow: hidden;
         }
 
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
-
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        #main {
-            transition: margin-left .5s;
-            padding: 16px;
-        }
-
-        @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
-        }
-        .btn-contact {
-            color: black;
-            background-color: dodgerblue;
-            padding: 0 10px;
-        }
 
         .contact {
             position: relative;
             min-height: 100vh;
-            padding: 50px 100px;
+            padding: 70px 100px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -75,12 +29,14 @@
         .contact .content {
             max-width: 800px;
             text-align: center;
+
         }
 
         .contact .content h2 {
             font-size: 36px;
             font-weight: 500;
             color: black;
+            margin: 30px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
         }
 
         .contact .content p {
@@ -182,64 +138,84 @@
             font-size: 18px;
         }
 
-        @media (max-width: 991px) {
-            .contact {
-                padding: 50px;
-
-            }
-
-            .container {
-                flex-direction: column;
-
-            }
-
-            .container .contactInfo {
-                margin-bottom: 40px;
-            }
-
-            .navbar ul {
-                float: right;
-                margin-right: 20px;
-            }
-
-            .navbar ul li {
-                list-style: none;
-                margin: 0 8px;
-                display: inline-block;
-                line-height: 80px;
-            }
-
-            .navbar ul li a {
-                font-size: 20px;
-                font-family: 'Roboto', sans-serif;
-                color: black;
-                padding: 6px 13px;
-                text-decoration: none;
-                transition: .4s;
-            }
-
-            .navbar ul li a.active,
-            .navbar ul li a:hover {
-                background: red;
-                border-radius: 2px;
-            }
-
+        .navbar {
+            position: fixed;
+            height: 80px;
+            width: 100%;
+            top: 0px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.4);
         }
 
 
+        .navbar ul {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .navbar ul li {
+            list-style: none;
+            /**/
+            display: inline-block;
+            line-height: 40px;
+        }
+
+        .navbar ul li a {
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            padding: 6px 13px;
+            text-decoration: none;
+            transition: .4s;
+        }
+
+        .navbar ul li a.active,
+        .navbar ul li a:hover {
+            background: red;
+            border-radius: 2px;
+        }
+
+        .logo{
+            position: relative;
+            height:auto;
+            width:20%;
+            left:10%;
+            float:left;
+            font-family:'Lato',sans-serif;
+            font-size:35px;
+            font-weight:600;
+            cursor: pointer;
+            text-shadow:0px 0.5px 5px rgba(0, 0, 0, 0.2);
+            transition: 0.1s ease-in-out;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            text-decoration: none;
+        }
+        .logo img {
+            width: 35%;
+            height: 25%;
+            display: block;
+        }
     </style>
 </head>
-
 <body>
-<span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a th:href="@{/}">Profile</a>
-    <form class="navbar-brand" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn-logout">LogOut</button>
-    </form>
-</div>
+
 <section class="contact">
+    <nav class="navbar">
+        <div class="navbar">
+            <div class="logo"> <img src="/logo.png" alt="logo"></div>
+            <ul>
+                <li class="active"><a href="/">Home</a> </li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+    </nav>
     <div class="content">
         <h2>Contact US</h2>
         <p> If you have any questions, please contact us! </p>
@@ -296,17 +272,4 @@
     </div>
 </section>
 </body>
-<script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-        document.body.style.backgroundColor = "white";
-    }
-</script>
 </html>

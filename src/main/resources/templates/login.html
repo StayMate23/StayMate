@@ -10,29 +10,10 @@
       color: #fff;
       margin: 0;
       overflow: hidden;
-      background: url("https://wallpapers.com/images/hd/hotel-background-2qosz2h6xb1xpnka.jpg") center/cover;
+      background: url("https://wallpapers.com/images/hd/hotel-background-2qosz2h6xb1xpnka.jpg");
 
     }
-    .navbar {
-      position: fixed;
-      height: 80px;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: red;
-      text-decoration: none;
-    }
-    .logo img {
-      width: 35%;
-      height: 25%;
-      display: block;
-    }
     .logo{
       position: relative;
       height:auto;
@@ -47,6 +28,28 @@
       transition: 0.1s ease-in-out;
     }
 
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+      text-decoration: none;
+    }
+    .logo img {
+      width: 35%;
+      height: 25%;
+      display: block;
+    }
+
+    .navbar {
+      position: fixed;
+      height: 80px;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+
     .navbar ul {
       float: right;
       margin-right: 20px;
@@ -54,7 +57,7 @@
 
     .navbar ul li {
       list-style: none;
-      margin: 0 8px;
+      /**/
       display: inline-block;
       line-height: 80px;
     }
@@ -62,7 +65,7 @@
     .navbar ul li a {
       font-size: 20px;
       font-family: 'Roboto', sans-serif;
-      color: whitesmoke;
+      color: white;
       padding: 6px 13px;
       text-decoration: none;
       transition: .4s;
@@ -75,13 +78,13 @@
     }
     .form-box {
       background-color: rgba(0, 0, 0, 0.5);
+      margin: 110px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
       padding: 5vw; /* Use relative units for padding */
       border-radius: 5px;
       box-shadow: 0 0 10px #000;
       max-width: 500px; /* Use max-width instead of fixed width */
       width: 90%; /* Adjust width as needed */
-      margin: 100px auto; /* Center the form horizontally and adjust margin as needed */
-      height: auto; /* Allow height to adjust based on content */
+      height: 600px; /* Allow height to adjust based on content */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -152,7 +155,7 @@
     <ul>
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/contact">Contact Us</a></li>
-      <li><a href="/about">About</a></li>
+      <li><a href="/aboutus">About</a></li>
     </ul>
   </div>
 </nav>
@@ -182,5 +185,6 @@
     </a>
   </form>
 </div>
+
 </body>
 </html>
