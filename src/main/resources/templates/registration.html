@@ -83,6 +83,10 @@
     </div>
     <form th:action="@{/partner/reg}" method="post">
 
+        <div class="error-message" th:if="${emailTakenMessage}">
+            <p th:text="${emailTakenMessage}"></p>
+        </div>
+
         <div class="”input-form">
             <label for="partnerName"></label>
             <input th:field="*{newPartner.partnerName}" type="text" id="partnerName" placeholder="Enter Your Company Name">

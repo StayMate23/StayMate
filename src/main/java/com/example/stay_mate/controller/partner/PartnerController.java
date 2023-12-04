@@ -106,17 +106,36 @@ public class PartnerController {
         return "registration";
     }
 
+//    @PostMapping("/reg")
+//    @RolesAllowed(value = "ROLE_PARTNER")
+//    public String savePartner(
+//            @ModelAttribute("newPartner")
+//            Partner partner
+//    ) {
+//        try {
+//            partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+//            System.out.println(partner);
+//            partnerService.savePartner(partner);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        return "redirect:/login";
+//    }
+
+
     @PostMapping("/reg")
     @RolesAllowed(value = "ROLE_PARTNER")
-    public String savePartner(
-            @ModelAttribute("newPartner")
-            Partner partner
-    ) {
+    public String savePartner(@ModelAttribute("newPartner") Partner partner, Model model) {
+        String email = partner.getEmail();
+        if (partnerService.isEmailAlreadyTaken(email)) {
+            model.addAttribute("emailTakenMessage", "This email is already taken!");
+            return "registration";
+        }
         try {
             partner.setPassword(passwordEncoder.encode(partner.getPassword()));
-            System.out.println(partner);
             partnerService.savePartner(partner);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
