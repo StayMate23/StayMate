@@ -57,38 +57,38 @@
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
         }
+
         .btn-contact {
             color: black;
             background-color: dodgerblue;
             padding: 0 10px;
         }
 
-
         .container {
             margin-top: 20px;
         }
 
-        .table {
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            border: 1px solid #fff; /*White border /
+            border: 1px solid #fff; /*White border */
         }
 
-        .table th,
-        .table td {
+        table th,
+        table td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #fff; / White bottom border /
-            color: #000; / Black text */
+            border-bottom: 1px solid #fff; /* White bottom border */
+            color: #000; /* Black text */
         }
 
-        .table th {
+        table th {
             background-color: #343a40;
             color: #fff;
         }
 
-        .table tbody tr:nth-of-type(odd) {
+        table tbody tr:nth-of-type(odd) {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -110,17 +110,14 @@
         }
     </style>
 </head>
+
+<body>
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}" >Profile</a>
     <a th:href="@{'/hotels/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Hotel</a>
     <a  th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-    <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-    <!--    <a th:href="@{/bars/all}">Bars</a>-->
-    <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-    <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form th:action="@{'/room/' + ${room.id} + '/delete'}" method="post">
         <input type="hidden" name="_method" value="delete">
@@ -130,15 +127,13 @@
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
 </div>
-
-
-<body>
+<div class="container">
 <table>
     <thead>
     <tr>
-        <td>Room Number</td>
-        <td>Capacity</td>
-        <td>Price</td>
+        <th>Room Number</th>
+        <th>Capacity</th>
+        <th>Price</th>
     </tr>
     </thead>
     <tr>
@@ -153,7 +148,7 @@
         </td>
     </tr>
 </table>
-</body>
+</div>
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -167,4 +162,5 @@
         document.body.style.backgroundColor = "white";
     }
 </script>
+</body>
 </html>
