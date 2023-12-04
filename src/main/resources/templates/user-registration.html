@@ -13,7 +13,7 @@
         }
         .form-box {
             background-color: rgba(0, 0, 0, 0.5);
-            margin: 90px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
+            margin: 50px auto; /* 50px távolság a lap tetejétől, és középre igazítva */
             padding: 40px;
             border-radius: 5px;
             box-shadow: 0 0 10px #000;
@@ -154,8 +154,7 @@
     <div class="header-text">
         Registration Form
     </div>
-
-    <form th:action="@{/user/reg}" method="post">
+    <form th:action="@{/user/reg}" enctype="multipart/form-data" method="post">
 
         <div class="”input-form">
             <label for="surname"></label>
@@ -192,8 +191,12 @@
             <label for="birthdate"></label>
             <input th:field="*{newUser.birthDate}" type="date" id="birthdate">
 
-
-
+            <div class="image">
+                <div class="form-group">
+                    <input type="hidden" th:field="*{newUser.photo}">
+                    <input type="file" name="image" accept="image/*" class="form-control-file">
+                </div>
+                <div class = "box-footer">
         </div>
         <div class=”btn”>
             <button type="submit">Register</button>

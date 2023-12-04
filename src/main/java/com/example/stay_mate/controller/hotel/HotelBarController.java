@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.hotel;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.hotel.HotelBar;
 import com.example.stay_mate.service.hotel.HotelBarService;
 import com.example.stay_mate.service.hotel.HotelService;
@@ -7,7 +8,14 @@ import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/hotel-bar")
@@ -36,6 +44,7 @@ public class HotelBarController {
         model.addAttribute("menu_book",
                 menuBookService.getMenuBookByHotelBar(hotelBarService.getHotelBarById(hotelBarId)));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarById(hotelBarId));
+        model.addAttribute("image", "/uploads/" + hotelBarId + "-hotelBar-" + hotelBarService.getHotelBarById(hotelBarId).getName());
         return "hotel-bar";
     }
 
@@ -48,9 +57,25 @@ public class HotelBarController {
     }
 
     @PostMapping("/create/{hotel-id}/{partner-id}")
-    public String addHotelBar(@ModelAttribute("new_hotel_bar") HotelBar hotelBar, @PathVariable("hotel-id") Integer hotelId, @PathVariable("partner-id") Integer partnerId) {
-        hotelBar.setPartner(partnerService.getPartnerById(partnerId));
-        hotelBar.setHotel(hotelService.getHotelById(hotelId));
+    public String addHotelBar(@ModelAttribute("new_hotel_bar") HotelBar hotelBar,
+                              @PathVariable("hotel-id") Integer hotelId,
+                              @PathVariable("partner-id") Integer partnerId,
+                              @RequestParam("hbImage") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()){
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            hotelBar.setPhoto(fileName);
+            hotelBar.setHotel(hotelService.getHotelById(hotelId));
+            hotelBar.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + hotelBar.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }else {
+            if (hotelBar.getPhoto().isEmpty()){
+                hotelBar.setPhoto(null);
+                hotelBar.setHotel(hotelService.getHotelById(hotelId));
+                hotelBar.setPartner(partnerService.getPartnerById(partnerId));
+                hotelBarService.saveHotelBar(hotelBar);
+            }
+        }
         hotelBarService.saveHotelBar(hotelBar);
         return "redirect:/hotels/" + hotelId + '/' + partnerId;
     }
@@ -60,13 +85,15 @@ public class HotelBarController {
         model.addAttribute("updated_hotel_bar", hotelBarService.getHotelBarById(id));
         return "hotel_bar_update";
     }
+
     @PostMapping("/update/{id}")
-    public String updateHotelBar(@ModelAttribute("updated_hotel_bar")HotelBar hotelBar, @PathVariable("id")Integer hotelBarId){
+    public String updateHotelBar(@ModelAttribute("updated_hotel_bar") HotelBar hotelBar, @PathVariable("id") Integer hotelBarId) {
         hotelBarService.saveHotelBar(hotelBar);
         return "redirect:/hotel-bar/" + hotelBarId;
     }
+
     @PostMapping("/{id}/delete")
-    public String deleteHotelBar(@PathVariable("id")Integer hotelBarId, HotelBar hotelBar){
+    public String deleteHotelBar(@PathVariable("id") Integer hotelBarId, HotelBar hotelBar) {
         menuBookService.deleteMenuBookByHotelBar(hotelBarService.getHotelBarById(hotelBarId));
         hotelBarService.deleteHotelBarById(hotelBarId);
         return "redirect:/partner/current";

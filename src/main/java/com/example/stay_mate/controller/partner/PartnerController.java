@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.partner;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.partner.Partner;
 import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.bar.BarService;
@@ -17,7 +18,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/partner")
@@ -60,7 +65,7 @@ public class PartnerController {
 
     @GetMapping("/current")
     public String getCurrentPartner(Model model, @AuthenticationPrincipal Partner partner) {
-        model.addAttribute("room",roomService.getRoomByPartner(partner));
+        model.addAttribute("room", roomService.getRoomByPartner(partner));
         model.addAttribute("menu_book", menuBookService.getMenuBookByPartner(partner));
         model.addAttribute("hotel_restaurant", hotelRestaurantService.getHotelRestaurantByPartner(partner));
         model.addAttribute("hotel_bar", hotelBarService.getHotelBarByPartner(partner));
@@ -106,36 +111,34 @@ public class PartnerController {
         return "registration";
     }
 
-//    @PostMapping("/reg")
-//    @RolesAllowed(value = "ROLE_PARTNER")
-//    public String savePartner(
-//            @ModelAttribute("newPartner")
-//            Partner partner
-//    ) {
-//        try {
-//            partner.setPassword(passwordEncoder.encode(partner.getPassword()));
-//            System.out.println(partner);
-//            partnerService.savePartner(partner);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return "redirect:/login";
-//    }
-
-
     @PostMapping("/reg")
     @RolesAllowed(value = "ROLE_PARTNER")
-    public String savePartner(@ModelAttribute("newPartner") Partner partner, Model model) {
+    public String savePartner(
+            @ModelAttribute("newPartner") Partner partner,
+            @RequestParam("image")MultipartFile multipartFile,
+            Model model) throws IOException {
         String email = partner.getEmail();
         if (partnerService.isEmailAlreadyTaken(email)) {
             model.addAttribute("emailTakenMessage", "This email is already taken!");
             return "registration";
         }
         try {
+            if (!multipartFile.isEmpty()) {
+                String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                partner.setPhoto(fileName);
+                String upload = "/images/" + partner.getId();
+                FileUploadUtil.saveFile(upload, fileName, multipartFile);
+            } else {
+                if (partner.getPhoto().isEmpty()) {
+                    partner.setPhoto(null);
+                    partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+                    partnerService.savePartner(partner);
+                }
+            }
             partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+            System.out.println(partner);
             partnerService.savePartner(partner);
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
 

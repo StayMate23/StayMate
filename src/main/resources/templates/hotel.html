@@ -166,12 +166,7 @@
                 <h5 th:text="${hotel.description}"></h5>
             </td>
             <td>
-            <ul>
-                <li th:each="actual : ${hotel}">
-                    <img th:src="@{'/uploads/' + ${partner.id} + '-hotel-' + ${actual.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
-                </li>
-
-            </ul>
+                <img th:src="@{'/uploads/' + ${hotel.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
             </td>
             <td>
                 <ul>

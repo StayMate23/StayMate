@@ -154,7 +154,7 @@
     <div class="header-text">
         Registration Form
     </div>
-    <form th:action="@{/partner/reg}" method="post">
+    <form th:action="@{/partner/reg}" enctype="multipart/form-data" method="post">
 
         <div class="error-message" th:if="${emailTakenMessage}">
             <p th:text="${emailTakenMessage}"></p>
@@ -186,12 +186,17 @@
 
             <label for="taxNum"></label>
             <input th:field="*{newPartner.taxNum}" type="text" id="taxNum" placeholder="Enter Your Tax Number">
-
         </div>
-        <div class=”btn”>
-            <button type="submit">Register</button>
-
-        </div>
+        <div class="image">
+            <div class="form-group">
+                <input type="hidden" th:field="*{newPartner.photo}">
+                <input type="file" name="image" accept="image/*" class="form-control-file">
+            </div>
+            <div class = "box-footer">
+                <button type="submit" class = "btn-submit">
+                    Ready
+                </button>
+            </div>
     </form>
 </div>
 </body>
