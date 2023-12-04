@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.user;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.user.User;
 import com.example.stay_mate.service.ReservationService;
 import com.example.stay_mate.service.user.UserService;
@@ -7,7 +8,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -61,11 +66,26 @@ public class UserController {
     }
     @PostMapping("/reg")
     public String saveUser(
-            @ModelAttribute("newUser")
-            User user
-    ){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.saveUser(user);
+            @ModelAttribute("newUser") User user,
+            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                user.setPhoto(fileName);
+                String upload = "/images/" + user.getId();
+                FileUploadUtil.saveFile(upload, fileName, multipartFile);
+            } else {
+                if (user.getPhoto().isEmpty()) {
+                    user.setPhoto(null);
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    userService.saveUser(user);
+                }
+            }
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userService.saveUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/user-login";
     }
 
