@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.hotel;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.hotel.HotelRestaurant;
 import com.example.stay_mate.service.hotel.HotelRestaurantService;
 import com.example.stay_mate.service.hotel.HotelService;
@@ -7,7 +8,11 @@ import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/hotel-restaurant")
@@ -53,9 +58,25 @@ public class HotelRestaurantController {
     @PostMapping("/create/{hotel-id}/{partner-id}")
     public String addHotelRestaurant(@ModelAttribute("new_hotel_restaurant") HotelRestaurant hotelRestaurant,
                                      @PathVariable("hotel-id") Integer hotelId,
-                                     @PathVariable("partner-id") Integer partnerId) {
-        hotelRestaurant.setPartner(partnerService.getPartnerById(partnerId));
-        hotelRestaurant.setHotel(hotelService.getHotelById(hotelId));
+                                     @PathVariable("partner-id") Integer partnerId,
+                                     @RequestParam("hrImage")MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            hotelRestaurant.setPhoto(fileName);
+            hotelRestaurant.setHotel(hotelService.getHotelById(hotelId));
+            hotelRestaurant.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + hotelRestaurant.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }
+        else {
+            if (hotelRestaurant.getPhoto().isEmpty()){
+                hotelRestaurant.setPhoto(null);
+                hotelRestaurant.setHotel(hotelService.getHotelById(hotelId));
+                hotelRestaurant.setPartner(partnerService.getPartnerById(partnerId));
+                hotelRestaurantService.saveHotelRestaurant(hotelRestaurant);
+            }
+
+        }
         hotelRestaurantService.saveHotelRestaurant(hotelRestaurant);
         return "redirect:/hotels/" + hotelId + "/" + partnerId;
     }

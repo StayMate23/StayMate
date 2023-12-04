@@ -197,8 +197,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Hotel Restaurant Menu </h1>
             <div class="card-body">
-                <form th:action="@{'/menu/create-hotel-restaurant/' + ${hotelRestaurantId} + '/' + ${hotelId} + '/'+${partnerId}}"
-                      method="post">
+                <form th:action="@{'/menu/create-hotel-restaurant/' + ${hotelRestaurantId} + '/' + ${hotelId} + '/'+${partnerId}}" enctype="multipart/form-data" method="post">
                     <div class="form-group">
                         <label> Restaurant Name </label>
                         <label>
@@ -237,17 +236,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label> Image </label>
-                        <label>
-                            <input
-                                    type="image"
-                                    name="image"
-                                    th:field="*{hotel_restaurant_new_menu.price}"
-                                    class="form-control"
-                                    placeholder="Upload Your Image"
-                                    alt="Hotel Restaurant Menu Image"/>
-                        </label>
-                        <div class="box-footer">
+                        <div class="form-group">
+                            <input type="hidden" th:field="*{hotel_restaurant_new_menu.photo}">
+                            <input type="file" name="hrImage" accept="image/*" class="form-control-file">
+                        </div>
                             <button type="submit" class="btn btn-primary">
                                 Add Service
                             </button>

@@ -214,14 +214,15 @@
             </label>
           </div>
           <div class="image">
-          <div class="form-group">
-            <input type="file" name="barimage" accept="image/*" class="form-control-file">
-          </div>
-          <div class = "box-footer">
-            <button type="submit" class = "btn-submit">
-              Ready
-            </button>
-          </div>
+            <div class="form-group">
+              <input type="hidden" th:field="*{new_bar.photo}">
+              <input type="file" name="image" accept="image/*" class="form-control-file">
+            </div>
+            <div class = "box-footer">
+              <button type="submit" class = "btn-submit">
+                Ready
+              </button>
+            </div>
         </form>
       </div>
     </div>

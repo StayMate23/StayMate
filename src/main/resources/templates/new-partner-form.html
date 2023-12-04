@@ -194,7 +194,7 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Create New Partner </h1>
             <div class = "card-body">
-                <form th:action="@{/partner/add}">
+                <form th:action="@{/partner/add}" enctype="multipart/form-data" method="post">
                     <input type="hidden" th:value="${new_partner.id}" th:field="*{new_partner.id}">
                     <div class ="form-group">
                         <label> Partner Name </label>
@@ -286,11 +286,16 @@
                             />
                         </label>
                     </div>
-
-                    <div class = "box-footer">
-                        <button type="submit" class = "btn btn-primary">
-                            Ready
-                        </button>
+                    <div class="image">
+                        <div class="form-group">
+                            <input type="hidden" th:field="*{new_partner.photo}">
+                            <input type="file" name="image" accept="image/*" class="form-control-file">
+                        </div>
+                        <div class = "box-footer">
+                            <button type="submit" class = "btn-submit">
+                                Ready
+                            </button>
+                        </div>
                     </div>
                 </form>
 

@@ -139,6 +139,7 @@
     <tr>
       <td>Name</td>
       <td>Descriptions</td>
+      <td>Image</td>
       <td>Menu</td>
     </tr>
     </thead>
@@ -148,6 +149,9 @@
       </td>
       <td>
         <h5 th:text="${hotel_restaurant.description}"></h5>
+      </td>
+      <td>
+        <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" style="width: 250px; height: auto;" alt="hrImage">
       </td>
       <td>
         <ul>

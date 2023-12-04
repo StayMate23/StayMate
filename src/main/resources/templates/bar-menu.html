@@ -143,15 +143,10 @@
         <tr>
             <td><h5 th:text="${bar_menu_book.name}"></h5></td>
             <td><h5 th:text="${bar_menu_book.description}"></h5></td>
-            <td><h5 th:text="${bar_menu_book.price}"></h5></td>
             <td>
-                <ul>
-                    <li th:each="actual : ${bar_menu_book}">
-                        <img th:src="@{'/uploads/' + ${bar_menu_book.partner.id} + '-hotel-' + ${bar_menu_book.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
-                    </li>
-
-                </ul>
+                <img th:src="@{'/uploads/' + ${bar_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="rImage">
             </td>
+            <td><h5 th:text="${bar_menu_book.price}"></h5></td>
         </tr>
         </tbody>
     </table>

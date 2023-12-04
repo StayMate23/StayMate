@@ -141,6 +141,7 @@
     <tr>
       <th>Name</th>
       <th>Descriptions</th>
+      <th>Image</th>
       <th>Price</th>
     </tr>
     </thead>
@@ -150,6 +151,9 @@
       </td>
       <td>
         <h5 th:text="${hotel_restaurant_menu_book.description}"></h5>
+      </td>
+      <td>
+        <img th:src="@{'/uploads/' + ${hotel_restaurant_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
       </td>
       <td>
         <h5 th:text="${hotel_restaurant_menu_book.price}"></h5>

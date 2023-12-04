@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.hotel;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.hotel.Hotel;
 import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
@@ -12,6 +13,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -74,16 +76,23 @@ public class HotelController {
     @PostMapping("/create/{partner-id}")
     public String addHotel(@ModelAttribute("new_hotel") Hotel hotel,
                            @PathVariable("partner-id") Integer partnerId,
-                           @RequestParam("image") MultipartFile hotelimage) throws IOException {
-        hotel.setPartner(partnerService.getPartnerById(partnerId));
-        hotelService.saveHotel(hotel);
-        StringBuilder fileNames = new StringBuilder();
-        Path fileNameAndPath =
-                Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/uploads",
-                        partnerId + "-" + "hotel" + "-"+ hotel.getName());
-        fileNames.append(partnerId + "-" + "hotel" + "-"+ hotel.getName());
-        Files.write(fileNameAndPath, hotelimage.getBytes());
+                           @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            hotel.setPhoto(fileName);
+            hotel.setPartner(partnerService.getPartnerById(partnerId));
+            hotelService.saveHotel(hotel);
+            String upload = "/images/" + hotel.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
 
+        }else {
+            if (hotel.getPhoto().isEmpty()){
+                hotel.setPhoto(null);
+                hotel.setPartner(partnerService.getPartnerById(partnerId));
+                hotelService.saveHotel(hotel);
+            }
+        }
+        hotelService.saveHotel(hotel);
         return "redirect:/partner/current";
 
     }

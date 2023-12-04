@@ -37,6 +37,8 @@ public class Partner implements UserDetails {
     private Integer companyRegNum;
     @JoinColumn(name = "tax_num")
     private Integer taxNum;
+    @Column(length = 64)
+    private String photo;
 
 
     @Override
