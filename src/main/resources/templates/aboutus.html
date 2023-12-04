@@ -97,11 +97,7 @@
         }
 
 
-
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             position: fixed;
             height: 80px;
             width: 100%;
@@ -111,30 +107,30 @@
         }
 
         .navbar ul {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            float: right;
             margin-right: 20px;
-            flex: 1;
         }
 
         .navbar ul li {
             list-style: none;
-            margin: 0 8px;
-            line-height: 80px;
+            /**/
+            display: inline-block;
+            line-height: 60px;
         }
 
         .navbar ul li a {
             font-size: 20px;
             font-family: 'Roboto', sans-serif;
-            color: black;
+            color: white;
             padding: 6px 13px;
             text-decoration: none;
             transition: .4s;
         }
 
+        .navbar ul li a.active,
         .navbar ul li a:hover {
-            color: red;
+            background: red;
+            border-radius: 2px;
         }
 
     </style>
@@ -178,24 +174,24 @@
                             <span class="address-logo">
                                 <i class="fas fa-paper-plane"></i>
                             </span>
-                    <p>Address</p>
-                    <span class="saprater">:</span>
+                    <p>Address:</p>
+                    <span class="saprater"></span>
                     <p>Budapest, Bécsi út 53-55, 1036 Magyarország</p>
                 </li>
                 <li>
                             <span class="address-logo">
                                 <i class="fas fa-phone-alt"></i>
                             </span>
-                    <p>Phone No</p>
-                    <span class="saprater">:</span>
+                    <p>Phone Number:</p>
+                    <span class="saprater"></span>
                     <p>0747969570</p>
                 </li>
                 <li>
                             <span class="address-logo">
                                 <i class="far fa-envelope"></i>
                             </span>
-                    <p>Email ID</p>
-                    <span class="saprater">:</span>
+                    <p>Email ID:</p>
+                    <span class="saprater"></span>
                     <p>23staymate23@gmail.com</p>
                 </li>
             </ul>
