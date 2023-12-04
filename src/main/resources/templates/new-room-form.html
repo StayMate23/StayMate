@@ -190,7 +190,7 @@
             <label>
               <input
                       type = "text"
-                      name = "rommNumber"
+                      name = "roomNumber"
                       th:field = "*{new_room.roomNumber}"
                       class = "form-control"
                       placeholder="Room Number"
@@ -221,22 +221,10 @@
               />
             </label>
           </div>
-
-          <div class ="form-group">
-            <label> Image </label>
-            <label>
-              <input
-                      type = "image"
-                      name = "image"
-                      th:field = "*{new_room.pricePerDay}"
-                      class = "form-control"
-                      placeholder="Upload Your Room Image"
-               alt="Room Image"/>
-            </label>
             <div class="image">
               <div class="form-group">
                 <input type="hidden" th:field="*{new_room.photo}">
-                <input type="file" name="hbImage" accept="image/*" class="form-control-file">
+                <input type="file" name="roomImage" accept="image/*" class="form-control-file">
               </div>
               <div class = "box-footer">
                 <button type="submit" class = "btn-submit">
