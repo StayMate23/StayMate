@@ -265,7 +265,7 @@
         <td th:text="${actualRoom.id}"></td>
         <td th:text="${actualRoom.roomNumber}"></td>
         <td th:text="${actualRoom.hotel.description}"></td>
-
+        <td><img th:src="@{'/uploads/' + ${actualRoom.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-room/' + ${actualRoom.id}}">
                 <button class="btn">Book Now</button>
@@ -276,6 +276,7 @@
         <td th:text="${actualRest.id}"></td>
         <td th:text="${actualRest.name}"></td>
         <td th:text="${actualRest.description}"></td>
+        <td><img th:src="@{'/uploads/' + ${actualRest.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-restaurant/' + ${actualRest.id}}">
                 <button class="btn">Book Now</button>
@@ -286,6 +287,7 @@
         <td th:text="${actualBar.id}"></td>
         <td th:text="${actualBar.name}"></td>
         <td th:text="${actualBar.description}"></td>
+        <td><img th:src="@{'/uploads/' + ${actualBar.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-bar/' + ${actualBar.id}}">
                 <button class="btn">Book Now</button>
@@ -296,6 +298,7 @@
         <td th:text="${hr.id}"></td>
         <td th:text="${hr.name}"></td>
         <td th:text="${hr.description}"></td>
+        <td><img th:src="@{'/uploads/' + ${hr.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-restaurant/' + ${hr.id}}">
                 <button class="btn">Book Now</button>
@@ -306,7 +309,7 @@
         <td th:text="${hb.id}"></td>
         <td th:text="${hb.name}"></td>
         <td th:text="${hb.description}"></td>
-        <!--        td image th:src= " 'uploads/' + ${partnerid} + '-hotel-' +  ${hotel.name}} "-->
+        <td><img th:src="@{'/uploads/' + ${hb.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-bar/' + ${hb.id}}">
                 <button class="btn">Book Now</button>
