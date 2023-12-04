@@ -166,7 +166,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center" style="color:black;"> Update Partner </h1>
             <div class="card-body">
-                <form method="post" th:action="@{'/partner/' +${partner.id} + '/update'}">
+                <form method="post" th:action="@{'/partner/' +${partner.id} + '/update'}" enctype="multipart/form-data">
 
                     <input type="hidden" th:value="${partner.id}" th:field="*{partner.id}">
 
@@ -203,7 +203,7 @@
 
                     <div class="form-group">
                         <label for="compregnum">Company Reg. Number</label>
-                        <input type="number"  class="form-control" id="compregnum" th:placeholder="${partner.companyRegNum}"
+                        <input type="text"  class="form-control" id="compregnum" th:placeholder="${partner.companyRegNum}"
                                th:field="*{partner.companyRegNum}"><br>
                     </div>
 
@@ -211,6 +211,11 @@
                         <label for="taxnum">Tax Number</label>
                         <input type="text"  class="form-control" id="taxnum" th:placeholder="${partner.telNum}"
                                th:field="*{partner.taxNum}"><br>
+                        <div class="image">
+                            <div class="form-group">
+                                <input type="hidden" th:field="*{partner.photo}">
+                                <input type="file" name="uImage" accept="image/*" class="form-control-file">
+                            </div>
                     </div>
                     <div class="box-footer">
                         <button type="submit" class="btn-submit">
