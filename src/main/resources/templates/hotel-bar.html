@@ -6,6 +6,14 @@
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp8717927.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+        }
         .sidenav {
             height: 100%;
             width: 0;
@@ -108,10 +116,7 @@
     <a th:href="@{'/hotels/' + ${hotel_bar.hotel.id} + '/' + ${hotel_bar.partner.id}}">Hotel</a>
     <a th:href="@{'/hotel-bar/update/' + ${hotel_bar.id}}">Update Bar</a>
     <a th:href="@{'/bars/create/' + ${hotel_bar.partner.id}}">Add bar</a>
-    <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <a>Delete Bar</a>
-    </form>
+
     <a th:href="@{'/menu/create-hotel-bar/' + ${hotel_bar.id} + '/' + ${hotel_bar.hotel.id} +'/'+ ${hotel_bar.partner.id}}">Add
         Drink Menu </a>
 <!--    <a th:href="@{/partner/all}">Partners</a>-->
@@ -120,6 +125,10 @@
 <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form th:action="@{'/hotel-bar/' + ${hotel_bar.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn-logout">Delete Bar</button>
+    </form>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>

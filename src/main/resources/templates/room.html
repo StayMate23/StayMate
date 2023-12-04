@@ -116,16 +116,16 @@
     <a th:href="@{/}" >Profile</a>
     <a th:href="@{'/hotels/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Hotel</a>
     <a  th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
+<!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+    <!--    <a th:href="@{/bars/all}">Bars</a>-->
+    <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+    <!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form th:action="@{'/room/' + ${room.id} + '/delete'}" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button type="submit" class="btn btn-link">Delete Room</button>
+        <button type="submit" class="btn-logout">Delete Room</button>
     </form>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--    <a th:href="@{/bars/all}">Bars</a>-->
-<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--    <a th:href="@{/services/all}">Services</a>-->
-    <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>

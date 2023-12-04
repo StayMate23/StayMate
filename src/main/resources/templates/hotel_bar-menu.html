@@ -120,16 +120,16 @@
   <a th:href="@{'/hotel-bar/' + ${hotel_bar_menu_book.hotelBar.id}}">Bar</a>  <a th:href="@{/partner/all}">Partners</a>
   <a th:href="@{'/menu/update-hotel-bar/' + ${hotel_bar_menu_book.hotelBar.id} + '/' + ${hotel_bar_menu_book.id}}">Update Menu</a>
 
+
+  <!--  <a th:href="@{/hotels/all}">Hotels</a>-->
+  <!--  <a th:href="@{/bars/all}">Bars</a>-->
+  <!--  <a th:href="@{/restaurants/all}">Restaurants</a>-->
+  <!--  <a th:href="@{/services/all}">Services</a>-->
+  <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
   <form th:action="@{'/menu/' + ${hotel_bar_menu_book.id} + '/delete'}" method="post">
     <input type="hidden" name="_method" value="delete">
-    <a>Delete Menu</a>
+    <button type="submit" class="btn-logout">Delete Menu</button>
   </form>
-
-<!--  <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--  <a th:href="@{/bars/all}">Bars</a>-->
-<!--  <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--  <a th:href="@{/services/all}">Services</a>-->
-  <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn-logout">LogOut</button>
   </form>

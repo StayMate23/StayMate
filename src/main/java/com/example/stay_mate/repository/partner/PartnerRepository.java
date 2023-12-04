@@ -13,4 +13,6 @@ public interface PartnerRepository extends JpaRepository<Partner, Integer> {
     Optional<Partner> findByEmail(String email);
     void deletePartnerById(Integer id);
     Partner getPartnerByEmail(String email);
+
+    boolean existsByEmail(String email);
 }

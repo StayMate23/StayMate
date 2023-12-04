@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
         *{
@@ -13,7 +13,7 @@
             font-family: poppins;
         }
 
-        body{
+        body {
             background-color: lightgray;
         }
 
@@ -26,19 +26,20 @@
             /*padding: 80px 12%;*/
             padding: 200px 12% 80px;
         }
-        .about-left img{
+
+        .about-left img {
             width: 420px;
             height: auto;
             transform: translateY(50px);
         }
 
-        .fa-brands fa-java{
-            @import "https://fontawesome.com/icons/java?f=brands&s=solid";
+        .fa-brands fa-java {
+        @import "https://fontawesome.com/icons/java?f=brands&s=solid";
             box-shadow: #495057;
         }
 
-        .fa-solid fa-book{
-            @import "https://fontawesome.com/icons/book?f=classic&s=solid";
+        .fa-solid fa-book {
+        @import "https://fontawesome.com/icons/book?f=classic&s=solid";
         }
 
         .about-right {
@@ -97,11 +98,7 @@
         }
 
 
-
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             position: fixed;
             height: 80px;
             width: 100%;
@@ -111,30 +108,30 @@
         }
 
         .navbar ul {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            float: right;
             margin-right: 20px;
-            flex: 1;
         }
 
         .navbar ul li {
             list-style: none;
-            margin: 0 8px;
-            line-height: 80px;
+            /**/
+            display: inline-block;
+            line-height: 60px;
         }
 
         .navbar ul li a {
             font-size: 20px;
             font-family: 'Roboto', sans-serif;
-            color: black;
+            color: white;
             padding: 6px 13px;
             text-decoration: none;
             transition: .4s;
         }
 
+        .navbar ul li a.active,
         .navbar ul li a:hover {
-            color: red;
+            background: red;
+            border-radius: 2px;
         }
 
     </style>
@@ -173,32 +170,35 @@
             transform everything, driving us to grow and build together.
         </p>
         <div class="address">
-            <ul>
-                <li>
-                            <span class="address-logo">
-                                <i class="fas fa-paper-plane"></i>
-                            </span>
-                    <p>Address</p>
-                    <span class="saprater">:</span>
-                    <p>Budapest, Bécsi út 53-55, 1036 Magyarország</p>
-                </li>
-                <li>
-                            <span class="address-logo">
-                                <i class="fas fa-phone-alt"></i>
-                            </span>
-                    <p>Phone No</p>
-                    <span class="saprater">:</span>
-                    <p>0747969570</p>
-                </li>
-                <li>
-                            <span class="address-logo">
-                                <i class="far fa-envelope"></i>
-                            </span>
-                    <p>Email ID</p>
-                    <span class="saprater">:</span>
-                    <p>23staymate23@gmail.com</p>
-                </li>
-            </ul>
+            <table>
+                <tr>
+                    <td>
+                        <span class="address-logo">
+                            <i class="fas fa-paper-plane"></i>
+                        </span>
+                    </td>
+                    <td style="padding-right: 40px;"><p>Address</p></td>
+                    <td><p>Budapest, Bécsi út 53-55, 1036 Magyarország</p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="address-logo">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                    </td>
+                    <td style="padding-right: 40px;"><p>Phone No</p></td>
+                    <td><p>0747969570</p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="address-logo">
+                            <i class="far fa-envelope"></i>
+                        </span>
+                    </td>
+                    <td style="padding-right: 40px;"><p>Email ID</p></td>
+                    <td><p>23staymate23@gmail.com</p></td>
+                </tr>
+            </table>
         </div>
         <div class="expertise">
             <h3>Our Expertise</h3>

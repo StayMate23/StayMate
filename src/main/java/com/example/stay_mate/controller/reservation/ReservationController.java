@@ -81,7 +81,7 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setRoom(roomService.getRoomById(roomId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/reservation/thank-you";
     }
     // TODO kitalálni hogyan legyen a navigáció, aztán az árat visszaadni majd a szűrést dátumra és utána főre
 
@@ -102,7 +102,7 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setRestaurant(restaurantService.getRestaurantById(restaurantId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/reservation/thank-you";
     }
     @GetMapping("/{user-id}/create-bar/{bar-id}")
     public String createBarReservation(Model model,
@@ -121,7 +121,7 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setBar(barService.getBarById(barId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/reservation/thank-you";
     }
     @GetMapping("/{user-id}/create-hotel-restaurant/{hotel-restaurant-id}")
     public String createHotelRestaurantReservation(Model model,
@@ -140,7 +140,7 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setHotelRestaurant(hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/reservation/thank-you";
     }
 
     @GetMapping("/{user-id}/create-hotel-bar/{hotel-bar-id}")
@@ -160,7 +160,11 @@ public class ReservationController {
         newReservation.setUser(userService.getUserById(userId));
         newReservation.setHotelBar(hotelBarService.getHotelBarById(hotelBarId));
         reservationService.saveReservation(newReservation);
-        return "redirect:/user/current";
+        return "redirect:/reservation/thank-you";
+    }
+    @GetMapping("/thank-you")
+    public String showThankYouPage() {
+        return "thankyou";
     }
 // ez user nelkul tolti be a home pagen
     @GetMapping("/all")

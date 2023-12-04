@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PartnerService implements UserDetailsService {
@@ -37,6 +38,11 @@ public class PartnerService implements UserDetailsService {
     }
 
     ;
+
+
+    public boolean isEmailAlreadyTaken(String email) {
+        return partnerRepository.existsByEmail(email);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
