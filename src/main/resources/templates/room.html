@@ -138,6 +138,7 @@
     <tr>
         <td>Room Number</td>
         <td>Capacity</td>
+        <td>Image</td>
         <td>Price</td>
     </tr>
     </thead>
@@ -150,6 +151,9 @@
         </td>
         <td>
             <h5 th:text="${room.pricePerDay}"></h5>
+        </td>
+        <td>
+            <img th:src="@{'/uploads/' + ${room.getPhoto()}}" style="width: 250px; height: auto;" alt="roomImage">
         </td>
     </tr>
 </table>

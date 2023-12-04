@@ -37,9 +37,6 @@ public class PartnerService implements UserDetailsService {
         return partnerRepository.getPartnerByEmail(email);
     }
 
-    ;
-
-
     public boolean isEmailAlreadyTaken(String email) {
         return partnerRepository.existsByEmail(email);
     }
