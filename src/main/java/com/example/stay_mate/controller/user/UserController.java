@@ -95,9 +95,26 @@ public class UserController {
         return "user-update";
     }
     @PostMapping("/{id}/update")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Integer id){
+    public String updateUser(@ModelAttribute("user") User user,
+                             @PathVariable("id") Integer id,
+                             @RequestParam("usImage") MultipartFile multipartFile) throws IOException{
+        try {
+            if (!multipartFile.isEmpty()){
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                user.setPhoto(updatedFileName);
+                String upload = "/images/" + user.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            }else {
+                if (user.getPhoto().isEmpty()){
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    userService.saveUser(user);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.saveUser(user);
-        return "redirect:/user/current";
+        return "update-logout";
     }
 }

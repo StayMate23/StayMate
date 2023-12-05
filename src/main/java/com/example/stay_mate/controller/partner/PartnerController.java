@@ -12,9 +12,12 @@ import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
 import com.example.stay_mate.service.room.RoomService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 @RequestMapping(value = "/partner")
@@ -159,7 +164,6 @@ public class PartnerController {
                                 @PathVariable("id") Integer id,
                                 @RequestParam("uImage") MultipartFile multipartFile) throws IOException {
         try {
-            String originalPhoto = partner.getPhoto();
             if (!multipartFile.isEmpty()) {
                 String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 partner.setPhoto(updatedFileName);
@@ -167,7 +171,6 @@ public class PartnerController {
                 FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
             } else {
                 if (partner.getPhoto().isEmpty()) {
-                    partner.setPhoto(originalPhoto);
                     partner.setPassword(passwordEncoder.encode(partner.getPassword()));
                     partnerService.savePartner(partner);
                 }
@@ -177,6 +180,7 @@ public class PartnerController {
         }
         partner.setPassword(passwordEncoder.encode(partner.getPassword()));
         partnerService.savePartner(partner);
-        return "redirect:/partner/current";
+        return "update-logout";
     }
+
 }
