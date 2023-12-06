@@ -147,7 +147,6 @@ public class PartnerController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "redirect:/login";
     }
 
