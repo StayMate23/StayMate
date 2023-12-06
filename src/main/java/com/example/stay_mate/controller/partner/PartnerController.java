@@ -2,7 +2,6 @@ package com.example.stay_mate.controller.partner;
 
 import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.partner.Partner;
-import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.hotel.FacilitiesService;
 import com.example.stay_mate.service.hotel.HotelBarService;
@@ -12,8 +11,13 @@ import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerAdminService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
+import com.example.stay_mate.service.room.RoomService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.security.RolesAllowed;
-import org.springframework.context.annotation.Role;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 @RequestMapping(value = "/partner")
@@ -84,11 +90,11 @@ public class PartnerController {
         return "new-partner-form";
     }
 
- //  @PostMapping("/create")
- //  public String addPartner(@ModelAttribute("partner") Partner partner) {
- //      partnerService.savePartner(partner);
- //      return "redirect:/";
- //  }
+    //  @PostMapping("/create")
+    //  public String addPartner(@ModelAttribute("partner") Partner partner) {
+    //      partnerService.savePartner(partner);
+    //      return "redirect:/";
+    //  }
 
     @PostMapping("/{id}/delete")
     public String deletePartner(@PathVariable("id") Integer id, Partner partner) {
@@ -115,7 +121,7 @@ public class PartnerController {
     @RolesAllowed(value = "ROLE_PARTNER")
     public String savePartner(
             @ModelAttribute("newPartner") Partner partner,
-            @RequestParam("image")MultipartFile multipartFile,
+            @RequestParam("image") MultipartFile multipartFile,
             Model model) throws IOException {
         String email = partner.getEmail();
         if (partnerService.isEmailAlreadyTaken(email)) {
@@ -138,7 +144,7 @@ public class PartnerController {
             partner.setPassword(passwordEncoder.encode(partner.getPassword()));
             System.out.println(partner);
             partnerService.savePartner(partner);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -147,16 +153,34 @@ public class PartnerController {
 
     @GetMapping("/{id}/update")
     // @PreAuthorize("hasRole('ADMIN')")
-    public String updatePartner(@PathVariable("id") Integer id, Model model) {
+    public String updatePartner(@PathVariable("id") Integer id,
+                                Model model) {
         model.addAttribute("partner", partnerService.getPartnerById(id));
         return "partner-update";
     }
 
     @PostMapping("/{id}/update")
-    public String updatePartner(@ModelAttribute("partner") Partner partner, @PathVariable("id") Integer id) {
+    public String updatePartner(@ModelAttribute("partner") Partner partner,
+                                @PathVariable("id") Integer id,
+                                @RequestParam("uImage") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                partner.setPhoto(updatedFileName);
+                String upload = "/images/" + partner.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            } else {
+                if (partner.getPhoto().isEmpty()) {
+                    partner.setPassword(passwordEncoder.encode(partner.getPassword()));
+                    partnerService.savePartner(partner);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         partner.setPassword(passwordEncoder.encode(partner.getPassword()));
-        partnerService.savePartner(partnerService.getPartnerById(id));
-        return "redirect:/partner/current";
+        partnerService.savePartner(partner);
+        return "update-logout";
     }
-}
 
+}

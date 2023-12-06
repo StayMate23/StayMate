@@ -261,6 +261,7 @@
 <body class="main_bg">
 <div class="action">
   <div class="profile" onclick="menuToggle();">
+    <img th:src="@{'/uploads/' + ${userId.photo}}" alt="logo">
     <img th:src="@{'/uploads/' + ${userId.getPhoto()}}"
          th:if="${userId.getPhoto() != null}"
          alt="User Image">
@@ -268,9 +269,8 @@
          src="/icon.png" alt="No Image Available">
   </div>
 
-
   <div class="menu">
-    <h3 th:text="${new_reservation.user.surName + ' ' + new_reservation.user.firstName + ' ' + new_reservation.user.lastName}"></h3>
+    <h3 th:text="${userId.surName + ' ' + userId.firstName + ' ' + userId.lastName}"></h3>
     <div>
 
     </div>
@@ -282,12 +282,12 @@
       </li>
       <li>
         <span class="material-icons icons-size">mode</span>
-        <a th:href="@{'/user/'+ ${userId} + '/update'}">Edit Account</a>
+        <a th:href="@{'/user/'+ ${userId.id} + '/update'}">Edit Account</a>
 
       </li>
       <li>
         <span class="material-icons icons-size">book_online</span>
-        <a th:href="@{'/reservation/'+${userId}}">Reservation </a>
+        <a th:href="@{'/reservation/'+${userId.id} + '/all'}">Reservation </a>
 
       </li>
       <li>
@@ -298,7 +298,7 @@
       </li>
       <li>
         <span class="material-icons icons-size">delete</span>
-        <form th:action="@{'/user/' + ${userId} + '/delete'}" method="post">
+        <form th:action="@{'/user/' + ${userId.id} + '/delete'}" method="post">
           <input type="hidden" name="_method" value="delete">
           <button type="submit" class="btn btn-link">Delete Account</button>
         </form>
@@ -319,7 +319,7 @@
 
   </div>
   <div class="main-form">
-    <form th:action="@{'/reservation/' + ${userId} + '/create-hotel-restaurant/' + ${hotelRestaurantId}}"  method="post">
+    <form th:action="@{'/reservation/' + ${userId.id} + '/create-hotel-restaurant/' + ${hotelRestaurantId.id}}"  method="post">
 
       <div>
         <!-- <---this is the select option--->

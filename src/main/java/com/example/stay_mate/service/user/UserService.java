@@ -47,4 +47,8 @@ public class UserService implements UserDetailsService {
     public void deleteUser(User user){
         userRepository.delete(user);
     }
+
+    public boolean isEmailAlreadyTaken(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

@@ -56,7 +56,7 @@ public class  RoomController {
                              @PathVariable("hotel-id") Integer hotelId,
                              @PathVariable("partner-id") Integer partnerId,
                              @RequestParam("roomImage")MultipartFile multipartFile) throws IOException {
-        if (multipartFile.isEmpty()){
+        if (!multipartFile.isEmpty()){
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             newRoom.setPhoto(fileName);
             newRoom.setHotel(hotelService.getHotelById(hotelId));

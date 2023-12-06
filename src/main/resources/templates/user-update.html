@@ -231,7 +231,7 @@
     <ul>
       <li>
         <span class="material-icons icons-size">person</span>
-        <a href="#">My Profile</a>
+        <a href="/user/current#">My Profile</a>
       </li>
       <li>
         <span class="material-icons icons-size">mode</span>
@@ -240,9 +240,16 @@
       </li>
       <li>
         <span class="material-icons icons-size">book_online</span>
-        <a th:href="@{'/reservation/'+${user.id} + '/all'}">Reservation </a>
+        <a th:href="@{'/reservation/'+${user.id} + '/all'}"> Our offers</a>
 
       </li>
+
+      <li>
+        <span class="material-icons icons-size">book_online</span>
+        <a th:href="@{'/user/'+${user.id} + '/reservations'}">Reservations</a>
+
+      </li>
+
       <li>
         <span class="material-icons icons-size">logout</span>
         <form th:action="@{/logout}" method="post">
@@ -270,7 +277,7 @@
 
         <h1 class = "text-center"> Update My Profile </h1>
         <div class = "card-body">
-          <form method="post" th:action="@{'/user/' +${user.id} + '/update'}">
+          <form method="post" th:action="@{'/user/' +${user.id} + '/update'}" enctype="multipart/form-data">
 
             <input type="hidden" th:value="${user.id}" th:field="*{user.id}">
 
@@ -322,7 +329,12 @@
               <label for="taxnum">Birth Date: </label>
               <input type="date" id="taxnum" th:placeholder="${user.birthDate}" th:field="*{user.birthDate}"><br>
             </div>
-
+            <div class="image">
+              <div class="form-group">
+                <input type="hidden" th:field="*{user.photo}">
+                <input type="file" name="usImage" accept="image/*" class="form-control-file">
+              </div>
+            </div>
             <div class = "box-footer">
               <button type="submit" class = "btn btn-primary">
                 Submit

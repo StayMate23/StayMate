@@ -9,8 +9,7 @@
             font-size: 16px;
             color: #fff;
             margin: 0;
-            overflow: auto;
-
+            overflow: hidden;
         }
         .form-box {
             background-color: rgba(0, 0, 0, 0.5);
@@ -157,7 +156,11 @@
     </div>
     <form th:action="@{/user/reg}" enctype="multipart/form-data" method="post">
 
-        <div class="input-form">
+        <div class="error-message" th:if="${emailTakenMessage}">
+            <p th:text="${emailTakenMessage}"></p>
+        </div>
+
+        <div class="”input-form">
             <label for="surname"></label>
             <select th:field="*{newUser.surName}" id="surname">
                 <option value="Mr.">Mr.</option>

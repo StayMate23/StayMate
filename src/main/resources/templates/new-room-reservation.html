@@ -274,57 +274,56 @@
         <h3 th:text="${new_reservation.user.surName + ' ' + new_reservation.user.firstName + ' ' + new_reservation.user.lastName}"></h3>
         <div>
 
-        </div>
+         </div>
 
-        <ul>
-            <li>
-                <span class="material-icons icons-size">person</span>
-                <a href="/user/current">My Profile</a>
-            </li>
-            <li>
-                <span class="material-icons icons-size">mode</span>
-                <a th:href="@{'/user/'+ ${new_reservation.user.id} + '/update'}">Edit Account</a>
+         <ul>
+             <li>
+                 <span class="material-icons icons-size">person</span>
+                 <a href="/user/current">My Profile</a>
+             </li>
+             <li>
+                 <span class="material-icons icons-size">mode</span>
+                 <a th:href="@{'/user/'+ ${userId.id} + '/update'}">Edit Account</a>
 
-            </li>
-            <li>
-                <span class="material-icons icons-size">book_online</span>
-                <a th:href="@{'/reservation/'+${new_reservation.user.id}}">Reservation </a>
+             </li>
+             <li>
+                 <span class="material-icons icons-size">book_online</span>
+                 <a th:href="@{'/reservation/'+ ${userId.id} + '/all'}">Reservation </a>
 
-            </li>
-            <li>
-                <span class="material-icons icons-size">logout</span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="btn-logout">LogOut</button>
-                </form>
-            </li>
-            <li>
-                <span class="material-icons icons-size">delete</span>
-                <form th:action="@{'/user/' + ${new_reservation.user.id} + '/delete'}" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <button type="submit" class="btn-logout">Delete Account</button>
-                </form>
-            </li>
-            <li>
-                <span class="material-icons icons-size">contact_page</span>
-                <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
-            </li>
-        </ul>
-    </div>
-</div>
-</div>
-<div class="form">
-    <div class="form-text">
-        <div class="logo">
-        <h1><span><img src="/logo.png" alt=""></span>Book Now</h1>
-        </div>
-        <p>Unlock Your Next Adventure: <br> Where Dreams Meet Bookings!</p>
+             </li>
+             <li>
+                 <span class="material-icons icons-size">logout</span>
+                 <form th:action="@{/logout}" method="post">
+                     <button type="submit" class="btn-logout">LogOut</button>
+                 </form>
+             </li>
+             <li>
+                 <span class="material-icons icons-size">delete</span>
+                 <form th:action="@{'/user/' + ${userId.id} + '/delete'}" method="post">
+                     <input type="hidden" name="_method" value="delete">
+                     <button type="submit" class="btn-logout">Delete Account</button>
+                 </form>
+             </li>
+             <li>
+                 <span class="material-icons icons-size">contact_page</span>
+                 <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+             </li>
+         </ul>
+     </div>
+ </div>
+ <div class="form">
+     <div class="form-text">
+         <div class="logo">
+         <h1><span><img src="/logo.png" alt=""></span>Book Now</h1>
+         </div>
+         <p>Unlock Your Next Adventure: <br> Where Dreams Meet Bookings!</p>
 
-    </div>
-    <div class="main-form">
-        <form th:action="@{'/reservation/' + ${userId} + '/create-room/' + ${roomId}}"  method="post">
+     </div>
+     <div class="main-form">
+         <form th:action="@{'/reservation/' + ${userId.id} + '/create-room/' + ${roomId.id}}"  method="post">
 
-        <div>
-                <!-- <---this is the select option--->
+         <div>
+                 <!-- <---this is the select option--->
                 <span>How many people ?</span>
                 <label>
                     <input type="number" min="1" placeholder="Number of guests" th:field="*{new_reservation.userNumber}">
