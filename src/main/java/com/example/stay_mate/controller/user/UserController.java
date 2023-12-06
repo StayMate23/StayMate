@@ -60,10 +60,12 @@ public class UserController {
         return "user-registration";
     }
     @PostMapping("/reg")
-    public String saveUser(
-            @ModelAttribute("newUser")
-            User user
-    ){
+    public String saveUser(@ModelAttribute("newUser") User user, Model model) {
+        String email = user.getEmail();
+        if (userService.isEmailAlreadyTaken(email)) {
+            model.addAttribute("emailTakenMessage", "This email is already taken!");
+            return "user-registration";
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.saveUser(user);
         return "redirect:/user-login";
