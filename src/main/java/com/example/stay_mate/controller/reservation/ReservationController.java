@@ -45,13 +45,12 @@ public class ReservationController {
 //        reservationService.getAllReservation();
 //        return "all_reservations";
 //    }
-
     @GetMapping("/{user-id}")
     public String getAllRoom(Model model,
                              @PathVariable("user-id") Integer userId) {
         model.addAttribute("room", roomService.getAllRooms());
         model.addAttribute("userId", userService.getUserById(userId));
-        return "logged-in-room";
+        return null;
     }
     @GetMapping("/{user-id}/all")
     public String getRoom(Model model,
