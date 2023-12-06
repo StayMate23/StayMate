@@ -90,15 +90,6 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    .btn-link {
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .btn-link:hover {
-      color: #ffcc00;
-    }
-
     .btn-logout {
       color: #000;
     }
@@ -159,7 +150,7 @@
       <td>
         <ul>
           <li th:each="actual : ${menu_book}">
-            <a th:text="${actual.name}" th:href="@{'/menu/hotel-restaurant/' + ${actual.id}}"></a>
+            <a th:text="${actual.name}" th:href="@{'/menu/hotel-restaurant/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline"></a>
           </li>
         </ul>
       </td>

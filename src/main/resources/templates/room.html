@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bar</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -12,7 +13,6 @@
             background-position: center;
             background-attachment: fixed;
             color: #fff;
-            margin: 0;
         }
 
         .sidenav {
@@ -54,8 +54,13 @@
         }
 
         @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
         }
 
         .btn-contact {
@@ -64,60 +69,65 @@
             padding: 0 10px;
         }
 
-
-        .container {
+        .container-content {
             margin-top: 20px;
+            text-align: center;
         }
 
-        .table {
-            width: 100%;
+        .custom-table {
+            width: 80%; /* Adjusted width to 80% of the container */
+            margin: 0 auto; /* Centered the table horizontally */
             border-collapse: collapse;
             margin-top: 20px;
-            border: 1px solid #fff; /*White border /
+            border: 1px solid #fff;
         }
 
-        .table th,
-        .table td {
+        .custom-table th,
+        .custom-table td {
             padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #fff; / White bottom border /
-            color: #000; / Black text */
+            text-align: center; /* Centered text in cells */
+            border-bottom: 1px solid #fff;
+            color: #000;
         }
 
-        .table th {
+        .custom-table th {
             background-color: #343a40;
             color: #fff;
         }
 
-        .table tbody tr:nth-of-type(odd) {
+        .custom-table tbody tr:nth-of-type(odd) {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .btn-link {
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .btn-link:hover {
-            color: #ffcc00;
-        }
-
         .btn-logout {
-            color: #000;
+            color: black;
+            background-color: #343a40;
+            border: 1px solid #fff;
+            padding: 8px 12px;
+            margin-left: 10px;
         }
 
         .btn-logout:hover {
-            color: #333;
+            color: white;
+            background-color: yellow;
+        }
+
+        .btn-contact {
+            color: black;
+            background-color: dodgerblue;
+            padding: 0 10px;
         }
     </style>
 </head>
+
+<body>
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a th:href="@{/}" >Profile</a>
+    <a th:href="@{/}">Profile</a>
     <a th:href="@{'/hotels/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Hotel</a>
-    <a  th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <a th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
+    <!--    <a th:href="@{/partner/all}">Partners</a>-->
     <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
     <!--    <a th:href="@{/bars/all}">Bars</a>-->
     <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
@@ -131,45 +141,54 @@
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
 </div>
-<div class="container">
-<table>
-    <thead>
-    <tr>
-        <td>Room Number</td>
-        <td>Capacity</td>
-        <td>Price</td>
-        <td>Image</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>
-            <h5 th:text="${room.roomNumber}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${room.roomCapacity}"></h5>
-        </td>
-        <td>
-            <h5 th:text="${room.pricePerDay}"></h5>
-        </td>
-        <td>
-            <img th:src="@{'/uploads/' + ${room.getPhoto()}}" style="width: 250px; height: auto;" alt="roomImage">
-        <td th:unless="@{'/uploads/' + ${room.getPhoto()}}" th:alt="No Image Available">
 
-        </td>
-    </tr>
-</table>
-</div>
-<script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
+    <div class="container-content">
+        <table class="custom-table">
+            <thead>
+            <tr>
+                <th>Room Number</th>
+                <th>Capacity</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            </thead>
+            <tr>
+                <td>
+                    <h5 th:text="${room.roomNumber}"></h5></td>
+                <td>
+                    <h5 th:text="${room.roomCapacity}"></h5></td>
 
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-        document.body.style.backgroundColor = "white";
-    }
-</script>
+                <td>
+                    <h5 th:text="${room.pricePerDay}"></h5>
+                </td>
+
+                <td th:if="${room.getPhoto() == null}">
+                    No Image Available
+                </td>
+                <td th:unless="${room.getPhoto() == null}">
+                    <img th:src="@{'/uploads/' + ${room.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+
 </html>
+

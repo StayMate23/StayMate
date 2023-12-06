@@ -97,15 +97,6 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .btn-link {
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .btn-link:hover {
-            color: #ffcc00;
-        }
-
         .btn-logout {
             color: #000;
         }
@@ -166,10 +157,11 @@
             <td>
                 <h5 th:text="${hotel.description}"></h5>
             </td>
-            <td>
-                <img th:src="@{'/uploads/' + ${hotel.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
-            <td th:unless="@{'/uploads/' + ${hotel.getPhoto()}}" th:alt="No Image Available">
-
+            <td th:if="${hotel.getPhoto() == null}">
+                No Image Available
+            </td>
+            <td th:unless="${hotel.getPhoto() == null}">
+                <img th:src="@{'/uploads/' + ${hotel.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
             </td>
             <td>
                 <ul>

@@ -164,9 +164,12 @@
             </tr>
             <tr>
                 <td>Image: </td>
-                <td><img th:src="@{'/uploads/' + ${partner.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
-                <td th:unless="@{'/uploads/' + ${partner.getPhoto()}}" th:alt="No Image Available">
-
+                <td th:if="${partner.getPhoto() == null}">
+                    No Image Available
+                </td>
+                <td th:unless="${partner.getPhoto() == null}">
+                    <img th:src="@{'/uploads/' + ${partner.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+                </td>
             </tr>
             <tr>
                 <td>Partner:</td>

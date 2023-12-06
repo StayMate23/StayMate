@@ -262,7 +262,7 @@
 <div class="action">
     <div class="profile" onclick="menuToggle();">
         <img th:src="@{'/uploads/' + ${userId.getPhoto()}}"
-             th:if="${userId.user.getPhoto() != null}"
+             th:if="${userId.getPhoto() != null}"
              alt="User Image">
         <img th:unless="${userId.getPhoto()!= null}"
              src="/icon.png" alt="No Image Available">

@@ -98,18 +98,12 @@
         .custom-table tbody tr:nth-of-type(odd) {
             background-color: rgba(255, 255, 255, 0.1);
         }
-
         .btn-logout {
-            color: black;
-            background-color: #343a40;
-            border: 1px solid #fff;
-            padding: 8px 12px;
-            margin-left: 10px;
+            color: #000;
         }
 
         .btn-logout:hover {
-            color: white;
-            background-color: yellow;
+            color: #333;
         }
 
         .btn-contact {
@@ -134,6 +128,10 @@
     <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
     <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
+    <form th:action="@{'/bars/' + ${bar.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn-logout">Delete Bar</button>
+    </form>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
@@ -157,17 +155,16 @@
             <td>
                 <h5 th:text="${bar.description}"></h5>
             </td>
-
-<!--                <img th:src="@{'/uploads/' + ${bar.getPhoto()}}" style="width: 250px; height: auto;" alt="image">-->
-            <td th:unless="@{'/uploads/' + ${bar.getPhoto()}}" != null">
+            <td th:if="${bar.getPhoto() == null}">
                 No Image Available
             </td>
-
-                <ul>
-                    <li th:each="actual : ${menu_book}">
-                        <a th:text="${actual.name}" th:href="@{'/menu/bar/' + ${actual.id}}"></a>
-                    </li>
-                </ul>
+            <td th:unless="${bar.getPhoto() == null}">
+                <img th:src="@{'/uploads/' + ${bar.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+            </td>
+            <td>
+                <li th:each="actual : ${menu_book}">
+                    <a th:text="${actual.name}" th:href="@{'/menu/bar/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline" ></a>
+                </li>
             </td>
         </tr>
     </table>

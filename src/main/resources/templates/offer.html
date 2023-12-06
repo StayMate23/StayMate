@@ -143,7 +143,7 @@
   }
   .table {
     margin: 20px auto;
-    width: 90%;
+      width: 70%;
     border-spacing: 0;
     text-align: center;
     border-radius: 12px;
@@ -265,7 +265,12 @@
         <td th:text="${actualRoom.id}"></td>
         <td th:text="${actualRoom.roomNumber}"></td>
         <td th:text="${actualRoom.hotel.description}"></td>
-        <td><img th:src="@{'/uploads/' + ${actualRoom.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
+        <td th:if="${actualRoom.getPhoto() == null}">
+            No Image Available
+        </td>
+        <td th:unless="${actualRoom.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualRoom.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-room/' + ${actualRoom.id}}">
                 <button class="btn">Book Now</button>
@@ -276,7 +281,12 @@
         <td th:text="${actualRest.id}"></td>
         <td th:text="${actualRest.name}"></td>
         <td th:text="${actualRest.description}"></td>
-        <td><img th:src="@{'/uploads/' + ${actualRest.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
+        <td th:if="${actualRest.getPhoto() == null}">
+            No Image Available
+        </td>
+        <td th:unless="${actualRest.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualRest.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
         <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-restaurant/' + ${actualRest.id}}">
                 <button class="btn">Book Now</button>
@@ -287,8 +297,12 @@
         <td th:text="${actualBar.id}"></td>
         <td th:text="${actualBar.name}"></td>
         <td th:text="${actualBar.description}"></td>
-        <td><img th:src="@{'/uploads/' + ${actualBar.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
-        <td>
+        <td th:if="${actualBar.getPhoto() == null}">
+            No Image Available
+        </td>
+        <td th:unless="${actualBar.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualBar.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>        <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-bar/' + ${actualBar.id}}">
                 <button class="btn">Book Now</button>
             </a>
@@ -298,8 +312,12 @@
         <td th:text="${hr.id}"></td>
         <td th:text="${hr.name}"></td>
         <td th:text="${hr.description}"></td>
-        <td><img th:src="@{'/uploads/' + ${hr.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
-        <td>
+        <td th:if="${hr.getPhoto() == null}">
+            No Image Available
+        </td>
+        <td th:unless="${hr.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${hr.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>        <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-restaurant/' + ${hr.id}}">
                 <button class="btn">Book Now</button>
             </a>
@@ -309,8 +327,12 @@
         <td th:text="${hb.id}"></td>
         <td th:text="${hb.name}"></td>
         <td th:text="${hb.description}"></td>
-        <td><img th:src="@{'/uploads/' + ${hb.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
-        <td>
+        <td th:if="${hb.getPhoto() == null}">
+            No Image Available
+        </td>
+        <td th:unless="${hb.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${hb.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>        <td>
             <a th:href="@{'/reservation/'+${userId.id} + '/create-hotel-bar/' + ${hb.id}}">
                 <button class="btn">Book Now</button>
             </a>

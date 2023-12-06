@@ -182,11 +182,11 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}">Profile</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--    <a th:href="@{/bars/all}">Bars</a>-->
-<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--    <a th:href="@{/services/all}">Services</a>-->
+    <!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+    <!--    <a th:href="@{/bars/all}">Bars</a>-->
+    <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+    <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
@@ -197,7 +197,8 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Hotel Restaurant Menu </h1>
             <div class="card-body">
-                <form th:action="@{'/menu/create-hotel-restaurant/' + ${hotelRestaurantId} + '/' + ${hotelId} + '/'+${partnerId}}" enctype="multipart/form-data" method="post">
+                <form th:action="@{'/menu/create-hotel-restaurant/' + ${hotelRestaurantId} + '/' + ${hotelId} + '/'+${partnerId}}"
+                      enctype="multipart/form-data" method="post">
                     <div class="form-group">
                         <label> Restaurant Name </label>
                         <label>
@@ -240,16 +241,16 @@
                             <input type="hidden" th:field="*{hotel_restaurant_new_menu.photo}">
                             <input type="file" name="hrImage" accept="image/*" class="form-control-file">
                         </div>
-                            <button type="submit" class="btn btn-primary">
-                                Add Service
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Add Service
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 <script>
     function openNav() {

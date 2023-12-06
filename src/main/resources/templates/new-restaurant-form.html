@@ -168,6 +168,11 @@
   .card-body {
     padding: 0;
   }
+  .btn-contact {
+    color: black;
+    background-color: dodgerblue;
+    padding: 0 10px;
+  }
 </style>
 <body>
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
@@ -184,7 +189,7 @@
 <!--  <a th:href="@{/bars/all}">Bars</a>-->
 <!--  <a th:href="@{/restaurants/all}">Restaurants</a>-->
 <!--  <a th:href="@{/services/all}">Services</a>-->
-  <a th:href="@{/contact}" class="btn-btn-link">Contact Us!</a>
+  <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
 
   <form th:action="@{'/partner/' + ${partnerId} + '/delete'}" method="post">
     <input type="hidden" name="_method" value="delete">

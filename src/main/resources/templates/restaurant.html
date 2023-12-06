@@ -134,7 +134,7 @@
   <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
   <form th:action="@{'/restaurants/' + ${restaurant.id} + '/delete'}" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn-logoutk">Delete Restaurant</button>
+    <button type="submit" class="btn-logout">Delete Restaurant</button>
   </form>
   <form class="navbar-brand" th:action="@{/logout}" method="post">
     <button type="submit" class="btn-logout">LogOut</button>
@@ -159,13 +159,16 @@
       <td>
         <h5 th:text="${restaurant.description}"></h5>
       </td>
-      <td>
-        <img th:src="@{'/uploads/' + ${restaurant.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
+      <td th:if="${restaurant.getPhoto() == null}">
+        No Image Available
+      </td>
+      <td th:unless="${restaurant.getPhoto() == null}">
+        <img th:src="@{'/uploads/' + ${restaurant.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
       </td>
       <td>
         <ul>
           <li th:each="actual : ${menu_book}">
-            <a th:text="${actual.name}" th:href="@{'/menu/restaurant/' + ${actual.id}}"></a>
+            <a th:text="${actual.name}" th:href="@{'/menu/restaurant/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline"></a>
           </li>
         </ul>
       </td>
