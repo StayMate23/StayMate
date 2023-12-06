@@ -92,11 +92,11 @@ public class UserController {
     }
 
 
+
     @PostMapping("/reg")
     public String saveUser(
             @ModelAttribute("newUser") User user,
-            @RequestParam("image") MultipartFile multipartFile,
-            Model model) throws IOException {
+            @RequestParam("image") MultipartFile multipartFile, Model model) throws IOException {
         try {
             if (!multipartFile.isEmpty()) {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -106,23 +106,26 @@ public class UserController {
             } else {
                 if (user.getPhoto().isEmpty()) {
                     user.setPhoto(null);
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    userService.saveUser(user);
                 }
             }
 
             String email = user.getEmail();
             if (userService.isEmailAlreadyTaken(email)) {
                 model.addAttribute("emailTakenMessage", "This email is already taken!");
-                return "user-registration"; // Return the registration page with the error message
+                return "user-registration";
             }
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.saveUser(user);
         } catch (Exception e) {
-            e.printStackTrace(); // Consider handling exceptions more gracefully
-            return "errorPage"; // Redirect to an error page or handle the error appropriately
+            e.printStackTrace();
         }
-        return "redirect:/user-login"; // Redirect to login page after successful registration
+        return "redirect:/user-login";
     }
+
+
 
     @GetMapping("/{id}/update")
     public String updatePartner(@PathVariable("id") Integer userId, Model model) {
