@@ -358,9 +358,12 @@
     </div>
     <div class="action">
         <div class="profile" onclick="menuToggle();">
-            <img th:src="@{'/uploads/' + ${user.getPhoto()}}" alt="logo">
+            <img th:src="@{'/uploads/' + ${user.getPhoto()}}"
+                 th:if="${user.getPhoto() != null}"
+                 alt="User Image">
+            <img th:unless="${user.getPhoto() != null}"
+                 src="/icon.png" alt="No Image Available">
         </div>
-
         <div class="menu">
             <h3 th:text="${user.surName + ' ' + user.firstName + ' ' + user.lastName}"></h3>
             <div>

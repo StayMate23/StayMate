@@ -168,6 +168,8 @@
             </td>
             <td>
                 <img th:src="@{'/uploads/' + ${hotel.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
+            <td th:unless="@{'/uploads/' + ${hotel.getPhoto()}}" th:alt="No Image Available">
+
             </td>
             <td>
                 <ul>

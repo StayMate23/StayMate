@@ -157,12 +157,12 @@
             <td>
                 <h5 th:text="${bar.description}"></h5>
             </td>
-            <td>
-                <img th:src="@{'/uploads/' + ${bar.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
-            <td th:unless="${bar.getPhoto() != null}">
+
+<!--                <img th:src="@{'/uploads/' + ${bar.getPhoto()}}" style="width: 250px; height: auto;" alt="image">-->
+            <td th:unless="@{'/uploads/' + ${bar.getPhoto()}}" != null">
                 No Image Available
             </td>
-            <td>
+
                 <ul>
                     <li th:each="actual : ${menu_book}">
                         <a th:text="${actual.name}" th:href="@{'/menu/bar/' + ${actual.id}}"></a>

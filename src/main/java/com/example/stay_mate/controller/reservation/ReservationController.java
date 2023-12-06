@@ -108,7 +108,7 @@ public class ReservationController {
     public String createBarReservation(Model model,
                                               @PathVariable("user-id") Integer userId,
                                               @PathVariable("bar-id") Integer barId) {
-        model.addAttribute("userId", userId);
+        model.addAttribute("userId", userService.getUserById(userId));
         model.addAttribute("barId", barId);
         model.addAttribute("new_reservation", new Reservation());
         return "new-bar-reservation";

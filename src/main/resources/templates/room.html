@@ -152,6 +152,8 @@
         </td>
         <td>
             <img th:src="@{'/uploads/' + ${room.getPhoto()}}" style="width: 250px; height: auto;" alt="roomImage">
+        <td th:unless="@{'/uploads/' + ${room.getPhoto()}}" th:alt="No Image Available">
+
         </td>
     </tr>
 </table>
