@@ -13,7 +13,6 @@
       background-image: url("https://wallpapers.com/images/hd/hotel-background-2qosz2h6xb1xpnka.jpg");
       background-size: cover;
 
-
     }
 
     .logo{
@@ -186,6 +185,18 @@
       <button type="submit" class="btn btn-success">Login</button>
     </a>
   </form>
+  <div style="position: fixed; bottom: 40px; left: 20px;">
+  <button type="button" onClick="confirmPartnerRegistration()">Partner Registration</button>
+  </div>
+  <script th:inline="javascript">
+
+      function confirmPartnerRegistration() {
+      var confirmMessage = "Do you want to become our partner?";
+      if (confirm(confirmMessage)) {
+      window.location.href = /*[[@{/partner/reg}]]*/ '';
+    }
+    }
+  </script>
 </div>
 
 </body>

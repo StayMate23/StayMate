@@ -90,15 +90,6 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    .btn-link {
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .btn-link:hover {
-      color: #ffcc00;
-    }
-
     .btn-logout {
       color: #000;
     }
@@ -153,11 +144,13 @@
       </td>
       <td>
         <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" style="width: 250px; height: auto;" alt="hrImage">
+      <td th:unless="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" th:alt="No Image Available">
+
       </td>
       <td>
         <ul>
           <li th:each="actual : ${menu_book}">
-            <a th:text="${actual.name}" th:href="@{'/menu/hotel-restaurant/' + ${actual.id}}"></a>
+            <a th:text="${actual.name}" th:href="@{'/menu/hotel-restaurant/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline"></a>
           </li>
         </ul>
       </td>

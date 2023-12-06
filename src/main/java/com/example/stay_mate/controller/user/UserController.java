@@ -91,10 +91,12 @@ public class UserController {
         return "user-registration";
     }
 
+
+
     @PostMapping("/reg")
     public String saveUser(
             @ModelAttribute("newUser") User user,
-            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+            @RequestParam("image") MultipartFile multipartFile, Model model) throws IOException {
         try {
             if (!multipartFile.isEmpty()) {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -108,6 +110,13 @@ public class UserController {
                     userService.saveUser(user);
                 }
             }
+
+            String email = user.getEmail();
+            if (userService.isEmailAlreadyTaken(email)) {
+                model.addAttribute("emailTakenMessage", "This email is already taken!");
+                return "user-registration";
+            }
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.saveUser(user);
         } catch (Exception e) {
@@ -115,6 +124,8 @@ public class UserController {
         }
         return "redirect:/user-login";
     }
+
+
 
     @GetMapping("/{id}/update")
     public String updatePartner(@PathVariable("id") Integer userId, Model model) {

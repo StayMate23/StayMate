@@ -94,6 +94,13 @@
             background-color: dodgerblue;
             padding: 0 10px;
         }
+        .btn-logout {
+              color: #000;
+          }
+
+        .btn-logout:hover {
+            color: #333;
+        }
     </style>
 </head>
 
@@ -129,6 +136,8 @@
                 <ul>
                     <li th:each="actual : ${bar}">
                         <img th:src="@{'/uploads/' + ${bar.partner.id} + '-hotel-' + ${bar.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
+                        <td th:unless="@{'/uploads/' + ${bar.getPhoto()}}" th:alt="No Image Available">
+
                     </li>
 
                 </ul>

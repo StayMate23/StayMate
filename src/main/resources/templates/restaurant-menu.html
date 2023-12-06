@@ -159,6 +159,8 @@
             </td>
             <td>
                 <img th:src="@{'/uploads/' + ${restaurant_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="rImage">
+            <td th:unless="@{'/uploads/' + ${restaurant_menu_book.getPhoto()}}" th:alt="No Image Available">
+
             </td>
             <td>
                 <h5 th:text="${restaurant_menu_book.price}"></h5>

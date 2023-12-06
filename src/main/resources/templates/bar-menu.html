@@ -95,15 +95,10 @@
 
         .btn-logout {
             color: #000;
-            background-color: #343a40;
-            border: 1px solid #fff;
-            padding: 8px 12px;
-            margin-left: 10px;
         }
 
         .btn-logout:hover {
             color: #333;
-            background-color: #ffcc00;
         }
     </style>
 </head>
@@ -146,6 +141,8 @@
             <td><h5 th:text="${bar_menu_book.description}"></h5></td>
             <td>
                 <img th:src="@{'/uploads/' + ${bar_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="rImage">
+            <td th:unless="@{'/uploads/' + ${bar_menu_book.getPhoto()}}" th:alt="No Image Available">
+
             </td>
             <td><h5 th:text="${bar_menu_book.price}"></h5></td>
         </tr>
