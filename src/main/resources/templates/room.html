@@ -57,6 +57,7 @@
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
         }
+
         .btn-contact {
             color: black;
             background-color: dodgerblue;
@@ -130,15 +131,14 @@
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
 </div>
-
-
-<body>
+<div class="container">
 <table>
     <thead>
     <tr>
         <td>Room Number</td>
         <td>Capacity</td>
         <td>Price</td>
+        <td>Image</td>
     </tr>
     </thead>
     <tr>
@@ -151,9 +151,12 @@
         <td>
             <h5 th:text="${room.pricePerDay}"></h5>
         </td>
+        <td>
+            <img th:src="@{'/uploads/' + ${room.getPhoto()}}" style="width: 250px; height: auto;" alt="roomImage">
+        </td>
     </tr>
 </table>
-</body>
+</div>
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";

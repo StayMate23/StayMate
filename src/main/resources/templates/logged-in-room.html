@@ -25,22 +25,19 @@
 <table class="table">
     <thead>
     <tr>
-        <th>ID</th>
         <th>Hotel</th>
-        <th>Description</th>
-        <th>Number of guests</th> <!-- hiányzott -->
+        <th>Room number</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Price</th>
     </tr>
     </thead>
-    <tr th:each="actual : ${room}">
-        <td th:text="${actual.id}"></td>
-        <td th:text="${actual.hotel.name}"></td>
-        <td th:text="${actual.hotel.description}"></td>
-        <td th:text="${actual.roomCapacity}"></td>
-        <td>
-            <a th:href="@{'/reservation/'+${userId.id} + '/create/' + ${actual.id}}">
-                <button class="btn btn-secondary">Reserve</button>
-            </a>
-        </td>
+    <tr th:each="reservation, index : ${reservations}">
+        <td th:text="${reservation.room.hotel.name}"></td>
+        <td th:text="${reservation.room.roomNumber}"></td>
+        <td th:text="${reservation.startDate.toLocalDate()}"></td>
+        <td th:text="${reservation.endDate.toLocalDate()}"></td>
+        <td th:text="${totals[index.index].intValue()}"></td>
     </tr>
 </table>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

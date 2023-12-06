@@ -34,9 +34,11 @@ public class Partner implements UserDetails {
     @JoinColumn(name = "password")
     private String password;
     @JoinColumn(name = "company_reg_num")
-    private Integer companyRegNum;
+    private String companyRegNum;
     @JoinColumn(name = "tax_num")
-    private Integer taxNum;
+    private String taxNum;
+    @Column(length = 64)
+    private String photo;
 
 
     @Override

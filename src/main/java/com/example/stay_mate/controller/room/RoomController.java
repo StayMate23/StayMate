@@ -1,13 +1,17 @@
 package com.example.stay_mate.controller.room;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.room.Room;
 import com.example.stay_mate.service.room.RoomService;
 import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Controller
@@ -50,9 +54,24 @@ public class  RoomController {
     @PostMapping("/create/{hotel-id}/{partner-id}")
     public String createRoom(@ModelAttribute("new_room") Room newRoom,
                              @PathVariable("hotel-id") Integer hotelId,
-                             @PathVariable("partner-id") Integer partnerId) {
-        newRoom.setPartner(partnerService.getPartnerById(partnerId));
-        newRoom.setHotel(hotelService.getHotelById(hotelId));
+                             @PathVariable("partner-id") Integer partnerId,
+                             @RequestParam("roomImage")MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()){
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            newRoom.setPhoto(fileName);
+            newRoom.setHotel(hotelService.getHotelById(hotelId));
+            newRoom.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + newRoom.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }
+        else {
+            if (newRoom.getPhoto().isEmpty()){
+                newRoom.setPhoto(null);
+                newRoom.setHotel(hotelService.getHotelById(hotelId));
+                newRoom.setPartner(partnerService.getPartnerById(partnerId));
+                roomService.saveRoom(newRoom);
+            }
+        }
         roomService.saveRoom(newRoom);
         return "redirect:/hotels/" + hotelId + "/" + partnerId;
     }

@@ -54,9 +54,15 @@
         }
 
         @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
         }
+
         .btn-contact {
             color: black;
             background-color: dodgerblue;
@@ -105,6 +111,7 @@
             color: white;
             background-color: yellow;
         }
+
         .btn-contact {
             color: black;
             background-color: dodgerblue;
@@ -117,15 +124,15 @@
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a th:href="@{/}" >Profile</a>
+    <a th:href="@{/}">Profile</a>
     <a th:href="@{'/bars/create/' + ${bar.partner.id}}">Add bar</a>
     <a th:href="@{'/bars/' + ${bar.partner.id} + '/update'}">Update Bar</a>
     <a th:href="@{'/menu/create-bar/' + ${bar.id} + '/' + ${bar.partner.id}}">Add Menu</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--    <a th:href="@{/bars/all}">Bars</a>-->
-<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--    <a th:href="@{/services/all}">Services</a>-->
+    <!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+    <!--    <a th:href="@{/bars/all}">Bars</a>-->
+    <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+    <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
@@ -151,12 +158,9 @@
                 <h5 th:text="${bar.description}"></h5>
             </td>
             <td>
-                <ul>
-                    <li th:each="actual : ${bar}">
-                        <img th:src="@{'/uploads/' + ${bar.partner.id} + '-hotel-' + ${bar.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
-                    </li>
-
-                </ul>
+                <img th:src="@{'/uploads/' + ${bar.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
+            <td th:unless="${bar.getPhoto() != null}">
+                No Image Available
             </td>
             <td>
                 <ul>
@@ -181,7 +185,7 @@
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+        document.getElementById("main").style.marginLeft = "0";
         document.body.style.backgroundColor = "white";
     }
 </script>

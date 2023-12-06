@@ -163,8 +163,12 @@
                 <td><h5 th:text="${partner.id}"></h5></td>
             </tr>
             <tr>
+                <td>Image: </td>
+                <td><img th:src="@{'/uploads/' + ${partner.getPhoto()}}" style="width: 250px; height: auto;" alt="image"></td>
+            </tr>
+            <tr>
                 <td>Partner:</td>
-                <td><h5 th:text="${partner.partnerName}"></h5></td>
+                <td><h5 th:text="${partner.getPartnerName()}"></h5></td>
             </tr>
             <tr>
                 <td>Address:</td>

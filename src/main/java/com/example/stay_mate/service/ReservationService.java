@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -34,6 +35,12 @@ public class ReservationService {
     public List<Reservation> getReservationByUser(User user){
         return reservationRepository.getReservationByUser(user);
     }
+
+
+    public double getTotalPrice (LocalDateTime startDate, LocalDateTime endDate){
+        return ChronoUnit.DAYS.between(startDate,endDate);
+    }
+
 
     public List<Reservation> getAllReservation() {
         return reservationRepository.findAll();

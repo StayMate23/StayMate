@@ -40,6 +40,8 @@ public class User implements UserDetails {
     private java.lang.String personalId;
     @JoinColumn(name = "birth_date")
     private LocalDate birthDate;
+    @Column(length = 64)
+    private String photo;
 
 
     @Override

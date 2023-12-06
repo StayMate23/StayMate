@@ -45,13 +45,12 @@ public class ReservationController {
 //        reservationService.getAllReservation();
 //        return "all_reservations";
 //    }
-
     @GetMapping("/{user-id}")
     public String getAllRoom(Model model,
                              @PathVariable("user-id") Integer userId) {
         model.addAttribute("room", roomService.getAllRooms());
         model.addAttribute("userId", userService.getUserById(userId));
-        return "logged-in-room";
+        return null;
     }
     @GetMapping("/{user-id}/all")
     public String getRoom(Model model,
@@ -68,8 +67,8 @@ public class ReservationController {
     public String createRoomReservation(Model model,
                                         @PathVariable("user-id") Integer userId,
                                         @PathVariable("room-id") Integer roomId) {
-        model.addAttribute("userId", userId);
-        model.addAttribute("roomId", roomId);
+        model.addAttribute("userId", userService.getUserById(userId));
+        model.addAttribute("roomId", roomService.getRoomById(roomId));
         model.addAttribute("new_reservation", new Reservation());
         return "new-room-reservation";
     }
@@ -89,8 +88,8 @@ public class ReservationController {
     public String createRestaurantReservation(Model model,
                                         @PathVariable("user-id") Integer userId,
                                         @PathVariable("restaurant-id") Integer restaurantId) {
-        model.addAttribute("userId", userId);
-        model.addAttribute("restaurantId", restaurantId);
+        model.addAttribute("userId", userService.getUserById(userId));
+        model.addAttribute("restaurantId", restaurantService.getRestaurantById(restaurantId));
         model.addAttribute("new_reservation", new Reservation());
         return "new-restaurant-reservation";
     }
@@ -108,8 +107,8 @@ public class ReservationController {
     public String createBarReservation(Model model,
                                               @PathVariable("user-id") Integer userId,
                                               @PathVariable("bar-id") Integer barId) {
-        model.addAttribute("userId", userId);
-        model.addAttribute("barId", barId);
+        model.addAttribute("userId", userService.getUserById(userId));
+        model.addAttribute("barId", barService.getBarById(barId));
         model.addAttribute("new_reservation", new Reservation());
         return "new-bar-reservation";
     }
@@ -127,8 +126,8 @@ public class ReservationController {
     public String createHotelRestaurantReservation(Model model,
                                               @PathVariable("user-id") Integer userId,
                                               @PathVariable("hotel-restaurant-id") Integer hotelRestaurantId) {
-        model.addAttribute("userId", userId);
-        model.addAttribute("hotelRestaurantId", hotelRestaurantId);
+        model.addAttribute("userId", userService.getUserById(userId));
+        model.addAttribute("hotelRestaurantId", hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
         model.addAttribute("new_reservation", new Reservation());
         return "new-hotel-restaurant-reservation";
     }
@@ -147,8 +146,8 @@ public class ReservationController {
     public String createHotelBarReservation(Model model,
                                                    @PathVariable("user-id") Integer userId,
                                                    @PathVariable("hotel-bar-id") Integer hotelBarId) {
-        model.addAttribute("userId", userId);
-        model.addAttribute("hotelBarId", hotelBarId);
+        model.addAttribute("userId", userService.getUserById(userId));
+        model.addAttribute("hotelBarId", hotelBarService.getHotelBarById(hotelBarId));
         model.addAttribute("new_reservation", new Reservation());
         return "new-hotel-bar-reservation";
     }

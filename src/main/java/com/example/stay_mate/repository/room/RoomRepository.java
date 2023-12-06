@@ -15,6 +15,7 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<Room, Integer> {
     void deleteRoomByPartner(Partner partner);
     void deleteRoomByHotel(Hotel hotel);
+
     List<Room> getRoomByPartner(Partner partner);
     List<Room> getRoomByHotel(Hotel hotel);
     List<Room> findAllByIdNotInAndRoomCapacityGreaterThanEqual(Collection<Integer> startDate, Integer numberOfGuests);

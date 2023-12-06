@@ -1,5 +1,6 @@
 package com.example.stay_mate.controller.menubook;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.menubook.MenuBook;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.hotel.HotelBarService;
@@ -8,10 +9,13 @@ import com.example.stay_mate.service.hotel.HotelService;
 import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import com.example.stay_mate.service.restaurant.RestaurantService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/menu")
@@ -80,9 +84,23 @@ public class MenuBookController {
     @PostMapping("/create-restaurant/{restaurant-id}/{partner-id}")
     public String createRestaurantMenu(@ModelAttribute("restaurant_new_menu") MenuBook newMenuBook,
                                        @PathVariable("restaurant-id") Integer restaurantId,
-                                       @PathVariable("partner-id") Integer partnerId) {
-        newMenuBook.setRestaurant(restaurantService.getRestaurantById(restaurantId));
-        newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                                       @PathVariable("partner-id") Integer partnerId,
+                                       @RequestParam("rImage") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            newMenuBook.setPhoto(fileName);
+            newMenuBook.setRestaurant(restaurantService.getRestaurantById(restaurantId));
+            newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + newMenuBook.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (newMenuBook.getPhoto().isEmpty()) {
+                newMenuBook.setPhoto(null);
+                newMenuBook.setRestaurant(restaurantService.getRestaurantById(restaurantId));
+                newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                menuBookService.saveMenuBook(newMenuBook);
+            }
+        }
         menuBookService.saveMenuBook(newMenuBook);
         return "redirect:/restaurants/" + restaurantId;
     }
@@ -100,9 +118,23 @@ public class MenuBookController {
     @PostMapping("/create-bar/{bar-id}/{partner-id}")
     public String createBarMenu(@ModelAttribute("bar_new_menu") MenuBook newMenuBook,
                                 @PathVariable("bar-id") Integer barId,
-                                @PathVariable("partner-id") Integer partnerId) {
-        newMenuBook.setBar(barService.getBarById(barId));
-        newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                                @PathVariable("partner-id") Integer partnerId,
+                                @RequestParam("bImage") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            newMenuBook.setPhoto(fileName);
+            newMenuBook.setBar(barService.getBarById(barId));
+            newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + newMenuBook.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (newMenuBook.getPhoto().isEmpty()) {
+                newMenuBook.setPhoto(null);
+                newMenuBook.setBar(barService.getBarById(barId));
+                newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                menuBookService.saveMenuBook(newMenuBook);
+            }
+        }
         menuBookService.saveMenuBook(newMenuBook);
         return "redirect:/bars/" + barId;
     }
@@ -123,10 +155,29 @@ public class MenuBookController {
     public String createHotelRestaurantMenu(@ModelAttribute("hotel_restaurant-new_menu") MenuBook newMenuBook,
                                             @PathVariable("hotel-restaurant-id") Integer hotelRestaurantId,
                                             @PathVariable("hotel-id") Integer hotelId,
-                                            @PathVariable("partner-id") Integer partnerId) {
-        newMenuBook.setHotel(hotelService.getHotelById(hotelId));
-        newMenuBook.setHotelRestaurant(hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
-        newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                                            @PathVariable("partner-id") Integer partnerId,
+                                            @RequestParam("hrImage") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                newMenuBook.setPhoto(fileName);
+                newMenuBook.setHotelRestaurant(hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
+                newMenuBook.setHotel(hotelService.getHotelById(hotelId));
+                newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                String upload = "/images/" + newMenuBook.getId();
+                FileUploadUtil.saveFile(upload, fileName, multipartFile);
+            } else {
+                if (newMenuBook.getPhoto().isEmpty()) {
+                    newMenuBook.setPhoto(null);
+                    newMenuBook.setHotelRestaurant(hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
+                    newMenuBook.setHotel(hotelService.getHotelById(hotelId));
+                    newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                    menuBookService.saveMenuBook(newMenuBook);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         menuBookService.saveMenuBook(newMenuBook);
         return "redirect:/hotel-restaurant/" + hotelRestaurantId;
     }
@@ -147,10 +198,25 @@ public class MenuBookController {
     public String createHotelBarMenu(@ModelAttribute("hotel_bar_new_menu") MenuBook newMenuBook,
                                      @PathVariable("hotel-bar-id") Integer hotelBarId,
                                      @PathVariable("hotel-id") Integer hotelId,
-                                     @PathVariable("partner-id") Integer partnerId) {
-        newMenuBook.setHotel(hotelService.getHotelById(hotelId));
-        newMenuBook.setHotelBar(hotelBarService.getHotelBarById(hotelBarId));
-        newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                                     @PathVariable("partner-id") Integer partnerId,
+                                     @RequestParam("hbImage") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            newMenuBook.setPhoto(fileName);
+            newMenuBook.setHotelBar(hotelBarService.getHotelBarById(hotelBarId));
+            newMenuBook.setHotel(hotelService.getHotelById(hotelId));
+            newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + newMenuBook.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (newMenuBook.getPhoto().isEmpty()) {
+                newMenuBook.setPhoto(null);
+                newMenuBook.setHotelBar(hotelBarService.getHotelBarById(hotelBarId));
+                newMenuBook.setHotel(hotelService.getHotelById(hotelId));
+                newMenuBook.setPartner(partnerService.getPartnerById(partnerId));
+                menuBookService.saveMenuBook(newMenuBook);
+            }
+        }
         menuBookService.saveMenuBook(newMenuBook);
         return "redirect:/hotel-bar/" + hotelBarId;
     }
@@ -165,8 +231,24 @@ public class MenuBookController {
     }
 
     @PostMapping("/update-restaurant/{restaurant-id}")
-    public String updateRestaurentMenu(@ModelAttribute("restaurant_update_menu") MenuBook updateMenuBook,
-                                       @PathVariable("restaurant-id") Integer restaurantId) {
+    public String updateRestaurantMenu(@ModelAttribute("restaurant_update_menu") MenuBook updateMenuBook,
+                                       @PathVariable("restaurant-id") Integer restaurantId,
+                                       @RequestParam("image_M_U_R") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                updateMenuBook.setPhoto(updatedFileName);
+                String upload = "/images/" + updateMenuBook.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            } else {
+                if (updateMenuBook.getPhoto().isEmpty()) {
+                    updateMenuBook.setPhoto(null);
+                    menuBookService.saveMenuBook(updateMenuBook);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         menuBookService.saveMenuBook(updateMenuBook);
         return "redirect:/restaurants/" + restaurantId;
     }
@@ -182,7 +264,24 @@ public class MenuBookController {
 
     @PostMapping("/update-bar/{bar-id}")
     public String updateBarMenu(@ModelAttribute("bar-update_menu") MenuBook updateMenuBook,
-                                @PathVariable("bar-id") Integer barId) {
+                                @PathVariable("bar-id") Integer barId,
+                                @RequestParam("image_M_U_R") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                updateMenuBook.setPhoto(updatedFileName);
+                String upload = "/images/" + updateMenuBook.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            } else {
+                if (updateMenuBook.getPhoto().isEmpty()) {
+                    updateMenuBook.setPhoto(null);
+                    menuBookService.saveMenuBook(updateMenuBook);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        menuBookService.saveMenuBook(updateMenuBook);
         menuBookService.saveMenuBook(updateMenuBook);
         return "redirect:/bars/" + barId;
     }
@@ -199,7 +298,23 @@ public class MenuBookController {
 
     @PostMapping("/update-hotel-restaurant/{hotel_restaurant-id}")
     public String updateHotelRestaurantMenu(@ModelAttribute("hotel_restaurant_update_menu") MenuBook updateMenuBook,
-                                            @PathVariable("hotel_restaurant-id") Integer hotelRestaurantId) {
+                                            @PathVariable("hotel_restaurant-id") Integer hotelRestaurantId,
+                                            @RequestParam("image_M_U_R") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                updateMenuBook.setPhoto(updatedFileName);
+                String upload = "/images/" + updateMenuBook.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            } else {
+                if (updateMenuBook.getPhoto().isEmpty()) {
+                    updateMenuBook.setPhoto(null);
+                    menuBookService.saveMenuBook(updateMenuBook);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         menuBookService.saveMenuBook(updateMenuBook);
         return "redirect:/hotel-restaurant/" + hotelRestaurantId;
     }
@@ -216,7 +331,23 @@ public class MenuBookController {
 
     @PostMapping("/update-hotel-bar/{hotel_bar-id}")
     public String updateHotelBarMenu(@ModelAttribute("hotel_bar_update_menu") MenuBook updateMenuBook,
-                                     @PathVariable("hotel_bar-id") Integer hotelBarId) {
+                                     @PathVariable("hotel_bar-id") Integer hotelBarId,
+                                     @RequestParam("image_M_U_R") MultipartFile multipartFile) throws IOException {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String updatedFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                updateMenuBook.setPhoto(updatedFileName);
+                String upload = "/images/" + updateMenuBook.getId();
+                FileUploadUtil.saveFile(upload, updatedFileName, multipartFile);
+            } else {
+                if (updateMenuBook.getPhoto().isEmpty()) {
+                    updateMenuBook.setPhoto(null);
+                    menuBookService.saveMenuBook(updateMenuBook);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         menuBookService.saveMenuBook(updateMenuBook);
         return "redirect:/hotel-bar/" + hotelBarId;
     }

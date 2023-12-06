@@ -141,7 +141,7 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Update Bar Drink List </h1>
             <div class = "card-body">
-                <form method="post" th:action="@{'/menu/update-bar/' + ${bar_update_menu.bar.id}}">
+                <form method="post" th:action="@{'/menu/update-bar/' + ${bar_update_menu.bar.id}}" enctype="multipart/form-data">
 
                     <input type="hidden" th:value="${bar_update_menu.bar.id}" th:field="*{bar_update_menu.bar.id}">
 
@@ -160,6 +160,10 @@
                     <label for="price" style="color:black;">Price</label>
                     <input type="number" class="form-control" id="price" th:placeholder="${bar_update_menu.price}"
                            th:field="*{bar_update_menu.price}">
+
+                    <label for="price" style="color: black;">Image</label>
+                    <input type="hidden" th:field="*{bar_update_menu.photo}">
+                    <input type="file" name="image_M_U_R" accept="image/*" class="form-control-file">
 
 
                     <button class="btn-link">Update</button>

@@ -192,7 +192,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> New Bar Menu</h1>
             <div class="card-body">
-                <form th:action="@{'/menu/create-bar/' + ${barId} + '/' +${partnerId}}" method="post">
+                <form th:action="@{'/menu/create-bar/' + ${barId} + '/' +${partnerId}}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label> Drink Menu </label>
                         <label>
@@ -232,14 +232,10 @@
                     <div class="image">
                         <label> Image </label>
                         <label>
-                            <input
-                                    type="image"
-                                    name="image"
-                                    th:field="*{bar_new_menu.description}"
-                                    class="form-control"
-                                    placeholder="Upload your image"
-                                    alt="Bar Menu Image"/>
-                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" th:field="*{bar_new_menu.photo}">
+                        <input type="file" name="bImage" accept="image/*" class="form-control-file">
                     </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">

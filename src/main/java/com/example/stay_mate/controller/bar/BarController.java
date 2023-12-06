@@ -1,13 +1,17 @@
 package com.example.stay_mate.controller.bar;
 
+import com.example.stay_mate.FileUploadUtil;
 import com.example.stay_mate.model.bar.Bar;
 import com.example.stay_mate.service.bar.BarService;
 import com.example.stay_mate.service.menubook.MenuBookService;
 import com.example.stay_mate.service.partner.PartnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -32,9 +36,10 @@ public class BarController {
 
     @GetMapping("/{id}")
     public String getCurrentBar(Model model, @PathVariable("id") Integer barId) {
-        model.addAttribute("menu_book",menuBookService.getMenuBookByBar
+        model.addAttribute("menu_book", menuBookService.getMenuBookByBar
                 (barService.getBarById(barId)));
         model.addAttribute("bar", barService.getBarById(barId));
+        model.addAttribute("image", "/uploads/" + barId + "-bar-" + barService.getBarById(barId).getName());
         return "bar";
     }
 
@@ -46,8 +51,23 @@ public class BarController {
     }
 
     @PostMapping("/create/{partner-id}")
-    public String addBar(@ModelAttribute("new_bar") Bar bar, @PathVariable("partner-id") Integer partnerId) {
-        bar.setPartner(partnerService.getPartnerById(partnerId));
+    public String addBar(@ModelAttribute("new_bar") Bar bar,
+                         @PathVariable("partner-id") Integer partnerId,
+                         @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            bar.setPhoto(fileName);
+            bar.setPartner(partnerService.getPartnerById(partnerId));
+            barService.saveBar(bar);
+            String upload = "/images/" + bar.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (bar.getPhoto().isEmpty()) {
+                bar.setPhoto(null);
+                bar.setPartner(partnerService.getPartnerById(partnerId));
+                barService.saveBar(bar);
+            }
+        }
         barService.saveBar(bar);
         return "redirect:/partner/current";
     }
