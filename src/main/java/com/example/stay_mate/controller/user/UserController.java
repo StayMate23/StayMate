@@ -53,20 +53,17 @@ public class UserController {
         List<Double> totals = new ArrayList<>();
         for (Reservation actual : reservation) {
             if (user.equals(actual.getUser())) {
-                double total = actual.getRoom().getPricePerDay() * reservationService.getTotalPrice(
+                double reservationTotal = actual.getRoom().getPricePerDay() * reservationService.getTotalPrice(
                         actual.getStartDate(), actual.getEndDate());
-                totals.add(total);
+                totals.add(reservationTotal);
             }
-            double total = 0;
-            for (Double actualPrice : totals) {
-                total += actualPrice;
-            }
-            model.addAttribute("reservations", reservation);
-            model.addAttribute("totals", total);
-            return "logged-in-room";
         }
-
-        return null;
+        model.addAttribute("reservations", reservation);
+        model.addAttribute("totals", totals);
+        if (reservation.isEmpty()) {
+            return "redirect:/reservation/" + user.getId() + "/all";
+        }
+        return "logged-in-room";
     }
 
     @GetMapping("/create")

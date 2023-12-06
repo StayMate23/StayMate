@@ -35,9 +35,9 @@
     <tr th:each="reservation, index : ${reservations}">
         <td th:text="${reservation.room.hotel.name}"></td>
         <td th:text="${reservation.room.roomNumber}"></td>
-        <td th:text="${reservation.startDate}"></td>
-        <td th:text="${reservation.endDate}"></td>
-        <td th:text="${totals.intValue()}"></td>
+        <td th:text="${reservation.startDate.toLocalDate()}"></td>
+        <td th:text="${reservation.endDate.toLocalDate()}"></td>
+        <td th:text="${totals[index.index].intValue()}"></td>
     </tr>
 </table>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
