@@ -126,7 +126,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}">Profile</a>
     <a th:href="@{'/hotels/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Hotel</a>
-    <a th:href="@{'/room/update/' + ${room.id}}">Update Room</a>
+    <a th:href="@{'/room/'+ ${room.id}+'/update/' + ${room.hotel.id} + '/' + ${room.partner.id}}">Update Room</a>
     <!--    <a th:href="@{/partner/all}">Partners</a>-->
     <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
     <!--    <a th:href="@{/bars/all}">Bars</a>-->

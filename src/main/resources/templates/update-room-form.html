@@ -149,7 +149,7 @@
             <h1 class="text-center"> Update Rooms </h1>
             <div class="card-body">
                 <form method="post"
-                      th:action="@{'/room/create/' + ${updated_room.hotel.id} + '/' + ${updated_room.partner.id}}">
+                      th:action="@{'/room/' + ${updated_room.id} + '/update/' + ${updated_room.hotel.id} + '/' + ${updated_room.partner.id}}" enctype="multipart/form-data">
 
                     <input type="hidden" th:value="${updated_room.hotel.id}" th:field="*{updated_room.hotel.id}">
 
@@ -175,10 +175,16 @@
                                th:field="*{updated_room.pricePerDay}">
                     </div>
 
-                    <button type="submit" class="btn-link">Update</button>
-                </form>
-            </div>
 
+                    <div class="image">
+                        <div class="form-group">
+                            <input type="hidden" th:field="*{updated_room.photo}">
+                            <input type="file" name="roomImage" accept="image/*" class="form-control-file">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-link">Update</button>
+
+                </form>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

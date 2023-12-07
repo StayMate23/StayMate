@@ -60,7 +60,7 @@ public class UserController {
         }
         model.addAttribute("reservations", reservation);
         model.addAttribute("totals", totals);
-        model.addAttribute("user",userService.getUserById(id));
+        model.addAttribute("user", userService.getUserById(id));
         if (reservation.isEmpty()) {
             return "redirect:/reservation/" + user.getId() + "/all";
         }
