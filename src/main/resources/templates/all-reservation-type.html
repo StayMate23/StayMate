@@ -333,33 +333,43 @@
 </nav>
 <table class="table">
     <tr th:each="actualRoom : ${room}">
-        <td th:text="${actualRoom.id}"></td>
         <td th:text="${actualRoom.roomNumber}"></td>
         <td th:text="${actualRoom.hotel.description}"></td>
+        <td th:unless="${actualRoom.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualRoom.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
 
     </tr>
     <tr th:each="actualRest : ${restaurant}">
-        <td th:text="${actualRest.id}"></td>
         <td th:text="${actualRest.name}"></td>
         <td th:text="${actualRest.description}"></td>
+        <td th:unless="${actualRest.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualRest.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
 
     </tr>
     <tr th:each="actualBar : ${bar}">
-        <td th:text="${actualBar.id}"></td>
         <td th:text="${actualBar.name}"></td>
         <td th:text="${actualBar.description}"></td>
+        <td th:unless="${actualBar.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${actualBar.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
 
     </tr>
     <tr th:each="hr : ${hotelRestaurant}">
-        <td th:text="${hr.id}"></td>
         <td th:text="${hr.name}"></td>
         <td th:text="${hr.description}"></td>
+        <td th:unless="${hr.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${hr.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
 
     </tr>
     <tr th:each="hb : ${hotelBar}">
-        <td th:text="${hb.id}"></td>
         <td th:text="${hb.name}"></td>
         <td th:text="${hb.description}"></td>
+        <td th:unless="${hb.getPhoto() == null}">
+            <img th:src="@{'/uploads/' + ${hb.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+        </td>
 
     </tr>
 </table>
