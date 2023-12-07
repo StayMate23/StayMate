@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Restaurant</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <style>
@@ -57,9 +58,15 @@
     }
 
     @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 18px;}
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
     }
+
     .btn-contact {
         color: black;
         background-color: dodgerblue;
@@ -121,10 +128,11 @@
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a th:href="@{/}" >Profile</a>
-    <a  th:href="@{'/restaurants/' + ${restaurant_menu_book.restaurant.id}}">Restaurant</a>
-    <a th:href="@{'/menu/update-restaurant/' + ${restaurant_menu_book.restaurant.id} + '/' + ${restaurant_menu_book.id}}">Update Menu</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <a th:href="@{/}">Profile</a>
+    <a th:href="@{'/restaurants/' + ${restaurant_menu_book.restaurant.id}}">Restaurant</a>
+    <a th:href="@{'/menu/update-restaurant/' + ${restaurant_menu_book.restaurant.id} + '/' + ${restaurant_menu_book.id}}">Update
+        Menu</a>
+    <!--    <a th:href="@{/partner/all}">Partners</a>-->
     <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
     <!--    <a th:href="@{/bars/all}">Bars</a>-->
     <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
@@ -141,13 +149,13 @@
 
 
 <div class="container">
-    <table>
+    <table class="table">
         <thead>
         <tr>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Image</td>
-            <td>Price</td>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Price</th>
         </tr>
         </thead>
         <tr>
@@ -157,19 +165,22 @@
             <td>
                 <h5 th:text="${restaurant_menu_book.description}"></h5>
             </td>
-            <td>
-                <img th:src="@{'/uploads/' + ${restaurant_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="rImage">
-            <td th:unless="@{'/uploads/' + ${restaurant_menu_book.getPhoto()}}" th:alt="No Image Available">
-
+            <td th:if="${restaurant_menu_book.getPhoto() == null}">
+                No Image Available
+            </td>
+            <td th:unless="${restaurant_menu_book.getPhoto() == null}">
+                <img th:src="@{'/uploads/' + ${restaurant_menu_book.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
             </td>
             <td>
                 <h5 th:text="${restaurant_menu_book.price}"></h5>
             </td>
-
         </tr>
     </table>
 </div>
-</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -179,9 +190,15 @@
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+        document.getElementById("main").style.marginLeft = "0";
         document.body.style.backgroundColor = "white";
     }
 </script>
+</body>
 
 </html>
+
+
+
+
+

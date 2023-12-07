@@ -107,7 +107,7 @@
   <a th:href="@{/}">Profile</a>
   <a th:href="@{'/hotels/' + ${hotel_restaurant.hotel.id} + '/' + ${hotel_restaurant.partner.id}}">Hotel</a>
   <a th:href="@{'/hotels/create/' + ${hotel_restaurant.partner.id}}">Add Hotel</a>
-  <a  th:href="@{'/hotel-restaurant/update/' + ${hotel_restaurant.id}}">Update Restaurant</a>
+  <a  th:href="@{'/hotel-restaurant/'+${hotel_restaurant.id}+'/update/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.hotel.id}}">Update Restaurant</a>
   <a  th:href="@{'/menu/create-hotel-restaurant/' + ${hotel_restaurant.id} + '/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.partner.id}}">Add
     Menu</a>
 
@@ -142,10 +142,12 @@
       <td>
         <h5 th:text="${hotel_restaurant.description}"></h5>
       </td>
-      <td>
-        <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" style="width: 250px; height: auto;" alt="hrImage">
-      <td th:unless="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" th:alt="No Image Available">
 
+      <td th:if="${hotel_restaurant.getPhoto() == null}">
+        No Image Available
+      </td>
+      <td th:unless="${hotel_restaurant.getPhoto() == null}">
+        <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
       </td>
       <td>
         <ul>

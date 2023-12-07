@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,4 +60,16 @@ public class Reservation {
     @JoinColumn(name = "bar_id")
     private Bar bar;
 
+    @Override
+    public String toString() {
+        return
+                "Start of reservation: " + startDate + ", End of reservation" + endDate +
+                ", Number of guests: " + userNumber +
+                ", Hotel name: " + hotel +
+                ", Hotel restaurant name: " + hotelRestaurant +
+                ", Hotel bar name: " + hotelBar +
+                ", Room number: " + room +
+                ", Restaurant name: " + restaurant +
+                ", Bar name: " + bar;
+    }
 }

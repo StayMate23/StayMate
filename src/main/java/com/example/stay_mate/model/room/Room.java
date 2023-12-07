@@ -22,7 +22,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer roomNumber;
+    private String roomNumber;
     private Integer roomCapacity;
     private Double pricePerDay;
     @ManyToOne
@@ -36,4 +36,11 @@ public class Room {
     private List<Reservation> reservations;
     @Column(length = 64)
     private String photo;
+
+    @Override
+    public String toString() {
+        return
+                "Room number=" + roomNumber +
+                ", Hotel=" + hotel;
+    }
 }

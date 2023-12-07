@@ -144,8 +144,12 @@
         <h5 th:text="${hotel_bar_menu_book.description}"></h5>
       </td>
       <td>
-        <img th:src="@{'/uploads/' + ${hotel_bar_menu_book.getPhoto()}}" style="width: 250px; height: auto;" alt="image">
-      <td th:unless="@{'/uploads/' + ${hotel_bar_menu_book.getPhoto()}}" th:alt="No Image Available">
+      <td th:if="${hotel_bar_menu_book.getPhoto() == null}">
+        No Image Available
+      </td>
+      <td th:unless="${hotel_bar_menu_book.getPhoto() == null}">
+        <img th:src="@{'/uploads/' + ${hotel_bar_menu_book.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+      </td>
 
       </td>
       <td>

@@ -135,8 +135,12 @@
             <td>
                 <ul>
                     <li th:each="actual : ${bar}">
-                        <img th:src="@{'/uploads/' + ${bar.partner.id} + '-hotel-' + ${bar.name}} " style="width: 100px; height: auto;" alt="Hotel Image" >
-                        <td th:unless="@{'/uploads/' + ${bar.getPhoto()}}" th:alt="No Image Available">
+                        <td th:if="${actual.getPhoto() == null}">
+                            No Image Available
+                        </td>
+                        <td th:unless="${actual.getPhoto() == null}">
+                            <img th:src="@{'/uploads/' + ${actual.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
+                        </td>
 
                     </li>
 

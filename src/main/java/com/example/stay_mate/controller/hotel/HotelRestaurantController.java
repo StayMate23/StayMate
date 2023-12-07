@@ -81,16 +81,40 @@ public class HotelRestaurantController {
         return "redirect:/hotels/" + hotelId + "/" + partnerId;
     }
 
-    @GetMapping("/update/{id}")
-    public String updateHotelRestaurant(@PathVariable("id") Integer hotelRestaurantId, Model model) {
+    @GetMapping("{id}/update/{hotel-id}/{partner-id}")
+    public String updateHotelRestaurant(@PathVariable("id") Integer hotelRestaurantId, Model model,
+                                        @PathVariable("hotel-id")Integer hotelId,
+                                        @PathVariable("partner-id")Integer partnerId) {
+        model.addAttribute("hotel", hotelService.getHotelById(hotelId));
+        model.addAttribute("partner", partnerService.getPartnerById(partnerId));
         model.addAttribute("updated_hotel_restaurant",
                 hotelRestaurantService.getHotelRestaurantById(hotelRestaurantId));
         return "hotel-restaurant-update";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("{id}/update/{hotel-id}/{partner-id}")
     public String updateHotelRestaurant(@ModelAttribute("updated_hotel_restaurant") HotelRestaurant updatedHotelRestaurant,
-                                        @PathVariable("id") Integer hotelRestaurantId) {
+                                        @PathVariable("id") Integer hotelRestaurantId,
+                                        @PathVariable("hotel-id")Integer hotelId,
+                                        @PathVariable("partner-id")Integer partnerId,
+                                        @RequestParam("image")MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            updatedHotelRestaurant.setPhoto(fileName);
+            updatedHotelRestaurant.setHotel(hotelService.getHotelById(updatedHotelRestaurant.getHotel().getId()));
+            updatedHotelRestaurant.setPartner(partnerService.getPartnerById(updatedHotelRestaurant.getPartner().getId()));
+            String upload = "/images/" + updatedHotelRestaurant.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }
+        else {
+            if (updatedHotelRestaurant.getPhoto().isEmpty()){
+                updatedHotelRestaurant.setPhoto(null);
+                updatedHotelRestaurant.setHotel(hotelService.getHotelById(hotelId));
+                updatedHotelRestaurant.setPartner(partnerService.getPartnerById(partnerId));
+                hotelRestaurantService.saveHotelRestaurant(updatedHotelRestaurant);
+            }
+
+        }
         hotelRestaurantService.saveHotelRestaurant(updatedHotelRestaurant);
         return "redirect:/hotel-restaurant/" + hotelRestaurantId;
     }
