@@ -76,19 +76,42 @@ public class  RoomController {
         return "redirect:/hotels/" + hotelId + "/" + partnerId;
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/{id}/update/{hotel-id}/{partner-id}")
     public String updateRoom(Model model,
-                             @PathVariable("id") Integer roomId) {
+                             @PathVariable("id") Integer roomId,
+                             @PathVariable("hotel-id") Integer hotelId,
+                             @PathVariable("partner-id") Integer partnerId) {
+        model.addAttribute("hotel", hotelService.getHotelById(hotelId));
+        model.addAttribute("partner", partnerService.getPartnerById(partnerId));
         model.addAttribute("updated_room",
                 roomService.getRoomById(roomId));
         return "update-room-form";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/{id}/update/{hotel-id}/{partner-id}")
     public String updateRoom(@ModelAttribute("updated_room") Room updatedRoom,
-                             @PathVariable("id") Integer roomId) {
+                             @PathVariable("id") Integer roomId,
+                             @PathVariable("hotel-id") Integer hotelId,
+                             @PathVariable("partner-id") Integer partnerId,
+                             @RequestParam("roomImage")MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()){
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            updatedRoom.setPhoto(fileName);
+            updatedRoom.setHotel(hotelService.getHotelById(hotelId));
+            updatedRoom.setPartner(partnerService.getPartnerById(partnerId));
+            String upload = "/images/" + updatedRoom.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }
+        else {
+            if (updatedRoom.getPhoto().isEmpty()){
+                updatedRoom.setPhoto(null);
+                updatedRoom.setHotel(hotelService.getHotelById(hotelId));
+                updatedRoom.setPartner(partnerService.getPartnerById(partnerId));
+                roomService.saveRoom(updatedRoom);
+            }
+        }
         roomService.saveRoom(updatedRoom);
-        return "redirect:/" + roomId;
+        return "redirect:/room/" + roomId;
     }
     @PostMapping("/{id}/delete")
     public String deleteRoom(@PathVariable("id")Integer roomId){
