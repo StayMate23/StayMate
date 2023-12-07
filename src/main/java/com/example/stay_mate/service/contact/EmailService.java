@@ -34,4 +34,9 @@ public class EmailService {
             // Zárd le a JavaMailSender-t, ha szükséges
         }
     }
+
+    public Object getLog() {
+        // Getter for the logger
+            return log;
+        }
 }
