@@ -386,6 +386,12 @@
                     <a th:href="@{'/reservation/'+${user.id} + '/all'}">Reservation </a>
 
                 </li>
+
+                <li>
+                    <span class="material-icons icons-size">book_online</span>
+                    <a th:href="@{'/user/'+${user.id} + '/reservations'}"> My Reservations</a>
+
+                </li>
                 <li>
                     <span class="material-icons icons-size">logout</span>
                     <form th:action="@{/logout}" method="post">

@@ -142,10 +142,12 @@
       <td>
         <h5 th:text="${hotel_restaurant.description}"></h5>
       </td>
-      <td>
-        <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" style="width: 250px; height: auto;" alt="hrImage">
-      <td th:unless="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" th:alt="No Image Available">
 
+      <td th:if="${hotel_restaurant.getPhoto() == null}">
+        No Image Available
+      </td>
+      <td th:unless="${hotel_restaurant.getPhoto() == null}">
+        <img th:src="@{'/uploads/' + ${hotel_restaurant.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
       </td>
       <td>
         <ul>
