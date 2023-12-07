@@ -123,7 +123,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/user-login";
+        return "redirect:/login";
     }
 
 

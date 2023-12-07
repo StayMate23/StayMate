@@ -333,8 +333,8 @@
 </nav>
 <table class="table">
     <tr th:each="actualRoom : ${room}">
+        <td th:text="${actualRoom.hotel.name}"></td>
         <td th:text="${actualRoom.roomNumber}"></td>
-        <td th:text="${actualRoom.hotel.description}"></td>
         <td th:unless="${actualRoom.getPhoto() == null}">
             <img th:src="@{'/uploads/' + ${actualRoom.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
         </td>
