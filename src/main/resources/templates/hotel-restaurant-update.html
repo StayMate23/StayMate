@@ -51,9 +51,15 @@
         }
 
         @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
         }
+
         .btn-contact {
             color: black;
             background-color: dodgerblue;
@@ -68,15 +74,16 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            border: 1px solid #fff; /*White border /
-        }
+            border: 1px solid #fff;
+            /*White border /
+                   }
 
-        .table th,
-        .table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #fff; / White bottom border /
-            color: #000; / Black text */
+                   .table th,
+                   .table td {
+                       padding: 12px;
+                       text-align: left;
+                       border-bottom: 1px solid #fff; / White bottom border /
+                       color: #000; / Black text */
         }
 
         .table th {
@@ -113,48 +120,62 @@
 <span style="font-size:50px;cursor:pointer;color: black;padding-left: 10px" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a th:href="@{/}" >Profile</a>
-    <a  th:href="@{'/hotels/' + ${updated_hotel_restaurant.id} +'/'+${updated_hotel_restaurant.partner.id}}">Hotel</a>
-<!--    <a th:href="@{/partner/all}">Partners</a>-->
-<!--    <a th:href="@{/hotels/all}">Hotels</a>-->
-<!--    <a th:href="@{/bars/all}">Bars</a>-->
-<!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
-<!--    <a th:href="@{/services/all}">Services</a>-->
+    <a th:href="@{/}">Profile</a>
+    <a th:href="@{'/hotels/' + ${updated_hotel_restaurant.id} +'/'+${updated_hotel_restaurant.partner.id}}">Hotel</a>
+    <!--    <a th:href="@{/partner/all}">Partners</a>-->
+    <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
+    <!--    <a th:href="@{/bars/all}">Bars</a>-->
+    <!--    <a th:href="@{/restaurants/all}">Restaurants</a>-->
+    <!--    <a th:href="@{/services/all}">Services</a>-->
     <a th:href="@{/contact}" class="btn-contact">Contact Us!</a>
     <form class="navbar-brand" th:action="@{/logout}" method="post">
         <button type="submit" class="btn-logout">LogOut</button>
     </form>
 </div>
 
-<div class = "container">
-    <div class = "row">
-        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Update Services </h1>
-            <div class = "card-body">
-     <form method="post" th:action="@{'/hotel-restaurant/create/' + ${updated_hotel_restaurant.hotel.id} + '/' + ${updated_hotel_restaurant.partner.id}}">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center"> Update Services </h1>
+            <div class="card-body">
+                <form method="post"
+                      th:action="@{'/hotel-restaurant/' + ${updated_hotel_restaurant.id} + '/update/' + ${updated_hotel_restaurant.hotel.id} + '/' + ${updated_hotel_restaurant.partner.id}}"
+                      enctype="multipart/form-data">
 
-        <input type="hidden" th:value="${updated_hotel_restaurant.hotel.id}" th:field="*{updated_hotel_restaurant.hotel.id}">
+                    <input type="hidden" th:value="${updated_hotel_restaurant.hotel.id}"
+                           th:field="*{updated_hotel_restaurant.hotel.id}">
 
-        <input type="hidden" th:value="${updated_hotel_restaurant.partner.id}" th:field="*{updated_hotel_restaurant.partner.id}">
+                    <input type="hidden" th:value="${updated_hotel_restaurant.partner.id}"
+                           th:field="*{updated_hotel_restaurant.partner.id}">
 
-        <input type="hidden" th:value="${updated_hotel_restaurant.id}" th:field="*{updated_hotel_restaurant.id}">
+                    <input type="hidden" th:value="${updated_hotel_restaurant.id}"
+                           th:field="*{updated_hotel_restaurant.id}">
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{updated_hotel_restaurant.name}">
-        </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name"
+                               th:field="*{updated_hotel_restaurant.name}">
+                    </div>
 
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" th:field="*{updated_hotel_restaurant.description}">
-        </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Description"
+                               th:field="*{updated_hotel_restaurant.description}">
+                    </div>
 
-         <div class = "box-footer">
-             <button type="submit" class = "btn-link">
-                 Submit
-             </button>
-         </div>
-    </form>
+                    <div class="image">
+                        <div class="form-group">
+                            <input type="hidden" th:field="*{updated_hotel_restaurant.photo}">
+                            <input type="file" name="image" accept="image/*" class="form-control-file">
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn-link">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -168,7 +189,7 @@
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+        document.getElementById("main").style.marginLeft = "0";
         document.body.style.backgroundColor = "white";
     }
 </script>

@@ -140,7 +140,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> Update Bar </h1>
             <div class="card-body">
-                <form method="post" th:action="@{'/bars/' + ${updated_bar.id} + '/update'}"
+                <form method="post" th:action="@{'/bars/' + ${updated_bar.id} + '/update/' + ${updated_bar.partner.id}}"
                       enctype="multipart/form-data">
 
                     <input type="hidden" th:value="${updated_bar.partner.id}" th:field="*{updated_bar.partner.id}">
@@ -162,7 +162,7 @@
                     <div class="image">
                         <div class="form-group">
                             <input type="hidden" th:field="*{updated_bar.photo}">
-                            <input type="file" name="usImage" accept="image/*" class="form-control-file">
+                            <input type="file" name="image" accept="image/*" class="form-control-file">
                         </div>
 
                         <div class="box-footer">

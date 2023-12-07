@@ -123,7 +123,7 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a th:href="@{/}">Profile</a>
-  <a  th:href="@{'/restaurants/' + ${restaurant.id} + '/update'}">Update Restaurant</a>
+  <a  th:href="@{'/restaurants/' + ${restaurant.id} + '/update/' +${restaurant.partner.id}}">Update Restaurant</a>
   <a th:href="@{'/menu/create-restaurant/' + ${restaurant.id} + '/' + ${restaurant.partner.id}}">Add Menu</a>
 
   <!--  <a th:href="@{/partner/all}">Partners</a>-->

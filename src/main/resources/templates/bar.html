@@ -120,7 +120,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a th:href="@{/}">Profile</a>
     <a th:href="@{'/bars/create/' + ${bar.partner.id}}">Add bar</a>
-    <a th:href="@{'/bars/' + ${bar.partner.id} + '/update'}">Update Bar</a>
+    <a th:href="@{'/bars/' + ${bar.id} + '/update/' + ${bar.partner.id}}">Update Bar</a>
     <a th:href="@{'/menu/create-bar/' + ${bar.id} + '/' + ${bar.partner.id}}">Add Menu</a>
     <!--    <a th:href="@{/partner/all}">Partners</a>-->
     <!--    <a th:href="@{/hotels/all}">Hotels</a>-->
