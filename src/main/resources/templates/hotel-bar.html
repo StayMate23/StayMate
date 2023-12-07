@@ -142,15 +142,16 @@
             <td>
                 <h5 th:text="${hotel_bar.description}"></h5>
             </td>
-            <td>
-                <img th:src="@{'/uploads/' + ${hotel_bar.getPhoto()}}" style="width: 250px; height: auto;" alt="hbImage">
-            <td th:unless="@{'/uploads/' + ${hotel_bar.getPhoto()}}" th:alt="No Image Available">
-
+            <td th:if="${hotel_bar.getPhoto() == null}">
+                No Image Available
+            </td>
+            <td th:unless="${hotel_bar.getPhoto() == null}">
+                <img th:src="@{'/uploads/' + ${hotel_bar.getPhoto()}}" alt="Image" style="width: 250px; height: auto;">
             </td>
             <td>
                 <ul>
                     <li th:each="actual : ${menu_book}">
-                        <a th:text="${actual.name}" th:href="@{'/menu/hotel-bar/' + ${actual.id}}"></a>
+                        <a th:text="${actual.name}" th:href="@{'/menu/hotel-bar/' + ${actual.id}}" style="color: black; font-size: larger;text-decoration: underline"></a>
                     </li>
                 </ul>
             </td>
