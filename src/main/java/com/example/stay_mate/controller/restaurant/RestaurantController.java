@@ -73,14 +73,34 @@ public class RestaurantController {
         return "redirect:/partner/current";
     }
 
-    @GetMapping("/{id}/update")
-    public String updateRestaurant(Model model, @PathVariable("id") Integer restaurantId) {
+    @GetMapping("/{id}/update/{partner-id}")
+    public String updateRestaurant(Model model,
+                                   @PathVariable("id") Integer restaurantId,
+                                   @PathVariable("partner-id")Integer partnerId) {
+        model.addAttribute(partnerService.getPartnerById(partnerId));
         model.addAttribute("updated_restaurant", restaurantService.getRestaurantById(restaurantId));
         return "restaurant-update";
     }
 
-    @PostMapping("/{id}/update")
-    public String updateRestaurant(@ModelAttribute("updated_restaurant") Restaurant updatedRestaurant, @PathVariable("id") Integer restaurantId) {
+    @PostMapping("/{id}/update/{partner-id}")
+    public String updateRestaurant(@ModelAttribute("updated_restaurant") Restaurant updatedRestaurant,
+                                   @PathVariable("id") Integer restaurantId,
+                                   @PathVariable("partner-id")Integer partnerId,
+                                   @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            updatedRestaurant.setPhoto(fileName);
+            updatedRestaurant.setPartner(partnerService.getPartnerById(partnerId));
+            restaurantService.saveRestaurant(updatedRestaurant);
+            String upload = "/images/" + updatedRestaurant.getId();
+            FileUploadUtil.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (updatedRestaurant.getPhoto().isEmpty()) {
+                updatedRestaurant.setPhoto(null);
+                updatedRestaurant.setPartner(partnerService.getPartnerById(partnerId));
+                restaurantService.saveRestaurant(updatedRestaurant);
+            }
+        }
         restaurantService.saveRestaurant(updatedRestaurant);
         return "redirect:/partner/current";
     }

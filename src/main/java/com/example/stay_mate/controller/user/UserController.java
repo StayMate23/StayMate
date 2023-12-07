@@ -50,12 +50,12 @@ public class UserController {
     public String getReservations(Model model, @PathVariable("id") Integer id) {
         User user = userService.getUserById(id);
         List<Reservation> reservation = reservationService.getReservationByUser(user);
-        List<Double> totals = new ArrayList<>();
+        List<Integer> totals = new ArrayList<>();
         for (Reservation actual : reservation) {
-            if (user.equals(actual.getUser())) {
+            if (actual != null && user.equals(actual.getUser()) && actual.getRoom() != null && actual.getRoom().getId() != null) {
                 double reservationTotal = actual.getRoom().getPricePerDay() * reservationService.getTotalPrice(
                         actual.getStartDate(), actual.getEndDate());
-                totals.add(reservationTotal);
+                totals.add((int)reservationTotal);
             }
         }
         model.addAttribute("reservations", reservation);

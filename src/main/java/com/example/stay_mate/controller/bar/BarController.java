@@ -72,14 +72,34 @@ public class BarController {
         return "redirect:/partner/current";
     }
 
-    @GetMapping("/{id}/update")
-    public String updateBar(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/{id}/update/{partner-id}")
+    public String updateBar(@PathVariable("id") Integer id, Model model,
+                            @PathVariable("partner-id")Integer partnerId) {
+        model.addAttribute(partnerService.getPartnerById(partnerId));
         model.addAttribute("updated_bar", barService.getBarById(id));
         return "bar-update";
     }
 
-    @PostMapping("/{id}/update")
-    public String updateBar(@PathVariable("id") Integer id, @ModelAttribute("updated_bar") Bar updatedBar) {
+    @PostMapping("/{id}/update/{partner-id}")
+    public String updateBar(@PathVariable("id") Integer id,
+                            @PathVariable("partner-id") Integer partnerId,
+                            @ModelAttribute("updated_bar") Bar updatedBar,
+                            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        barService.getBarById(id);
+            if (!multipartFile.isEmpty()) {
+                String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                updatedBar.setPhoto(fileName);
+                updatedBar.setPartner(partnerService.getPartnerById(partnerId));
+                barService.saveBar(updatedBar);
+                String upload = "/images/" + updatedBar.getId();
+                FileUploadUtil.saveFile(upload, fileName, multipartFile);
+            } else {
+                if (updatedBar.getPhoto().isEmpty()) {
+                    updatedBar.setPhoto(null);
+                    updatedBar.setPartner(partnerService.getPartnerById(partnerId));
+                    barService.saveBar(updatedBar);
+                }
+            }
         barService.saveBar(updatedBar);
         return "redirect:/partner/current";
     }

@@ -31,4 +31,9 @@ public class HotelBar  {
     private Hotel hotel;
     @Column(length = 64)
     private String photo;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -107,7 +107,7 @@
   <a th:href="@{/}">Profile</a>
   <a th:href="@{'/hotels/' + ${hotel_restaurant.hotel.id} + '/' + ${hotel_restaurant.partner.id}}">Hotel</a>
   <a th:href="@{'/hotels/create/' + ${hotel_restaurant.partner.id}}">Add Hotel</a>
-  <a  th:href="@{'/hotel-restaurant/update/' + ${hotel_restaurant.id}}">Update Restaurant</a>
+  <a  th:href="@{'/hotel-restaurant/'+${hotel_restaurant.id}+'/update/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.hotel.id}}">Update Restaurant</a>
   <a  th:href="@{'/menu/create-hotel-restaurant/' + ${hotel_restaurant.id} + '/' + ${hotel_restaurant.hotel.id} +'/'+ ${hotel_restaurant.partner.id}}">Add
     Menu</a>
 

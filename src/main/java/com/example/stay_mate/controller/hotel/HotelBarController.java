@@ -80,14 +80,37 @@ public class HotelBarController {
         return "redirect:/hotels/" + hotelId + '/' + partnerId;
     }
 
-    @GetMapping("/update/{id}")
-    public String updateHotelBar(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/{id}/update/{hotel-id}/{partner-id}")
+    public String updateHotelBar(@PathVariable("id") Integer id, Model model,
+                                 @PathVariable("partner-id")Integer partnerId,
+                                 @PathVariable("hotel-id")Integer hotelId) {
+        model.addAttribute("partner",partnerService.getPartnerById(partnerId));
+        model.addAttribute("hotel", hotelService.getHotelById(hotelId));
         model.addAttribute("updated_hotel_bar", hotelBarService.getHotelBarById(id));
         return "hotel_bar_update";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateHotelBar(@ModelAttribute("updated_hotel_bar") HotelBar hotelBar, @PathVariable("id") Integer hotelBarId) {
+    @PostMapping("/{id}/update/{hotel-id}/{partner-id}")
+    public String updateHotelBar(@ModelAttribute("updated_hotel_bar") HotelBar hotelBar,
+                                 @PathVariable("id") Integer hotelBarId,
+                                 @PathVariable("hotel-id") Integer hotelId,
+                                 @PathVariable("partner-id") Integer partnerId,
+                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()){
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            hotelBar.setPhoto(fileName);
+            hotelBar.setHotel(hotelService.getHotelById(hotelBar.getHotel().getId()));
+            hotelBar.setPartner(partnerService.getPartnerById(hotelBar.getPartner().getId()));
+            String upload = "/images/" + hotelBar.getId();
+            FileUploadUtil.saveFile(upload,fileName,multipartFile);
+        }else {
+            if (hotelBar.getPhoto().isEmpty()){
+                hotelBar.setPhoto(null);
+                hotelBar.setHotel(hotelService.getHotelById(hotelBar.getHotel().getId()));
+                hotelBar.setPartner(partnerService.getPartnerById(hotelBar.getPartner().getId()));
+                hotelBarService.saveHotelBar(hotelBar);
+            }
+        }
         hotelBarService.saveHotelBar(hotelBar);
         return "redirect:/hotel-bar/" + hotelBarId;
     }

@@ -25,19 +25,14 @@
 <table class="table">
     <thead>
     <tr>
-        <th>Hotel</th>
-        <th>Room number</th>
-        <th>Start date</th>
-        <th>End date</th>
+        <th>Place of reservation</th>
         <th>Price</th>
     </tr>
     </thead>
-    <tr th:each="reservation, index : ${reservations}">
-        <td th:text="${reservation.room.hotel.name}"></td>
-        <td th:text="${reservation.room.roomNumber}"></td>
-        <td th:text="${reservation.startDate.toLocalDate()}"></td>
-        <td th:text="${reservation.endDate.toLocalDate()}"></td>
-        <td th:text="${totals[index.index].intValue()}"></td>
+    <tr th:each="reservation, stat : ${reservations}">
+        <td th:text="${reservation}"></td>
+        <td th:if="${totals != null and totals.size() > stat.index and totals[stat.index] != null and totals[stat.index] ne ''}" th:text="${totals[stat.index]}"></td>
+        <td th:if="${totals == null or totals.size() <= stat.index or totals[stat.index] == null or totals[stat.index] eq ''}">No information</td>
     </tr>
 </table>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

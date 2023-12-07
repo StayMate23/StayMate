@@ -130,7 +130,7 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Update Restaurant </h1>
             <div class = "card-body">
-<form th:action="@{'/restaurants/'+${updated_restaurant.id} +'/update'}" method="post">
+<form th:action="@{'/restaurants/'+${updated_restaurant.id} +'/update/' + ${updated_restaurant.partner.id} }" enctype="multipart/form-data" method="post">
 
     <input type="hidden" th:value="${updated_restaurant.id}" th:field="*{updated_restaurant.partner.id}">
 
@@ -143,6 +143,12 @@
     <label for="description">Description:</label>
     <input type="text" class="form-control" id="description" th:placeholder="${updated_restaurant.description}" th:field="*{updated_restaurant.description}">
     </div>
+
+    <div class="image">
+        <div class="form-group">
+            <input type="hidden" th:field="*{updated_restaurant.photo}">
+            <input type="file" name="image" accept="image/*" class="form-control-file">
+        </div>
 
     <div class = "box-footer">
         <button type="submit" class = "btn-link">
