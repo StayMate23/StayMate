@@ -1,0 +1,54 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    networks:
+      - stay_mate-net
+    environment:
+      MYSQL_DATABASE: 'stay_mate_demo'
+      MYSQL_USER: 'service'
+      MYSQL_PASSWORD: 'Asdf1234'
+      MYSQL_ROOT_PASSWORD: 'MaxV6yrky2'
+#    ports:
+#      - '3306:3306'
+#    expose:
+#      - '3306'
+    volumes:
+      - ./stay_mate_demo.sql:/docker-entrypoint-initdb.d/1.sql
+      - stay_mate-database:/var/lib/mysql
+
+  application:
+    build: .
+    restart: always
+    networks:
+      - stay_mate-net
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysql:3306/stay_mate_demo
+    ports:
+      - '8081:8080'
+    expose:
+      - '8081'
+    depends_on:
+      - mysql
+
+  tunnel:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    environment:
+      NGROK_AUTHTOKEN: '2T14Y8YkLRkOJXej4z8T1QaHmYq_3AdaZB1KbGqRNtJBvvVRo'
+    networks:
+      - stay_mate-net
+    command:
+      - "http"
+      - "application:8080"
+      - "--domain=cricket-pro-tadpole.ngrok-free.app"
+    ports:
+      - '4041:4040'
+
+volumes:
+  stay_mate-database:
+
+networks:
+  stay_mate-net:
